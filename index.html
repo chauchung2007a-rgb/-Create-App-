@@ -6,170 +6,228 @@
 <title>CodeWrite</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
- margin:0;
- font-family:Arial,sans-serif;
- background:#eef7fb;
- height:100vh;
- overoverflow:auto;
+*{
+ box-sizing:border-box;
 }
 
+html,body{
+ margin:0;
+ width:100%;
+ height:100%;
+ overflow:hidden;
+ font-family:Arial,sans-serif;
+ background:#eef7fb;
+}
+
+body{
+ display:flex;
+ flex-direction:column;
+}
+
+/* Header */
 header{
- height:62px;
+ height:58px;
+ flex-shrink:0;
  background:white;
  border-bottom:1px solid #dce7ec;
  display:flex;
  align-items:center;
  justify-content:space-between;
- padding:0 16px;
+ padding:0 14px;
 }
 
 .brand{
  display:flex;
  align-items:center;
- gap:10px;
+ gap:9px;
 }
 
 .logo{
- width:42px;
- height:42px;
- border-radius:14px;
+ width:38px;
+ height:38px;
+ flex-shrink:0;
+ border-radius:12px;
  background:#e7f7fc;
  color:#35a8d0;
  display:flex;
  align-items:center;
  justify-content:center;
- fontfont-size:8px;
+ font-size:9px;
  font-weight:bold;
 }
 
 .name{
- font-size:20px;
+ font-size:18px;
  font-weight:bold;
  color:#17252e;
 }
 
-.sub{
- font-size:10px;
- color:#82929b;
-}
-
-.top button{
+.search-button,
+.settings-button{
  border:0;
  background:#edf5f8;
- border-radius:9px;
- padding:9px 12px;
- margin-left:4px;
- cursor:pointer;
+ border-radius:10px;
+ width:40px;
+ height:40px;
+ font-size:18px;
 }
 
-.workspace{
- height:calc(100vh - 62px);
- display:flex;
+/* Search */
+.search-box{
+ display:none;
+ position:absolute;
+ top:8px;
+ left:10px;
+ right:10px;
+ height:42px;
+ z-index:10;
 }
 
-.editor{
- width:50%;
- background:#17232d;
- color:white;
+.search-box input{
+ width:100%;
+ height:100%;
+ border:1px solid #dce7ec;
+ border-radius:11px;
+ padding:0 42px 0 14px;
+ outline:0;
+ font-size:15px;
+ background:white;
+}
+
+.search-close{
+ position:absolute;
+ right:5px;
+ top:4px;
+ width:34px;
+ height:34px;
+ border:0;
+ background:transparent;
+ font-size:18px;
+}
+
+/* Main */
+main{
+ flex:1;
+ min-height:0;
  display:flex;
  flex-direction:column;
 }
 
-.editor-head,
-.preview-head{
- height:50px;
+/* Tabs */
+.tabs{
+ height:48px;
+ flex-shrink:0;
  display:flex;
- align-items:center;
- justify-content:space-between;
- padding:0 13px;
+ background:white;
+ border-bottom:1px solid #dce7ec;
 }
 
-.editor-head{
- border-bottom:1px solid #34434d;
-}
-
-.run{
+.tab{
+ flex:1;
  border:0;
- background:#35a8d0;
- color:white;
- border-radius:9px;
- padding:9px 18px;
+ background:white;
+ color:#71818a;
+ font-size:14px;
  font-weight:bold;
 }
 
-#code{
+.tab.active{
+ color:#35a8d0;
+ border-bottom:3px solid #35a8d0;
+}
+
+/* Toolbar */
+.toolbar{
+ height:48px;
+ flex-shrink:0;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 12px;
+ background:#17232d;
+}
+
+.toolbar button{
+ border:0;
+ color:white;
+ background:transparent;
+ font-size:14px;
+ font-weight:bold;
+}
+
+.run{
+ background:#35a8d0 !important;
+ border-radius:9px !important;
+ padding:8px 15px;
+}
+
+.code-title{
+ color:#dcecf2;
+}
+
+/* Editor */
+.editor{
  flex:1;
+ min-height:0;
+ background:#17232d;
+}
+
+#code{
  width:100%;
+ height:100%;
  resize:none;
  border:0;
  outline:0;
- padding:18px;
+ padding:16px;
  background:#17232d;
  color:#dcecf2;
  font:13px/1.6 monospace;
  -webkit-overflow-scrolling:touch;
 }
 
-.preview{
- width:50%;
- display:flex;
- flex-direction:column;
- background:#eef7fb;
-}
-
-.preview-head{
- background:white;
- border-bottom:1px solid #dce7ec;
-}
-
-.preview-area{
+/* App */
+.app{
+ display:none;
  flex:1;
- display:flex;
- align-items:center;
- justify-content:center;
- padding:15px;
+ min-height:0;
+ background:#eef7fb;
+ overflow:auto;
+ -webkit-overflow-scrolling:touch;
 }
 
-.phone{
- width:300px;
- height:590px;
- background:white;
- border:7px solid #17232d;
- border-radius:35px;
- overflow:hidden;
- box-shadow:0 15px 40px #9db7c2;
-}
-
-.phone-top{
- height:25px;
- position:relative;
- background:white;
-}
-
-.camera{
- width:65px;
- height:17px;
- background:#17232d;
- border-radius:0 0 12px 12px;
- position:absolute;
- left:50%;
- transform:translateX(-50%);
-}
-
-iframe{
+.app iframe{
  width:100%;
- height:calc(100% - 25px);
+ height:100%;
  border:0;
+ background:white;
 }
 
-@media(max-width:700px){
- .workspace{flex-direction:column}
- .editor,.preview{width:100%;height:auto}
- .phone{width:220px;height:390px}
- .sub{display:none}
+/* Settings */
+.settings{
+ display:none;
+ position:absolute;
+ top:60px;
+ right:10px;
+ width:210px;
+ background:white;
+ border:1px solid #dce7ec;
+ border-radius:14px;
+ box-shadow:0 10px 30px rgba(0,0,0,.12);
+ overflow:hidden;
+ z-index:20;
+}
+
+.settings button{
+ width:100%;
+ border:0;
+ background:white;
+ text-align:left;
+ padding:13px 15px;
+ font-size:14px;
+}
+
+.settings button:active{
+ background:#eef7fb;
 }
 </style>
 </head>
@@ -179,37 +237,57 @@ iframe{
 <header>
 
 <div class="brand">
- <div class="logo">𝕮𝖔𝖉𝖊𝖂𝖗𝖎𝖙𝖊</div>
- <div>
-  <div class="name">CodeWrite</div>
-  <div class="sub">Write • Test • Create</div>
- </div>
+ <div class="logo">CW</div>
+ <div class="name">CodeWrite</div>
 </div>
 
-<div class="top">
- <button onclick="copyCode()">📋 Copy</button>
- <button onclick="saveCode()">💾 Save</button>
+<div>
+ <button class="search-button" onclick="openSearch()">🔍</button>
+ <button class="settings-button" onclick="toggleSettings()">⚙️</button>
+</div>
+
+<div class="search-box" id="searchBox">
+ <input id="searchInput" type="search" placeholder="Search code...">
+ <button class="search-close" onclick="closeSearch()">✕</button>
+</div>
+
+<div class="settings" id="settings">
+ <button onclick="copyCode()">📋 Copy Code</button>
+ <button onclick="saveCode()">💾 Save Code</button>
+ <button onclick="loadCode()">📂 Open Code</button>
+ <button onclick="clearCode()">🗑️ Clear Code</button>
 </div>
 
 </header>
 
 
-<div class="workspace">
+<main>
 
-<section class="editor">
-
-<div class="editor-head">
- <b>💻 Code</b>
- <button class="run" onclick="runCode()">▶ Run</button>
+<div class="tabs">
+ <button class="tab active" id="codeTab" onclick="showCode()">💻 Code</button>
+ <button class="tab" id="appTab" onclick="showApp()">📱 App</button>
 </div>
+
+
+<div class="toolbar">
+
+ <button class="code-title">Code</button>
+
+ <button class="run" onclick="runCode()">▶ Run</button>
+
+</div>
+
+
+<div class="editor" id="editor">
 
 <textarea id="code"><!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
 body{
  margin:0;
- height:100vh;
+ min-height:100vh;
  display:flex;
  align-items:center;
  justify-content:center;
@@ -218,8 +296,8 @@ body{
 }
 
 .card{
- width:80%;
- padding:30px;
+ width:85%;
+ padding:30px 20px;
  text-align:center;
  background:white;
  border-radius:25px;
@@ -236,7 +314,7 @@ body{
  display:flex;
  align-items:center;
  justify-content:center;
- font-size:28px;
+ font-size:24px;
  font-weight:bold;
 }
 
@@ -275,66 +353,105 @@ button{
 </body>
 </html></textarea>
 
-</section>
-
-
-<section class="preview">
-
-<div class="preview-head">
- <b>📱 App Preview</b>
- <button onclick="runCode()">🔄 Reload</button>
 </div>
 
-<div class="preview-area">
 
-<div class="phone">
-
-<div class="phone-top">
-<div class="camera"></div>
+<div class="app" id="app">
+ <iframe id="preview"></iframe>
 </div>
 
-<iframe id="preview"></iframe>
-
-</div>
-
-</div>
-
-</section>
-
-</div>
+</main>
 
 
 <script>
 
+const code = document.getElementById("code");
+const editor = document.getElementById("editor");
+const app = document.getElementById("app");
+const preview = document.getElementById("preview");
+const codeTab = document.getElementById("codeTab");
+const appTab = document.getElementById("appTab");
+const settings = document.getElementById("settings");
+const searchBox = document.getElementById("searchBox");
+
 function runCode(){
- document.getElementById("preview").srcdoc=
- document.getElementById("code").value;
+ preview.srcdoc = code.value;
+}
+
+function showCode(){
+ editor.style.display="block";
+ app.style.display="none";
+
+ codeTab.classList.add("active");
+ appTab.classList.remove("active");
+}
+
+function showApp(){
+ runCode();
+
+ editor.style.display="none";
+ app.style.display="block";
+
+ codeTab.classList.remove("active");
+ appTab.classList.add("active");
+}
+
+function openSearch(){
+ searchBox.style.display="block";
+ document.getElementById("searchInput").focus();
+}
+
+function closeSearch(){
+ searchBox.style.display="none";
+}
+
+function toggleSettings(){
+ settings.style.display =
+ settings.style.display==="block" ? "none" : "block";
 }
 
 function copyCode(){
- navigator.clipboard.writeText(
- document.getElementById("code").value
- );
+ navigator.clipboard.writeText(code.value);
+ settings.style.display="none";
  alert("Code copied!");
 }
 
 function saveCode(){
- localStorage.setItem(
- "codewrite",
- document.getElementById("code").value
- );
+ localStorage.setItem("codewrite",code.value);
+ settings.style.display="none";
  alert("Code saved!");
 }
 
-window.onload=function(){
-
- let saved=localStorage.getItem("codewrite");
+function loadCode(){
+ const saved=localStorage.getItem("codewrite");
 
  if(saved){
-  document.getElementById("code").value=saved;
+  code.value=saved;
+  alert("Code opened!");
+ }else{
+  alert("No saved code.");
+ }
+
+ settings.style.display="none";
+}
+
+function clearCode(){
+ if(confirm("Clear all code?")){
+  code.value="";
+ }
+
+ settings.style.display="none";
+}
+
+window.onload=function(){
+ const saved=localStorage.getItem("codewrite");
+
+ if(saved){
+  code.value=saved;
  }
 
  runCode();
+ showCode();
 };
 
 </script>
