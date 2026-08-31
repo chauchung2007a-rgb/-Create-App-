@@ -2,232 +2,337 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,
+      maximum-scale=1,user-scalable=no">
+
 <title>CodeWrite</title>
 
 <style>
 *{
- box-sizing:border-box;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
- margin:0;
- width:100%;
- height:100%;
- overflow:hidden;
- font-family:Arial,sans-serif;
- background:#eef7fb;
+html,
+body{
+  margin:0;
+  width:100%;
+  height:100%;
+  font-family:Arial,sans-serif;
+  background:#eef7fb;
 }
 
 body{
- display:flex;
- flex-direction:column;
+  overflow:hidden;
 }
 
-/* Header */
+/* =========================
+   APP HEADER
+========================= */
+
 header{
- height:58px;
- flex-shrink:0;
- background:white;
- border-bottom:1px solid #dce7ec;
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:0 14px;
+  height:58px;
+  background:white;
+  border-bottom:1px solid #dce7ec;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
 }
 
 .brand{
- display:flex;
- align-items:center;
- gap:9px;
+  display:flex;
+  align-items:center;
+  gap:9px;
 }
 
 .logo{
- width:38px;
- height:38px;
- flex-shrink:0;
- border-radius:12px;
- background:#e7f7fc;
- color:#35a8d0;
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:9px;
- font-weight:bold;
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:#e7f7fc;
+  color:#35a8d0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+  font-weight:bold;
 }
 
 .name{
- font-size:18px;
- font-weight:bold;
- color:#17252e;
+  font-size:18px;
+  font-weight:bold;
+  color:#17232d;
 }
 
-.search-button,
-.settings-button{
- border:0;
- background:#edf5f8;
- border-radius:10px;
- width:40px;
- height:40px;
- font-size:18px;
+.header-actions{
+  display:flex;
+  gap:6px;
 }
 
-/* Search */
+.header-btn{
+  width:40px;
+  height:40px;
+  border:0;
+  border-radius:10px;
+  background:#edf5f8;
+  font-size:18px;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
 .search-box{
- display:none;
- position:absolute;
- top:8px;
- left:10px;
- right:10px;
- height:42px;
- z-index:10;
+  display:none;
+  position:absolute;
+  top:7px;
+  left:8px;
+  right:8px;
+  height:44px;
+  z-index:20;
 }
 
 .search-box input{
- width:100%;
- height:100%;
- border:1px solid #dce7ec;
- border-radius:11px;
- padding:0 42px 0 14px;
- outline:0;
- font-size:15px;
- background:white;
+  width:100%;
+  height:100%;
+  border:1px solid #dce7ec;
+  border-radius:11px;
+  padding:0 42px 0 14px;
+  outline:none;
+  font-size:16px;
+  background:white;
 }
 
 .search-close{
- position:absolute;
- right:5px;
- top:4px;
- width:34px;
- height:34px;
- border:0;
- background:transparent;
- font-size:18px;
+  position:absolute;
+  right:4px;
+  top:4px;
+  width:36px;
+  height:36px;
+  border:0;
+  background:transparent;
+  font-size:18px;
 }
 
-/* Main */
+/* =========================
+   MAIN
+========================= */
+
 main{
- flex:1;
- min-height:0;
- display:flex;
- flex-direction:column;
+  height:calc(100% - 58px);
+  display:flex;
+  flex-direction:column;
 }
 
-/* Tabs */
-.tabs{
- height:48px;
- flex-shrink:0;
- display:flex;
- background:white;
- border-bottom:1px solid #dce7ec;
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav{
+  height:50px;
+  flex-shrink:0;
+  display:flex;
+  background:white;
+  border-bottom:1px solid #dce7ec;
 }
 
-.tab{
- flex:1;
- border:0;
- background:white;
- color:#71818a;
- font-size:14px;
- font-weight:bold;
+.nav button{
+  flex:1;
+  border:0;
+  background:white;
+  font-size:14px;
+  font-weight:bold;
+  color:#71818a;
 }
 
-.tab.active{
- color:#35a8d0;
- border-bottom:3px solid #35a8d0;
+.nav button.active{
+  color:#35a8d0;
+  border-bottom:3px solid #35a8d0;
 }
 
-/* Toolbar */
-.toolbar{
- height:48px;
- flex-shrink:0;
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:0 12px;
- background:#17232d;
+/* =========================
+   CODE AREA
+========================= */
+
+.code-area{
+  flex:1;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  background:#17232d;
 }
 
-.toolbar button{
- border:0;
- color:white;
- background:transparent;
- font-size:14px;
- font-weight:bold;
+.code-bar{
+  height:48px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  color:white;
+}
+
+.code-label{
+  font-size:14px;
+  font-weight:bold;
+  color:#dcecf2;
 }
 
 .run{
- background:#35a8d0 !important;
- border-radius:9px !important;
- padding:8px 15px;
+  border:0;
+  border-radius:9px;
+  padding:9px 17px;
+  background:#35a8d0;
+  color:white;
+  font-weight:bold;
+  font-size:14px;
 }
 
-.code-title{
- color:#dcecf2;
-}
+/* =========================
+   CODE EDITOR
+========================= */
 
-/* Editor */
-.editor{
- flex:1;
- min-height:0;
- background:#17232d;
+.editor-wrap{
+  flex:1;
+  min-height:0;
+  overflow:hidden;
 }
 
 #code{
- width:100%;
- height:100%;
- resize:none;
- border:0;
- outline:0;
- padding:16px;
- background:#17232d;
- color:#dcecf2;
- font:13px/1.6 monospace;
- -webkit-overflow-scrolling:touch;
+  display:block;
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:16px;
+  resize:none;
+  outline:none;
+  border:0;
+  border-radius:0;
+
+  background:#17232d;
+  color:#dcecf2;
+
+  font-family:monospace;
+  font-size:15px;
+  line-height:1.65;
+
+  white-space:pre;
+  overflow:auto;
+
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
 }
 
-/* App */
-.app{
- display:none;
- flex:1;
- min-height:0;
- background:#eef7fb;
- overflow:auto;
- -webkit-overflow-scrolling:touch;
+/* =========================
+   APP PREVIEW
+========================= */
+
+.app-area{
+  display:none;
+  flex:1;
+  min-height:0;
+  align-items:center;
+  justify-content:center;
+  overflow:auto;
+  padding:16px;
+  background:#dfeef3;
+  -webkit-overflow-scrolling:touch;
 }
 
-.app iframe{
- width:100%;
- height:100%;
- border:0;
- background:white;
+.phone{
+  width:300px;
+  height:600px;
+  max-width:90vw;
+  max-height:82vh;
+
+  flex-shrink:0;
+
+  background:white;
+  border:7px solid #17232d;
+  border-radius:35px;
+  overflow:hidden;
+
+  box-shadow:0 12px 35px rgba(0,0,0,.18);
+
+  position:relative;
 }
 
-/* Settings */
+.phone-top{
+  height:26px;
+  background:white;
+  position:relative;
+}
+
+.camera{
+  position:absolute;
+  width:66px;
+  height:17px;
+  left:50%;
+  top:0;
+  transform:translateX(-50%);
+  background:#17232d;
+  border-radius:0 0 12px 12px;
+}
+
+#preview{
+  display:block;
+  width:100%;
+  height:calc(100% - 26px);
+  border:0;
+  background:white;
+}
+
+/* =========================
+   SETTINGS
+========================= */
+
 .settings{
- display:none;
- position:absolute;
- top:60px;
- right:10px;
- width:210px;
- background:white;
- border:1px solid #dce7ec;
- border-radius:14px;
- box-shadow:0 10px 30px rgba(0,0,0,.12);
- overflow:hidden;
- z-index:20;
+  display:none;
+  position:absolute;
+  top:62px;
+  right:9px;
+  width:210px;
+  background:white;
+  border:1px solid #dce7ec;
+  border-radius:14px;
+  overflow:hidden;
+  z-index:30;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 
 .settings button{
- width:100%;
- border:0;
- background:white;
- text-align:left;
- padding:13px 15px;
- font-size:14px;
+  width:100%;
+  border:0;
+  background:white;
+  text-align:left;
+  padding:14px;
+  font-size:14px;
 }
 
 .settings button:active{
- background:#eef7fb;
+  background:#eef7fb;
+}
+
+/* =========================
+   SMALL PHONE
+========================= */
+
+@media(max-width:360px){
+
+  .name{
+    font-size:16px;
+  }
+
+  .phone{
+    width:260px;
+    height:540px;
+  }
+
+  #code{
+    font-size:14px;
+  }
 }
 </style>
 </head>
@@ -236,115 +341,167 @@ main{
 
 <header>
 
-<div class="brand">
- <div class="logo">CW</div>
- <div class="name">CodeWrite</div>
-</div>
+  <div class="brand">
+    <div class="logo">CW</div>
 
-<div>
- <button class="search-button" onclick="openSearch()">🔍</button>
- <button class="settings-button" onclick="toggleSettings()">⚙️</button>
-</div>
+    <div class="name">
+      CodeWrite
+    </div>
+  </div>
 
-<div class="search-box" id="searchBox">
- <input id="searchInput" type="search" placeholder="Search code...">
- <button class="search-close" onclick="closeSearch()">✕</button>
-</div>
+  <div class="header-actions">
 
-<div class="settings" id="settings">
- <button onclick="copyCode()">📋 Copy Code</button>
- <button onclick="saveCode()">💾 Save Code</button>
- <button onclick="loadCode()">📂 Open Code</button>
- <button onclick="clearCode()">🗑️ Clear Code</button>
-</div>
+    <button
+      class="header-btn"
+      onclick="openSearch()">
+      🔍
+    </button>
+
+    <button
+      class="header-btn"
+      onclick="toggleSettings()">
+      ⚙️
+    </button>
+
+  </div>
+
+  <div
+    class="search-box"
+    id="searchBox">
+
+    <input
+      id="searchInput"
+      type="search"
+      placeholder="Search code...">
+
+    <button
+      class="search-close"
+      onclick="closeSearch()">
+      ✕
+    </button>
+
+  </div>
+
+  <div
+    class="settings"
+    id="settings">
+
+    <button onclick="copyCode()">
+      📋 Copy Code
+    </button>
+
+    <button onclick="saveCode()">
+      💾 Save Code
+    </button>
+
+    <button onclick="loadCode()">
+      📂 Open Code
+    </button>
+
+    <button onclick="clearCode()">
+      🗑️ Clear Code
+    </button>
+
+  </div>
 
 </header>
 
 
 <main>
 
-<div class="tabs">
- <button class="tab active" id="codeTab" onclick="showCode()">💻 Code</button>
- <button class="tab" id="appTab" onclick="showApp()">📱 App</button>
-</div>
+  <div class="nav">
+
+    <button
+      id="codeTab"
+      class="active"
+      onclick="showCode()">
+      💻 Code
+    </button>
+
+    <button
+      id="appTab"
+      onclick="showApp()">
+      📱 App
+    </button>
+
+  </div>
 
 
-<div class="toolbar">
+  <section
+    class="code-area"
+    id="codeArea">
 
- <button class="code-title">Code</button>
+    <div class="code-bar">
 
- <button class="run" onclick="runCode()">▶ Run</button>
+      <span class="code-label">
+        Code
+      </span>
 
-</div>
+      <button
+        class="run"
+        onclick="runCode()">
+        ▶ Run
+      </button>
 
+    </div>
 
-<div class="editor" id="editor">
+    <div class="editor-wrap">
 
 <textarea id="code"><!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
 <style>
+
 body{
- margin:0;
- min-height:100vh;
- display:flex;
- align-items:center;
- justify-content:center;
- font-family:Arial;
- background:#e9f8fd;
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:Arial;
+  background:#e9f8fd;
 }
 
 .card{
- width:85%;
- padding:30px 20px;
- text-align:center;
- background:white;
- border-radius:25px;
- box-shadow:0 15px 35px rgba(0,0,0,.10);
-}
-
-.logo{
- width:75px;
- height:75px;
- margin:auto;
- border-radius:22px;
- background:#e7f7fc;
- color:#35a8d0;
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:24px;
- font-weight:bold;
+  width:85%;
+  padding:30px 20px;
+  text-align:center;
+  background:white;
+  border-radius:25px;
+  box-shadow:0 15px 35px rgba(0,0,0,.10);
 }
 
 h1{
- color:#17232d;
+  color:#17232d;
 }
 
 p{
- color:#81909a;
+  color:#81909a;
 }
 
 button{
- border:0;
- padding:12px 25px;
- border-radius:12px;
- background:#35a8d0;
- color:white;
+  border:0;
+  padding:12px 25px;
+  border-radius:12px;
+  background:#35a8d0;
+  color:white;
 }
+
 </style>
+
 </head>
 
 <body>
 
 <div class="card">
 
-<div class="logo">&lt;/&gt;</div>
+<h1>Hello 👋</h1>
 
-<h1>CodeWrite</h1>
-
-<p>Write • Test • Create</p>
+<p>Build your app with CodeWrite</p>
 
 <button>Start</button>
 
@@ -353,105 +510,218 @@ button{
 </body>
 </html></textarea>
 
-</div>
+    </div>
+
+  </section>
 
 
-<div class="app" id="app">
- <iframe id="preview"></iframe>
-</div>
+  <section
+    class="app-area"
+    id="appArea">
+
+    <div class="phone">
+
+      <div class="phone-top">
+        <div class="camera"></div>
+      </div>
+
+      <iframe
+        id="preview">
+      </iframe>
+
+    </div>
+
+  </section>
 
 </main>
 
 
 <script>
 
-const code = document.getElementById("code");
-const editor = document.getElementById("editor");
-const app = document.getElementById("app");
-const preview = document.getElementById("preview");
-const codeTab = document.getElementById("codeTab");
-const appTab = document.getElementById("appTab");
-const settings = document.getElementById("settings");
-const searchBox = document.getElementById("searchBox");
+/* =========================
+   ELEMENTS
+========================= */
+
+const code =
+  document.getElementById("code");
+
+const preview =
+  document.getElementById("preview");
+
+const codeArea =
+  document.getElementById("codeArea");
+
+const appArea =
+  document.getElementById("appArea");
+
+const codeTab =
+  document.getElementById("codeTab");
+
+const appTab =
+  document.getElementById("appTab");
+
+const settings =
+  document.getElementById("settings");
+
+const searchBox =
+  document.getElementById("searchBox");
+
+
+/* =========================
+   RUN
+========================= */
 
 function runCode(){
- preview.srcdoc = code.value;
+
+  preview.srcdoc = code.value;
+
 }
+
+
+/* =========================
+   CODE
+========================= */
 
 function showCode(){
- editor.style.display="block";
- app.style.display="none";
 
- codeTab.classList.add("active");
- appTab.classList.remove("active");
+  codeArea.style.display="flex";
+  appArea.style.display="none";
+
+  codeTab.classList.add("active");
+  appTab.classList.remove("active");
+
 }
+
 
 function showApp(){
- runCode();
 
- editor.style.display="none";
- app.style.display="block";
+  runCode();
 
- codeTab.classList.remove("active");
- appTab.classList.add("active");
+  codeArea.style.display="none";
+  appArea.style.display="flex";
+
+  codeTab.classList.remove("active");
+  appTab.classList.add("active");
+
 }
+
+
+/* =========================
+   SEARCH
+========================= */
 
 function openSearch(){
- searchBox.style.display="block";
- document.getElementById("searchInput").focus();
+
+  searchBox.style.display="block";
+
+  document
+    .getElementById("searchInput")
+    .focus();
+
 }
+
 
 function closeSearch(){
- searchBox.style.display="none";
+
+  searchBox.style.display="none";
+
 }
+
+
+/* =========================
+   SETTINGS
+========================= */
 
 function toggleSettings(){
- settings.style.display =
- settings.style.display==="block" ? "none" : "block";
+
+  settings.style.display =
+    settings.style.display==="block"
+    ? "none"
+    : "block";
+
 }
+
+
+/* =========================
+   COPY
+========================= */
 
 function copyCode(){
- navigator.clipboard.writeText(code.value);
- settings.style.display="none";
- alert("Code copied!");
+
+  navigator.clipboard.writeText(
+    code.value
+  );
+
+  settings.style.display="none";
+
 }
+
+
+/* =========================
+   SAVE
+========================= */
 
 function saveCode(){
- localStorage.setItem("codewrite",code.value);
- settings.style.display="none";
- alert("Code saved!");
+
+  localStorage.setItem(
+    "codewrite",
+    code.value
+  );
+
+  settings.style.display="none";
+
 }
+
+
+/* =========================
+   LOAD
+========================= */
 
 function loadCode(){
- const saved=localStorage.getItem("codewrite");
 
- if(saved){
-  code.value=saved;
-  alert("Code opened!");
- }else{
-  alert("No saved code.");
- }
+  const saved =
+    localStorage.getItem("codewrite");
 
- settings.style.display="none";
+  if(saved){
+    code.value=saved;
+  }
+
+  settings.style.display="none";
+
 }
+
+
+/* =========================
+   CLEAR
+========================= */
 
 function clearCode(){
- if(confirm("Clear all code?")){
-  code.value="";
- }
 
- settings.style.display="none";
+  if(confirm("Clear all code?")){
+    code.value="";
+  }
+
+  settings.style.display="none";
+
 }
 
+
+/* =========================
+   START
+========================= */
+
 window.onload=function(){
- const saved=localStorage.getItem("codewrite");
 
- if(saved){
-  code.value=saved;
- }
+  const saved =
+    localStorage.getItem("codewrite");
 
- runCode();
- showCode();
+  if(saved){
+    code.value=saved;
+  }
+
+  runCode();
+  showCode();
+
 };
 
 </script>
