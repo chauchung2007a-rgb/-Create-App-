@@ -269,7 +269,7 @@ iframe{
   border:0;
 }
 
-/* IMAGE UPLOAD */
+ UPLOAD */
 
 #imageInput{
   display:none;
@@ -1004,79 +1004,71 @@ function chooseImage(){
 
 }
 
-
 /* IMAGE */
 
 imageInput.addEventListener(
   "change",
   function(){
 
-    const file =
-      this.files[0];
+    const file = this.files[0];
 
     if(!file){
       return;
     }
 
-    const reader =
-      new FileReader();
+    const reader = new FileReader();
 
+    reader.onload = function(e){
 
-   reader.onload =
-  function(e){
+      if(
+        imageInput.dataset.type === "profile"
+      ){
 
-    if(
-      imageInput.dataset.type ===
-      "profile"
-    ){
+        document
+          .getElementById("profileImage")
+          .src = e.target.result;
 
-      document
-      .getElementById("profileImage")
-      .src =
-        e.target.result;
+        localStorage.setItem(
+          "profileImage",
+          e.target.result
+        );
 
-      localStorage.setItem(
-        "profileImage",
-        e.target.result
-      );
+        return;
+      }
 
-    }
+      if(
+        imageInput.dataset.type === "image"
+      ){
 
+        const imageCode =
+          '<img src="' +
+          e.target.result +
+          '" style="max-width:100%;height:auto;">';
 
-    if(
-      imageInput.dataset.type ===
-      "image"
-    ){
+        const position = code.selectionStart;
 
-      const imageCode =
-        '<img src="' +
-        e.target.result +
-        '" style="max-width:100%;height:auto;">';
+        code.value =
+          code.value.substring(0, position) +
+          "\n" +
+          imageCode +
+          "\n" +
+          code.value.substring(position);
 
-      const position =
-        code.selectionStart;
+        code.focus();
 
-      code.value =
-        code.value.substring(0,position) +
-        "\n" +
-        imageCode +
-        "\n" +
-        code.value.substring(position);
+        alert(
+          "បានបញ្ចូលរូបភាពទៅក្នុងកូដហើយ ✓"
+        );
 
-      code.focus();
+      }
 
-    }
-
-  };
-
+    };
 
     reader.readAsDataURL(file);
 
   }
 );
 
-
-/* LOAD APP */
 
 window.onload=function(){
 
