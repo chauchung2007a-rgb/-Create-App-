@@ -88,10 +88,19 @@ body{
   height:44px;
   border:1px solid #d9e6eb;
   border-radius:13px;
-  padding:0 14px;
+  padding:0 80px 0 14px;
   outline:none;
   font-size:16px;
   background:white;
+}
+
+#searchCount{
+  position:absolute;
+  right:10px;
+  top:14px;
+  font-size:12px;
+  color:#81909a;
+  pointer-events:none;
 }
 
 /* MENU */
@@ -278,8 +287,6 @@ iframe{
 
 <header class="header">
 
-  <!-- PROFILE IMAGE -->
-
   <button
     class="profile-btn"
     onclick="toggleProfile()">
@@ -322,16 +329,7 @@ iframe{
     id="searchInput"
     placeholder="Search code...">
 
-  <span
-    id="searchCount"
-    style="
-      position:absolute;
-      right:10px;
-      top:14px;
-      font-size:12px;
-      color:#81909a;
-    ">
-  </span>
+  <span id="searchCount"></span>
 
   <button
     type="button"
@@ -636,9 +634,24 @@ document.getElementById("settingsMenu");
 const searchBox =
 document.getElementById("searchBox");
 
+const searchInput =
+document.getElementById("searchInput");
+
+const searchCount =
+document.getElementById("searchCount");
+
 const imageInput =
 document.getElementById("imageInput");
 
+
+/* SEARCH STATE */
+
+let searchMatches = [];
+
+let searchPosition = -1;
+
+
+/* RUN */
 
 function runCode(){
 
@@ -648,6 +661,8 @@ function runCode(){
 
 }
 
+
+/* SHOW CODE */
 
 function showCode(){
 
@@ -659,6 +674,8 @@ function showCode(){
 
 }
 
+
+/* SHOW APP */
 
 function showApp(){
 
@@ -673,39 +690,46 @@ function showApp(){
 }
 
 
+/* PROFILE */
+
 function toggleProfile(){
 
   settingsMenu.style.display="none";
 
   profileMenu.style.display =
-  profileMenu.style.display==="block"
-  ? "none"
-  : "block";
+    profileMenu.style.display==="block"
+    ? "none"
+    : "block";
 
 }
 
+
+/* SETTINGS */
 
 function toggleSettings(){
 
   profileMenu.style.display="none";
 
   settingsMenu.style.display =
-  settingsMenu.style.display==="block"
-  ? "none"
-  : "block";
+    settingsMenu.style.display==="block"
+    ? "none"
+    : "block";
 
 }
 
 
-function openSearch(){let searchMatches = [];
-let searchPosition = -1;
+/* OPEN SEARCH */
 
-const searchInput =
-document.getElementById("searchInput");
+function openSearch(){
 
-const searchCount =
-document.getElementById("searchCount");
+  searchBox.style.display="block";
 
+  searchInput.focus();
+
+}
+
+
+/* SEARCH ONLY WHEN ENTER IS PRESSED */
 
 searchInput.addEventListener(
   "keydown",
@@ -717,53 +741,71 @@ searchInput.addEventListener(
 
     event.preventDefault();
 
-    const query =
-      this.value.trim().toLowerCase();
-
-    searchMatches = [];
-    searchPosition = -1;
-
-    if(!query){
-
-      searchCount.textContent = "";
-
-      return;
-    }
-
-    const text =
-      code.value.toLowerCase();
-
-    let start = 0;
-
-    while(true){
-
-      const found =
-        text.indexOf(query, start);
-
-      if(found === -1) break;
-
-      searchMatches.push(found);
-
-      start =
-        found + query.length;
-    }
-
-    if(searchMatches.length){
-
-      searchPosition = 0;
-
-      goToSearchResult();
-
-    }else{
-
-      searchCount.textContent =
-        "0 results";
-
-    }
+    performSearch();
 
   }
 );
 
+
+/* PERFORM SEARCH */
+
+function performSearch(){
+
+  const query =
+    searchInput.value.trim().toLowerCase();
+
+  searchMatches = [];
+
+  searchPosition = -1;
+
+  if(!query){
+
+    searchCount.textContent="";
+
+    return;
+
+  }
+
+  const text =
+    code.value.toLowerCase();
+
+  let start = 0;
+
+  while(true){
+
+    const found =
+      text.indexOf(query,start);
+
+    if(found === -1){
+      break;
+    }
+
+    searchMatches.push(found);
+
+    start =
+      found + query.length;
+
+  }
+
+
+  if(searchMatches.length === 0){
+
+    searchCount.textContent =
+      "0 results";
+
+    return;
+
+  }
+
+
+  searchPosition = 0;
+
+  goToSearchResult();
+
+}
+
+
+/* GO TO RESULT */
 
 function goToSearchResult(){
 
@@ -774,34 +816,54 @@ function goToSearchResult(){
     return;
   }
 
+
   const start =
     searchMatches[searchPosition];
 
   const end =
     start + searchInput.value.length;
 
-  /* កំណត់ទីតាំង Cursor */
+
   code.focus();
+
 
   code.setSelectionRange(
     start,
     end
   );
 
-  /* Scroll ទៅកន្លែងដែលរកឃើញ */
+
+  /*
+    Calculate line number
+  */
+
   const textBefore =
-    code.value.substring(0, start);
+    code.value.substring(0,start);
 
   const lineNumber =
     textBefore.split("\n").length;
 
-  const lineHeight = 24;
 
-  code.scrollTop =
+  /*
+    Scroll editor
+  */
+
+  const lineHeight =
+    parseFloat(
+      getComputedStyle(code).lineHeight
+    );
+
+
+  const targetScroll =
     Math.max(
       0,
       (lineNumber - 4) * lineHeight
     );
+
+
+  code.scrollTop =
+    targetScroll;
+
 
   searchCount.textContent =
     (searchPosition + 1) +
@@ -811,9 +873,13 @@ function goToSearchResult(){
 }
 
 
+/* NEXT */
+
 function searchNext(){
 
-  if(!searchMatches.length) return;
+  if(!searchMatches.length){
+    return;
+  }
 
   searchPosition++;
 
@@ -822,7 +888,7 @@ function searchNext(){
     searchMatches.length
   ){
 
-    searchPosition = 0;
+    searchPosition=0;
 
   }
 
@@ -831,9 +897,13 @@ function searchNext(){
 }
 
 
+/* PREVIOUS */
+
 function searchPrevious(){
 
-  if(!searchMatches.length) return;
+  if(!searchMatches.length){
+    return;
+  }
 
   searchPosition--;
 
@@ -848,14 +918,8 @@ function searchPrevious(){
 
 }
 
-  searchBox.style.display="block";
 
-  document
-  .getElementById("searchInput")
-  .focus();
-
-}
-
+/* COPY */
 
 function copyCode(){
 
@@ -865,6 +929,8 @@ function copyCode(){
 
 }
 
+
+/* SAVE */
 
 function saveCode(){
 
@@ -876,26 +942,37 @@ function saveCode(){
 }
 
 
+/* LOAD */
+
 function loadCode(){
 
   const saved =
-  localStorage.getItem("codewrite");
+    localStorage.getItem("codewrite");
 
   if(saved){
-    code.value=saved;
+
+    code.value =
+      saved;
+
   }
 
 }
 
+
+/* CLEAR */
 
 function clearCode(){
 
   if(confirm("Clear all code?")){
+
     code.value="";
+
   }
 
 }
 
+
+/* UNDO */
 
 function undoCode(){
 
@@ -904,12 +981,16 @@ function undoCode(){
 }
 
 
+/* REDO */
+
 function redoCode(){
 
   document.execCommand("redo");
 
 }
 
+
+/* PROFILE IMAGE */
 
 function chooseProfileImage(){
 
@@ -920,6 +1001,8 @@ function chooseProfileImage(){
 }
 
 
+/* ADD IMAGE */
+
 function chooseImage(){
 
   imageInput.dataset.type="image";
@@ -929,32 +1012,46 @@ function chooseImage(){
 }
 
 
+/* IMAGE */
+
 imageInput.addEventListener(
   "change",
   function(){
 
-    const file=this.files[0];
+    const file =
+      this.files[0];
 
-    if(!file) return;
+    if(!file){
+      return;
+    }
 
-    const reader=new FileReader();
+    const reader =
+      new FileReader();
 
-    reader.onload=function(e){
 
-      if(imageInput.dataset.type==="profile"){
+    reader.onload =
+      function(e){
 
-        document
-        .getElementById("profileImage")
-        .src=e.target.result;
+        if(
+          imageInput.dataset.type ===
+          "profile"
+        ){
 
-        localStorage.setItem(
-          "profileImage",
-          e.target.result
-        );
+          document
+          .getElementById("profileImage")
+          .src =
+            e.target.result;
 
-      }
 
-    };
+          localStorage.setItem(
+            "profileImage",
+            e.target.result
+          );
+
+        }
+
+      };
+
 
     reader.readAsDataURL(file);
 
@@ -962,27 +1059,41 @@ imageInput.addEventListener(
 );
 
 
+/* LOAD APP */
+
 window.onload=function(){
 
   const saved =
-  localStorage.getItem("codewrite");
+    localStorage.getItem(
+      "codewrite"
+    );
 
   if(saved){
-    code.value=saved;
+
+    code.value =
+      saved;
+
   }
 
+
   const profile =
-  localStorage.getItem("profileImage");
+    localStorage.getItem(
+      "profileImage"
+    );
+
 
   if(profile){
 
     document
     .getElementById("profileImage")
-    .src=profile;
+    .src =
+      profile;
 
   }
 
-  preview.srcdoc=code.value;
+
+  preview.srcdoc =
+    code.value;
 
 };
 
