@@ -771,7 +771,6 @@ function goToSearchResult(){
     searchPosition < 0 ||
     searchPosition >= searchMatches.length
   ){
-
     return;
   }
 
@@ -779,15 +778,30 @@ function goToSearchResult(){
     searchMatches[searchPosition];
 
   const end =
-    start +
-    searchInput.value.length;
+    start + searchInput.value.length;
 
-  
+  /* កំណត់ទីតាំង Cursor */
+  code.focus();
 
   code.setSelectionRange(
     start,
     end
   );
+
+  /* Scroll ទៅកន្លែងដែលរកឃើញ */
+  const textBefore =
+    code.value.substring(0, start);
+
+  const lineNumber =
+    textBefore.split("\n").length;
+
+  const lineHeight = 24;
+
+  code.scrollTop =
+    Math.max(
+      0,
+      (lineNumber - 4) * lineHeight
+    );
 
   searchCount.textContent =
     (searchPosition + 1) +
