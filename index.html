@@ -974,11 +974,7 @@ function clearCode(){
 
 /* UNDO */
 
-function undoCode(){
 
-  document.execCommand("undo");
-
-}
 
 
 /* REDO */
@@ -989,6 +985,13 @@ function redoCode(){
 
 }
 
+function undoCode(){
+
+  code.focus();
+
+  document.execCommand("undo");
+
+}
 
 /* PROFILE IMAGE */
 
