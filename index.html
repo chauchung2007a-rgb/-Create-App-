@@ -697,7 +697,135 @@ function toggleSettings(){
 }
 
 
-function openSearch(){
+function openSearch(){let searchMatches = [];
+let searchPosition = -1;
+
+const searchInput =
+document.getElementById("searchInput");
+
+const searchCount =
+document.getElementById("searchCount");
+
+
+searchInput.addEventListener(
+  "input",
+  function(){
+
+    const query =
+      this.value.trim().toLowerCase();
+
+    searchMatches = [];
+    searchPosition = -1;
+
+    if(!query){
+
+      searchCount.textContent = "";
+
+      return;
+    }
+
+    const text = code.value.toLowerCase();
+
+    let start = 0;
+
+    while(true){
+
+      const found =
+        text.indexOf(query, start);
+
+      if(found === -1) break;
+
+      searchMatches.push(found);
+
+      start =
+        found + query.length;
+    }
+
+    if(searchMatches.length){
+
+      searchPosition = 0;
+
+      goToSearchResult();
+
+    }else{
+
+      searchCount.textContent =
+        "0 results";
+
+    }
+
+  }
+);
+
+
+function goToSearchResult(){
+
+  if(
+    searchPosition < 0 ||
+    searchPosition >= searchMatches.length
+  ){
+
+    return;
+  }
+
+  const start =
+    searchMatches[searchPosition];
+
+  const end =
+    start +
+    searchInput.value.length;
+
+  code.focus();
+
+  code.setSelectionRange(
+    start,
+    end
+  );
+
+  searchCount.textContent =
+    (searchPosition + 1) +
+    " / " +
+    searchMatches.length;
+
+}
+
+
+function searchNext(){
+
+  if(!searchMatches.length) return;
+
+  searchPosition++;
+
+  if(
+    searchPosition >=
+    searchMatches.length
+  ){
+
+    searchPosition = 0;
+
+  }
+
+  goToSearchResult();
+
+}
+
+
+function searchPrevious(){
+
+  if(!searchMatches.length) return;
+
+  searchPosition--;
+
+  if(searchPosition < 0){
+
+    searchPosition =
+      searchMatches.length - 1;
+
+  }
+
+  goToSearchResult();
+
+}
 
   searchBox.style.display="block";
 
