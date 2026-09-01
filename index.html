@@ -890,11 +890,22 @@ function searchPrevious(){
 
 /* COPY */
 
+
 function copyCode(){
 
   navigator.clipboard.writeText(
     code.value
-  );
+  )
+  .then(function(){
+
+    alert("បានចម្លងកូដហើយ ✓");
+
+  })
+  .catch(function(){
+
+    alert("មិនអាចចម្លងកូដបានទេ");
+
+  });
 
 }
 
@@ -908,10 +919,13 @@ function saveCode(){
     code.value
   );
 
+  alert("បានរក្សាទុកកូដហើយ ✓");
+
 }
 
 
 /* LOAD */
+
 
 function loadCode(){
 
@@ -920,8 +934,13 @@ function loadCode(){
 
   if(saved){
 
-    code.value =
-      saved;
+    code.value = saved;
+
+    alert("បានបើកកូដហើយ ✓");
+
+  }else{
+
+    alert("មិនមានកូដដែលបានរក្សាទុកទេ");
 
   }
 
@@ -1003,28 +1022,52 @@ imageInput.addEventListener(
       new FileReader();
 
 
-    reader.onload =
-      function(e){
+   reader.onload =
+  function(e){
 
-        if(
-          imageInput.dataset.type ===
-          "profile"
-        ){
+    if(
+      imageInput.dataset.type ===
+      "profile"
+    ){
 
-          document
-          .getElementById("profileImage")
-          .src =
-            e.target.result;
+      document
+      .getElementById("profileImage")
+      .src =
+        e.target.result;
+
+      localStorage.setItem(
+        "profileImage",
+        e.target.result
+      );
+
+    }
 
 
-          localStorage.setItem(
-            "profileImage",
-            e.target.result
-          );
+    if(
+      imageInput.dataset.type ===
+      "image"
+    ){
 
-        }
+      const imageCode =
+        '<img src="' +
+        e.target.result +
+        '" style="max-width:100%;height:auto;">';
 
-      };
+      const position =
+        code.selectionStart;
+
+      code.value =
+        code.value.substring(0,position) +
+        "\n" +
+        imageCode +
+        "\n" +
+        code.value.substring(position);
+
+      code.focus();
+
+    }
+
+  };
 
 
     reader.readAsDataURL(file);
