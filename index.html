@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
-      content="width=device-width,initial-scale=1,
-      maximum-scale=1,user-scalable=no">
+content="width=device-width,
+initial-scale=1,
+maximum-scale=1,
+user-scalable=no">
 
 <title>CodeWrite</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
@@ -19,146 +25,144 @@ body{
   margin:0;
   width:100%;
   height:100%;
+  overflow:hidden;
   font-family:Arial,sans-serif;
   background:#eef7fb;
 }
 
-body{
-  overflow:hidden;
-}
+/* HEADER */
 
-/* =========================
-   APP HEADER
-========================= */
-
-header{
-  height:58px;
+.header{
+  height:60px;
   background:white;
-  border-bottom:1px solid #dce7ec;
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:0 12px;
+  border-bottom:1px solid #e1ebef;
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:9px;
-}
-
-.logo{
-  width:38px;
-  height:38px;
-  border-radius:12px;
-  background:#e7f7fc;
-  color:#35a8d0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:10px;
-  font-weight:bold;
-}
-
-.name{
-  font-size:18px;
-  font-weight:bold;
-  color:#17232d;
-}
-
-.header-actions{
-  display:flex;
-  gap:6px;
-}
-
-.header-btn{
-  width:40px;
-  height:40px;
+.profile-btn{
+  width:42px;
+  height:42px;
+  padding:0;
   border:0;
-  border-radius:10px;
-  background:#edf5f8;
-  font-size:18px;
+  border-radius:50%;
+  overflow:hidden;
+  background:#e8f6fb;
 }
 
-/* =========================
-   SEARCH
-========================= */
-
-.search-box{
-  display:none;
-  position:absolute;
-  top:7px;
-  left:8px;
-  right:8px;
-  height:44px;
-  z-index:20;
-}
-
-.search-box input{
+.profile-btn img{
   width:100%;
   height:100%;
-  border:1px solid #dce7ec;
-  border-radius:11px;
-  padding:0 42px 0 14px;
+  object-fit:cover;
+}
+
+.header-right{
+  display:flex;
+  gap:8px;
+}
+
+.icon-btn{
+  width:42px;
+  height:42px;
+  border:0;
+  border-radius:12px;
+  background:#edf6f9;
+  font-size:19px;
+}
+
+/* SEARCH */
+
+.search{
+  display:none;
+  position:absolute;
+  top:8px;
+  left:60px;
+  right:60px;
+  z-index:50;
+}
+
+.search input{
+  width:100%;
+  height:44px;
+  border:1px solid #d9e6eb;
+  border-radius:13px;
+  padding:0 14px;
   outline:none;
   font-size:16px;
   background:white;
 }
 
-.search-close{
+/* MENU */
+
+.menu{
+  display:none;
   position:absolute;
-  right:4px;
-  top:4px;
-  width:36px;
-  height:36px;
+  top:65px;
+  z-index:40;
+  background:white;
+  border-radius:15px;
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
+  overflow:hidden;
+}
+
+.profile-menu{
+  left:10px;
+  width:230px;
+}
+
+.settings-menu{
+  right:10px;
+  width:235px;
+}
+
+.menu button{
+  width:100%;
+  padding:14px 16px;
   border:0;
-  background:transparent;
-  font-size:18px;
+  background:white;
+  text-align:left;
+  font-size:14px;
 }
 
-/* =========================
-   MAIN
-========================= */
-
-main{
-  height:calc(100% - 58px);
-  display:flex;
-  flex-direction:column;
+.menu button:active{
+  background:#eef7fb;
 }
 
-/* =========================
-   NAVIGATION
-========================= */
+/* TABS */
 
-.nav{
-  height:50px;
-  flex-shrink:0;
+.tabs{
+  height:52px;
   display:flex;
   background:white;
   border-bottom:1px solid #dce7ec;
 }
 
-.nav button{
+.tabs button{
   flex:1;
   border:0;
   background:white;
+  color:#81909a;
   font-size:14px;
   font-weight:bold;
-  color:#71818a;
 }
 
-.nav button.active{
+.tabs button.active{
   color:#35a8d0;
   border-bottom:3px solid #35a8d0;
 }
 
-/* =========================
-   CODE AREA
-========================= */
+/* MAIN */
 
-.code-area{
-  flex:1;
-  min-height:0;
+.main{
+  height:calc(100% - 112px);
+}
+
+/* CODE */
+
+.code-view{
+  height:100%;
   display:flex;
   flex-direction:column;
   background:#17232d;
@@ -174,232 +178,132 @@ main{
   color:white;
 }
 
-.code-label{
-  font-size:14px;
-  font-weight:bold;
-  color:#dcecf2;
-}
-
-.run{
+.run-btn{
   border:0;
-  border-radius:9px;
   padding:9px 17px;
+  border-radius:10px;
   background:#35a8d0;
   color:white;
   font-weight:bold;
-  font-size:14px;
 }
 
-/* =========================
-   CODE EDITOR
-========================= */
-
-.editor-wrap{
+.editor{
   flex:1;
   min-height:0;
-  overflow:hidden;
 }
 
-#code{
-  display:block;
+textarea{
   width:100%;
   height:100%;
-  margin:0;
-  padding:16px;
+  display:block;
   resize:none;
-  outline:none;
   border:0;
-  border-radius:0;
+  outline:none;
+  padding:15px;
 
   background:#17232d;
   color:#dcecf2;
 
   font-family:monospace;
   font-size:15px;
-  line-height:1.65;
+  line-height:1.6;
 
-  white-space:pre;
   overflow:auto;
-
   -webkit-overflow-scrolling:touch;
-  overscroll-behavior:contain;
 }
 
-/* =========================
-   APP PREVIEW
-========================= */
+/* APP */
 
-.app-area{
+.app-view{
   display:none;
-  flex:1;
-  min-height:0;
+  width:100%;
+  height:100%;
   align-items:center;
   justify-content:center;
   overflow:auto;
-  padding:16px;
+  padding:15px;
   background:#dfeef3;
-  -webkit-overflow-scrolling:touch;
 }
 
 .phone{
-  width:300px;
-  height:600px;
-  max-width:90vw;
-  max-height:82vh;
-
+  width:290px;
+  height:590px;
   flex-shrink:0;
 
   background:white;
   border:7px solid #17232d;
   border-radius:35px;
+
   overflow:hidden;
 
   box-shadow:0 12px 35px rgba(0,0,0,.18);
-
-  position:relative;
 }
 
 .phone-top{
   height:26px;
-  background:white;
   position:relative;
 }
 
 .camera{
   position:absolute;
-  width:66px;
+  width:65px;
   height:17px;
   left:50%;
-  top:0;
   transform:translateX(-50%);
   background:#17232d;
   border-radius:0 0 12px 12px;
 }
 
-#preview{
-  display:block;
+iframe{
   width:100%;
   height:calc(100% - 26px);
   border:0;
-  background:white;
 }
 
-/* =========================
-   SETTINGS
-========================= */
+/* IMAGE UPLOAD */
 
-.settings{
+#imageInput{
   display:none;
-  position:absolute;
-  top:62px;
-  right:9px;
-  width:210px;
-  background:white;
-  border:1px solid #dce7ec;
-  border-radius:14px;
-  overflow:hidden;
-  z-index:30;
-  box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 
-.settings button{
-  width:100%;
-  border:0;
-  background:white;
-  text-align:left;
-  padding:14px;
-  font-size:14px;
-}
-
-.settings button:active{
-  background:#eef7fb;
-}
-
-/* =========================
-   SMALL PHONE
-========================= */
-
-@media(max-width:360px){
-
-  .name{
-    font-size:16px;
-  }
-
-  .phone{
-    width:260px;
-    height:540px;
-  }
-
-  #code{
-    font-size:14px;
-  }
-}
 </style>
+
 </head>
+
 
 <body>
 
-<header>
 
-  <div class="brand">
-    <div class="logo">CW</div>
+<!-- HEADER -->
 
-    <div class="name">
-      CodeWrite
-    </div>
-  </div>
+<header class="header">
 
-  <div class="header-actions">
+  <!-- PROFILE IMAGE -->
+
+  <button
+    class="profile-btn"
+    onclick="toggleProfile()">
+
+    <img
+      id="profileImage"
+      src="https://via.placeholder.com/100"
+      alt="Profile">
+
+  </button>
+
+
+  <div class="header-right">
 
     <button
-      class="header-btn"
+      class="icon-btn"
       onclick="openSearch()">
       🔍
     </button>
 
     <button
-      class="header-btn"
+      class="icon-btn"
       onclick="toggleSettings()">
       ⚙️
-    </button>
-
-  </div>
-
-  <div
-    class="search-box"
-    id="searchBox">
-
-    <input
-      id="searchInput"
-      type="search"
-      placeholder="Search code...">
-
-    <button
-      class="search-close"
-      onclick="closeSearch()">
-      ✕
-    </button>
-
-  </div>
-
-  <div
-    class="settings"
-    id="settings">
-
-    <button onclick="copyCode()">
-      📋 Copy Code
-    </button>
-
-    <button onclick="saveCode()">
-      💾 Save Code
-    </button>
-
-    <button onclick="loadCode()">
-      📂 Open Code
-    </button>
-
-    <button onclick="clearCode()">
-      🗑️ Clear Code
     </button>
 
   </div>
@@ -407,48 +311,168 @@ main{
 </header>
 
 
-<main>
+<!-- SEARCH -->
 
-  <div class="nav">
+<div
+  class="search"
+  id="searchBox">
 
-    <button
-      id="codeTab"
-      class="active"
-      onclick="showCode()">
-      💻 Code
-    </button>
+  <input
+    type="search"
+    id="searchInput"
+    placeholder="Search code...">
 
-    <button
-      id="appTab"
-      onclick="showApp()">
-      📱 App
-    </button>
+</div>
 
-  </div>
 
+<!-- PROFILE MENU -->
+
+<div
+  class="menu profile-menu"
+  id="profileMenu">
+
+  <button onclick="chooseProfileImage()">
+    📷 Change Profile Image
+  </button>
+
+  <button>
+    📧 Gmail
+  </button>
+
+  <button>
+    🔒 Privacy & Security
+  </button>
+
+  <button>
+    🚪 Log out
+  </button>
+
+  <button>
+    🗑️ Delete Account
+  </button>
+
+</div>
+
+
+<!-- SETTINGS MENU -->
+
+<div
+  class="menu settings-menu"
+  id="settingsMenu">
+
+  <button onclick="undoCode()">
+    ↩️ Undo
+  </button>
+
+  <button onclick="redoCode()">
+    ↪️ Redo
+  </button>
+
+  <button onclick="copyCode()">
+    📋 Copy Code
+  </button>
+
+  <button onclick="saveCode()">
+    💾 Save Code
+  </button>
+
+  <button onclick="loadCode()">
+    📂 Open Code
+  </button>
+
+  <button onclick="chooseImage()">
+    📷 Add Image
+  </button>
+
+  <button onclick="clearCode()">
+    🗑️ Clear Code
+  </button>
+
+  <hr>
+
+  <button>
+    📦 Build App
+  </button>
+
+  <button>
+    📤 Publish App
+  </button>
+
+</div>
+
+
+<!-- IMAGE INPUT -->
+
+<input
+  type="file"
+  id="imageInput"
+  accept="image/*">
+
+
+<!-- TABS -->
+
+<div class="tabs">
+
+  <button
+    id="codeTab"
+    class="active"
+    onclick="showCode()">
+
+    💻 Code
+
+  </button>
+
+  <button
+    onclick="runCode()">
+
+    ▶️ Run
+
+  </button>
+
+  <button
+    id="appTab"
+    onclick="showApp()">
+
+    📱 App
+
+  </button>
+
+</div>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+
+  <!-- CODE -->
 
   <section
-    class="code-area"
-    id="codeArea">
+    class="code-view"
+    id="codeView">
 
     <div class="code-bar">
 
-      <span class="code-label">
-        Code
+      <span>
+        Code Editor
       </span>
 
       <button
-        class="run"
+        class="run-btn"
         onclick="runCode()">
+
         ▶ Run
+
       </button>
 
     </div>
 
-    <div class="editor-wrap">
+
+    <div class="editor">
 
 <textarea id="code"><!DOCTYPE html>
 <html>
+
 <head>
 
 <meta name="viewport"
@@ -463,16 +487,17 @@ body{
   align-items:center;
   justify-content:center;
   font-family:Arial;
-  background:#e9f8fd;
+  background:#eef7fb;
 }
 
 .card{
   width:85%;
+  max-width:360px;
   padding:30px 20px;
   text-align:center;
   background:white;
   border-radius:25px;
-  box-shadow:0 15px 35px rgba(0,0,0,.10);
+  box-shadow:0 12px 30px rgba(0,0,0,.1);
 }
 
 h1{
@@ -508,6 +533,7 @@ button{
 </div>
 
 </body>
+
 </html></textarea>
 
     </div>
@@ -515,136 +541,127 @@ button{
   </section>
 
 
+  <!-- APP -->
+
   <section
-    class="app-area"
-    id="appArea">
+    class="app-view"
+    id="appView">
 
     <div class="phone">
 
       <div class="phone-top">
+
         <div class="camera"></div>
+
       </div>
 
-      <iframe
-        id="preview">
-      </iframe>
+      <iframe id="preview"></iframe>
 
     </div>
 
   </section>
+
 
 </main>
 
 
 <script>
 
-/* =========================
-   ELEMENTS
-========================= */
-
 const code =
-  document.getElementById("code");
+document.getElementById("code");
 
 const preview =
-  document.getElementById("preview");
+document.getElementById("preview");
 
-const codeArea =
-  document.getElementById("codeArea");
+const codeView =
+document.getElementById("codeView");
 
-const appArea =
-  document.getElementById("appArea");
+const appView =
+document.getElementById("appView");
 
 const codeTab =
-  document.getElementById("codeTab");
+document.getElementById("codeTab");
 
-const appTab =
-  document.getElementById("appTab");
+const profileMenu =
+document.getElementById("profileMenu");
 
-const settings =
-  document.getElementById("settings");
+const settingsMenu =
+document.getElementById("settingsMenu");
 
 const searchBox =
-  document.getElementById("searchBox");
+document.getElementById("searchBox");
 
+const imageInput =
+document.getElementById("imageInput");
 
-/* =========================
-   RUN
-========================= */
 
 function runCode(){
 
   preview.srcdoc = code.value;
 
+  showApp();
+
 }
 
 
-/* =========================
-   CODE
-========================= */
-
 function showCode(){
 
-  codeArea.style.display="flex";
-  appArea.style.display="none";
+  codeView.style.display="flex";
+
+  appView.style.display="none";
 
   codeTab.classList.add("active");
-  appTab.classList.remove("active");
 
 }
 
 
 function showApp(){
 
-  runCode();
+  preview.srcdoc = code.value;
 
-  codeArea.style.display="none";
-  appArea.style.display="flex";
+  codeView.style.display="none";
+
+  appView.style.display="flex";
 
   codeTab.classList.remove("active");
-  appTab.classList.add("active");
 
 }
 
 
-/* =========================
-   SEARCH
-========================= */
+function toggleProfile(){
+
+  settingsMenu.style.display="none";
+
+  profileMenu.style.display =
+  profileMenu.style.display==="block"
+  ? "none"
+  : "block";
+
+}
+
+
+function toggleSettings(){
+
+  profileMenu.style.display="none";
+
+  settingsMenu.style.display =
+  settingsMenu.style.display==="block"
+  ? "none"
+  : "block";
+
+}
+
 
 function openSearch(){
 
   searchBox.style.display="block";
 
   document
-    .getElementById("searchInput")
-    .focus();
+  .getElementById("searchInput")
+  .focus();
 
 }
 
-
-function closeSearch(){
-
-  searchBox.style.display="none";
-
-}
-
-
-/* =========================
-   SETTINGS
-========================= */
-
-function toggleSettings(){
-
-  settings.style.display =
-    settings.style.display==="block"
-    ? "none"
-    : "block";
-
-}
-
-
-/* =========================
-   COPY
-========================= */
 
 function copyCode(){
 
@@ -652,14 +669,8 @@ function copyCode(){
     code.value
   );
 
-  settings.style.display="none";
-
 }
 
-
-/* =========================
-   SAVE
-========================= */
 
 function saveCode(){
 
@@ -668,32 +679,20 @@ function saveCode(){
     code.value
   );
 
-  settings.style.display="none";
-
 }
 
-
-/* =========================
-   LOAD
-========================= */
 
 function loadCode(){
 
   const saved =
-    localStorage.getItem("codewrite");
+  localStorage.getItem("codewrite");
 
   if(saved){
     code.value=saved;
   }
 
-  settings.style.display="none";
-
 }
 
-
-/* =========================
-   CLEAR
-========================= */
 
 function clearCode(){
 
@@ -701,30 +700,100 @@ function clearCode(){
     code.value="";
   }
 
-  settings.style.display="none";
+}
+
+
+function undoCode(){
+
+  document.execCommand("undo");
 
 }
 
 
-/* =========================
-   START
-========================= */
+function redoCode(){
+
+  document.execCommand("redo");
+
+}
+
+
+function chooseProfileImage(){
+
+  imageInput.dataset.type="profile";
+
+  imageInput.click();
+
+}
+
+
+function chooseImage(){
+
+  imageInput.dataset.type="image";
+
+  imageInput.click();
+
+}
+
+
+imageInput.addEventListener(
+  "change",
+  function(){
+
+    const file=this.files[0];
+
+    if(!file) return;
+
+    const reader=new FileReader();
+
+    reader.onload=function(e){
+
+      if(imageInput.dataset.type==="profile"){
+
+        document
+        .getElementById("profileImage")
+        .src=e.target.result;
+
+        localStorage.setItem(
+          "profileImage",
+          e.target.result
+        );
+
+      }
+
+    };
+
+    reader.readAsDataURL(file);
+
+  }
+);
+
 
 window.onload=function(){
 
   const saved =
-    localStorage.getItem("codewrite");
+  localStorage.getItem("codewrite");
 
   if(saved){
     code.value=saved;
   }
 
-  runCode();
-  showCode();
+  const profile =
+  localStorage.getItem("profileImage");
+
+  if(profile){
+
+    document
+    .getElementById("profileImage")
+    .src=profile;
+
+  }
+
+  preview.srcdoc=code.value;
 
 };
 
 </script>
+
 
 </body>
 </html>
