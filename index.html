@@ -1186,7 +1186,6 @@ imageInput.addEventListener(
   }
 );
 
-
 window.onload=function(){
 
   const saved =
@@ -1207,7 +1206,6 @@ window.onload=function(){
       "profileImage"
     );
 
-
   if(profile){
 
     document
@@ -1218,10 +1216,25 @@ window.onload=function(){
   }
 
 
-  preview.srcdoc =
-    code.value;
+  const builtApp =
+    localStorage.getItem(
+      "builtApp"
+    );
+
+  if(builtApp){
+
+    preview.srcdoc =
+      builtApp;
+
+  }else{
+
+    preview.srcdoc =
+      code.value;
+
+  }
 
 };
+
 
 </script>
 
