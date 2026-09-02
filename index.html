@@ -402,13 +402,13 @@ iframe{
 
   <hr>
 
-  <button>
-    📦 Build App
-  </button>
+ <button onclick="buildApp()">
+  📦 Build App
+</button>
 
-  <button>
-    📤 Publish App
-  </button>
+  <button onclick="publishApp()">
+  📤 Publish App
+</button>
 
 </div>
 
@@ -434,12 +434,7 @@ iframe{
 
   </button>
 
-  <button
-    onclick="runCode()">
-
-    ▶️ Run
-
-  </button>
+ 
 
   <button
     id="appTab"
@@ -946,6 +941,53 @@ function loadCode(){
 
 }
 
+/* BUILD APP */
+
+function buildApp(){
+
+  const appCode = code.value.trim();
+
+  if(!appCode){
+
+    alert("មិនមានកូដសម្រាប់ Build App ទេ");
+
+    return;
+
+  }
+
+  preview.srcdoc = appCode;
+
+  showApp();
+
+  alert("Build App បានជោគជ័យ ✓");
+
+}
+
+/* PUBLISH APP */
+
+function publishApp(){
+
+  const appCode =
+    code.value.trim();
+
+  if(!appCode){
+
+    alert("មិនមានកូដសម្រាប់ Publish App ទេ");
+
+    return;
+
+  }
+
+  localStorage.setItem(
+    "publishedApp",
+    appCode
+  );
+
+  alert(
+    "App បាន Publish ជោគជ័យ ✓"
+  );
+
+}
 
 /* CLEAR */
 
