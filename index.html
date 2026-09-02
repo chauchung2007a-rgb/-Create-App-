@@ -347,21 +347,23 @@ iframe{
     📷 Change Profile Image
   </button>
 
-  <button>
-    📧 Gmail
-  </button>
+<button onclick="openGmail()">
+  📧 Gmail
+</button>
 
-  <button>
+  
+
+   <button onclick="openPrivacy()">
     🔒 Privacy & Security
   </button>
 
-  <button>
-    🚪 Log out
-  </button>
+  <button onclick="logout()">
+  🚪 Log out
+</button>
 
-  <button>
-    🗑️ Delete Account
-  </button>
+  <button onclick="deleteAccount()">
+  🗑️ Delete Account
+</button>
 
 </div>
 
@@ -941,6 +943,67 @@ function loadCode(){
 
 }
 
+/* GMAIL */
+
+function openGmail(){
+
+  window.open(
+    "https://mail.google.com/",
+    "_blank"
+  );
+
+}
+
+/* PRIVACY & SECURITY */
+
+
+function openPrivacy(){
+
+  alert(
+    "🔒 Privacy & Security\n\n" +
+    "Privacy\n" +
+    "• Your code is stored locally on this device.\n" +
+    "• Your profile image is stored locally.\n\n" +
+    "Security\n" +
+    "• CodeWrite does not send your code anywhere."
+  );
+
+}
+
+/* LOG OUT */
+
+function logout(){
+
+  profileMenu.style.display="none";
+  settingsMenu.style.display="none";
+
+  alert("បាន Log out ហើយ ✓");
+
+}
+
+/* DELETE ACCOUNT */
+
+function deleteAccount(){
+
+  const confirmed = confirm(
+    "⚠️ តើអ្នកប្រាកដថាចង់ Delete Account មែនទេ?"
+  );
+
+  if(!confirmed){
+    return;
+  }
+
+  localStorage.clear();
+
+  profileMenu.style.display="none";
+  settingsMenu.style.display="none";
+
+  alert("Account ត្រូវបានលុបហើយ ✓");
+
+  location.reload();
+
+}
+
 /* BUILD APP */
 
 function buildApp(){
@@ -955,11 +1018,13 @@ function buildApp(){
 
   }
 
+  localStorage.setItem("builtApp", appCode);
+
   preview.srcdoc = appCode;
 
   showApp();
 
-  alert("Build App បានជោគជ័យ ✓");
+  alert("📦 Build App បានជោគជ័យ ✓\n\nApp ត្រូវបានរក្សាទុករួចហើយ។");
 
 }
 
@@ -983,8 +1048,13 @@ function publishApp(){
     appCode
   );
 
+  preview.srcdoc = appCode;
+
+  showApp();
+
   alert(
-    "App បាន Publish ជោគជ័យ ✓"
+    "📤 App បាន Publish ជោគជ័យ ✓\n\n" +
+    "App របស់អ្នកត្រូវបានរក្សាទុក និងបង្ហាញក្នុង Preview ហើយ។"
   );
 
 }
@@ -1009,11 +1079,14 @@ function clearCode(){
 
 /* REDO */
 
+
 function redoCode(){
 
   code.focus();
 
-  document.execCommand("redo");
+  if(code.value !== ""){
+    document.execCommand("redo");
+  }
 
 }
 
@@ -1021,7 +1094,9 @@ function undoCode(){
 
   code.focus();
 
-  document.execCommand("undo");
+  if(code.value !== ""){
+    document.execCommand("undo");
+  }
 
 }
 
