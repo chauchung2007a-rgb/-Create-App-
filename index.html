@@ -38,6 +38,11 @@ textarea{
 button{
   cursor:pointer;
   border:none;
+  transform:scale(.99);
+}
+
+button:active{
+  transform:scale(.98);
 }
 
 /* =========================================================
@@ -125,6 +130,10 @@ button{
   overflow:hidden;
   border:2px solid #e2eee8;
   background:#eaf5ef;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
 }
 
 .profile-btn img{
@@ -321,6 +330,7 @@ button{
   pointer-events:none;
   user-select:none;
   z-index:1;
+  will-change:transform;
 }
 
 .code-input{
@@ -747,25 +757,23 @@ button{
        HEADER
   ====================================================== -->
 
-  
-      <header class="header">
+  <header class="header">
 
     <div class="header-right">
 
-           <button
+      <button
         class="icon-btn"
         id="searchBtn"
         title="Search"
         onclick="toggleSearch(event)"
       >
-
-
         🔍
       </button>
 
 
       <button
         class="icon-btn"
+        id="settingsBtn"
         title="Settings"
         onclick="toggleSettings(event)"
       >
@@ -775,16 +783,11 @@ button{
 
       <button
         class="profile-btn"
+        id="profileBtn"
         title="Profile"
         onclick="toggleProfile(event)"
       >
-
-        <img
-          id="profileImage"
-          src="https://i.pravatar.cc/100?img=12"
-          alt="Profile"
-        >
-
+        🏚️
       </button>
 
     </div>
@@ -1213,6 +1216,12 @@ let searchMatches = [];
 
 let currentSearchIndex = -1;
 
+let lastSearchValue = "";
+
+let renderFrame = 0;
+
+let lineNumberFrame = 0;
+
 
 const LIBRARY_KEY =
   "codewriteLibrary";
@@ -1296,21 +1305,6 @@ window.addEventListener(
     }
 
 
-    const profile =
-      localStorage.getItem(
-        "profileImage"
-      );
-
-
-    if(profile){
-
-      document
-        .getElementById("profileImage")
-        .src = profile;
-
-    }
-
-
     const builtApp =
       localStorage.getItem(
         "builtApp"
@@ -1352,16 +1346,91 @@ function handleCodeInput(){
   );
 
 
-  highlightCode();
+  /*
+    Do not rebuild the syntax-highlight layer
+    and line numbers on every single keystroke.
+    The textarea remains immediately responsive,
+    while the heavier work is scheduled once.
+  */
 
-  updateLineNumbers();
+  scheduleEditorRender();
 
 
   /*
-    If Search is active,
-    update the result only after
-    the user has already pressed Enter.
+    If Search is active, refresh the search result
+    after the code has changed.
   */
+
+  if(
+    searchInput.value.trim()
+  ){
+
+    scheduleSearchRefresh();
+
+  }
+
+}
+
+
+/* =========================================================
+   PERFORMANCE EDITOR RENDER
+========================================================= */
+
+function scheduleEditorRender(){
+
+  if(renderFrame){
+
+    return;
+
+  }
+
+
+  renderFrame =
+    requestAnimationFrame(
+      function(){
+
+        renderFrame = 0;
+
+        highlightCode();
+
+        updateLineNumbers();
+
+      }
+    );
+
+}
+
+
+function scheduleSearchRefresh(){
+
+  if(
+    scheduleSearchRefresh.timer
+  ){
+
+    clearTimeout(
+      scheduleSearchRefresh.timer
+    );
+
+  }
+
+
+  scheduleSearchRefresh.timer =
+    setTimeout(
+      function(){
+
+        if(
+          searchInput.value.trim()
+        ){
+
+          performSearch(
+            true
+          );
+
+        }
+
+      },
+      80
+    );
 
 }
 
@@ -2149,7 +2218,38 @@ function handleSearchKeydown(event){
 
     event.preventDefault();
 
-    performSearch();
+
+    const value =
+      searchInput.value.trim();
+
+
+    if(!value){
+
+      clearSearchHighlight();
+
+      return;
+
+    }
+
+
+    /*
+      First Enter = search.
+      Next Enter = next result.
+    */
+
+    if(
+      lastSearchValue === value &&
+      searchMatches.length > 0
+    ){
+
+      nextSearchResult();
+
+    }else{
+
+      performSearch();
+
+    }
+
 
     return;
 
@@ -2180,7 +2280,7 @@ function handleSearchKeydown(event){
    SEARCH
 ========================================================= */
 
-function performSearch(){
+function performSearch(fromCodeChange = false){
 
   const value =
     searchInput.value.trim();
@@ -2189,6 +2289,8 @@ function performSearch(){
   if(!value){
 
     clearSearchHighlight();
+
+    lastSearchValue = "";
 
     return;
 
@@ -2202,19 +2304,24 @@ function performSearch(){
   searchMatches = [];
 
 
-  let start =
-    0;
-
-
   const lowerSource =
-    source.toLowerCase();
+    source.toLocaleLowerCase();
 
 
   const lowerValue =
-    value.toLowerCase();
+    value.toLocaleLowerCase();
 
 
-  while(true){
+  let start = 0;
+
+
+  /*
+    Find every occurrence in the actual code string.
+    This handles special characters safely because
+    it uses indexOf instead of a regex.
+  */
+
+  while(start <= lowerSource.length){
 
     const found =
       lowerSource.indexOf(
@@ -2224,15 +2331,70 @@ function performSearch(){
 
 
     if(found === -1){
+
       break;
+
     }
 
 
-    searchMatches.push(found);
+    searchMatches.push(
+      found
+    );
 
 
     start =
-      found + value.length;
+      found +
+      Math.max(
+        1,
+        lowerValue.length
+      );
+
+  }
+
+
+  lastSearchValue =
+    value;
+
+
+  if(
+    searchMatches.length === 0
+  ){
+
+    currentSearchIndex = -1;
+
+    highlightCode();
+
+    return;
+
+  }
+
+
+  /*
+    Keep the current result when code changes
+    if it is still available.
+  */
+
+  if(
+    fromCodeChange &&
+    currentSearchIndex >= 0 &&
+    currentSearchIndex <
+      searchMatches.length
+  ){
+
+    renderSearchResults(
+      value
+    );
+
+
+    jumpToSearchResult(
+      searchMatches[
+        currentSearchIndex
+      ],
+      value.length
+    );
+
+
+    return;
 
   }
 
@@ -2245,14 +2407,10 @@ function performSearch(){
   );
 
 
-  if(searchMatches.length){
-
-    jumpToSearchResult(
-      searchMatches[0],
-      value.length
-    );
-
-  }
+  jumpToSearchResult(
+    searchMatches[0],
+    value.length
+  );
 
 }
 
@@ -2284,6 +2442,13 @@ function renderSearchResults(value){
   }
 
 
+  /*
+    Escape the search value before creating
+    the regex so characters such as:
+    . * + ? ( ) [ ] { } \
+    are treated as normal text.
+  */
+
   const regex =
     new RegExp(
       escapedSearch.replace(
@@ -2294,8 +2459,7 @@ function renderSearchResults(value){
     );
 
 
-  let matchIndex =
-    0;
+  let matchIndex = 0;
 
 
   highlight.innerHTML =
@@ -2308,16 +2472,12 @@ function renderSearchResults(value){
           currentSearchIndex;
 
 
-        const className =
-          active
-            ? "search-mark"
-            : "search-mark";
-
-
         const result =
-          '<mark class="' +
-          className +
-          '">' +
+          '<mark class="search-mark"' +
+          (active
+            ? ' data-search-active="true"'
+            : '') +
+          '>' +
           match +
           '</mark>';
 
@@ -2346,6 +2506,8 @@ function clearSearchHighlight(){
 
   currentSearchIndex = -1;
 
+  lastSearchValue = "";
+
   highlightCode();
 
 }
@@ -2363,7 +2525,9 @@ function jumpToSearchResult(
   if(
     position < 0
   ){
+
     return;
+
   }
 
 
@@ -2408,12 +2572,6 @@ function jumpToSearchResult(
 
   syncEditorScroll();
 
-
-  /*
-    Search is completed only after Enter.
-    We do not run this function from oninput.
-  */
-
 }
 
 
@@ -2426,7 +2584,9 @@ function nextSearchResult(){
   if(
     searchMatches.length === 0
   ){
+
     return;
+
   }
 
 
@@ -2863,13 +3023,10 @@ function changeProfileImage(){
       reader.onload =
         function(e){
 
-          document
-            .getElementById(
-              "profileImage"
-            )
-            .src =
-              e.target.result;
-
+          /*
+            Keep the existing profile image
+            storage function unchanged.
+          */
 
           localStorage.setItem(
             "profileImage",
@@ -3555,11 +3712,6 @@ function openLibraryCode(id){
   }
 
 
-  /*
-    Open the saved code
-    in the main editor.
-  */
-
   code.value =
     item.code || "";
 
@@ -3763,11 +3915,6 @@ document.addEventListener(
 
       event.preventDefault();
 
-      const searchBtn =
-        document.getElementById(
-          "searchBtn"
-        );
-
 
       toggleSearch({
         stopPropagation:function(){}
@@ -3789,11 +3936,6 @@ document.addEventListener(
 code.addEventListener(
   "click",
   function(){
-
-    /*
-      Explicitly keep the textarea
-      as the active editable layer.
-    */
 
     code.focus();
 
