@@ -79,28 +79,21 @@ button{
   gap:8px;
 }
 
+
 .header-right .profile-btn{
   order:1;
 }
 
-.header-right #searchBtn{
-  order:2;
-}
-
 .header-right .icon-btn[title="Settings"]{
-  order:3;
+  order:2;
 }
 
 #profileBtn{
   order:1;
 }
 
-#searchBtn{
-  order:2;
-}
-
 #settingsBtn{
-  order:3;
+  order:2;
 }
 
 
@@ -136,12 +129,6 @@ button{
   align-items:center;
   justify-content:center;
   font-size:20px;
-}
-
-.profile-btn img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
 }
 
 
@@ -195,18 +182,19 @@ button{
 
 /* =========================================================
    SEARCH
+   រូបរាងដូចប្រអប់សរសេរសារ ChatGPT
 ========================================================= */
 
 .search-box{
   position:absolute;
-  top:60px;
-  left:10px;
-  right:10px;
-  background:#ffffff;
-  border-radius:14px;
-  padding:10px;
-  box-shadow:0 8px 25px rgba(0,0,0,.15);
-  display:none;
+  top:6px;
+  left:60px;
+  right:60px;
+  background:transparent;
+  border-radius:0;
+  padding:0;
+  box-shadow:none;
+  display:block;
   z-index:90;
 }
 
@@ -216,16 +204,22 @@ button{
 
 .search-input{
   width:100%;
-  height:41.58px;
-  border:1px solid #cbd9df;
-  border-radius:11px;
+  height:47px;
+  border:1px solid #d5dde2;
+  border-radius:22px;
   outline:none;
-  padding:0 12.87px;
-  font-size:13.86px;
+  padding:0 18px;
+  font-size:14px;
+  background:#ffffff;
+  color:#17232d;
+}
+
+.search-input::placeholder{
+  color:#8a969d;
 }
 
 .search-input:focus{
-  border-color:#16834a;
+  border-color:#b9c8cf;
 }
 
 
@@ -770,14 +764,7 @@ button{
     <div class="header-right">
 
 
-      <button
-        class="icon-btn"
-        id="searchBtn"
-        title="Search"
-        onclick="toggleSearch(event)"
-      >
-        🔍
-      </button>
+     
 
 
       <button
@@ -890,9 +877,9 @@ button{
       </button>
 
 
-      <button onclick="clearCode()">
-        🧹 Clear Code
-      </button>
+     <button onclick="clearCode()">
+  🗑️ Clear Code
+</button>
 
 
       <button onclick="buildApp()">
@@ -1353,6 +1340,7 @@ function handleCodeInput(){
 
 
   scheduleEditorUpdate();
+
 
 }
 
@@ -2069,7 +2057,6 @@ function showApp(){
 
 }
 
-
 /* =========================================================
    CLOSE MENUS
 ========================================================= */
@@ -2081,10 +2068,6 @@ function closeMenus(){
 
 
   settingsMenu
-    .classList.remove("show");
-
-
-  searchBox
     .classList.remove("show");
 
 }
@@ -2106,10 +2089,6 @@ function toggleProfile(event){
   settingsMenu
     .classList.remove("show");
 
-
-  searchBox
-    .classList.remove("show");
-
 }
 
 
@@ -2125,26 +2104,26 @@ function toggleSettings(event){
   profileMenu
     .classList.remove("show");
 
-
-  searchBox
-    .classList.remove("show");
-
 }
-
 
 /* =========================================================
    SEARCH BOX
 ========================================================= */
 
+/* =========================================================
+   SEARCH KEYDOWN
+========================================================= */
+
 function toggleSearch(event){
 
-  event.stopPropagation();
+  if(
+    event &&
+    event.stopPropagation
+  ){
 
+    event.stopPropagation();
 
-  const isOpen =
-    searchBox.classList.contains(
-      "show"
-    );
+  }
 
 
   profileMenu
@@ -2155,24 +2134,6 @@ function toggleSearch(event){
     .classList.remove("show");
 
 
-  if(isOpen){
-
-    searchBox
-      .classList.remove("show");
-
-
-    clearSearchHighlight();
-
-
-    return;
-
-  }
-
-
-  searchBox
-    .classList.add("show");
-
-
   setTimeout(
     function(){
 
@@ -2181,15 +2142,10 @@ function toggleSearch(event){
       searchInput.select();
 
     },
-    50
+    0
   );
 
 }
-
-
-/* =========================================================
-   SEARCH KEYDOWN
-========================================================= */
 
 function handleSearchKeydown(event){
 
@@ -2215,9 +2171,6 @@ function handleSearchKeydown(event){
     searchInput.value = "";
 
     clearSearchHighlight();
-
-    searchBox
-      .classList.remove("show");
 
     code.focus();
 
@@ -3945,10 +3898,6 @@ document.addEventListener(
 
 
     settingsMenu
-      .classList.remove("show");
-
-
-    searchBox
       .classList.remove("show");
 
   }
