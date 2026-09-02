@@ -30,7 +30,10 @@ body{
   background:#eef7fb;
 }
 
-/* HEADER */
+
+/* ================================
+   HEADER
+================================ */
 
 .header{
   height:60px;
@@ -72,7 +75,10 @@ body{
   font-size:19px;
 }
 
-/* SEARCH */
+
+/* ================================
+   SEARCH
+================================ */
 
 .search{
   display:none;
@@ -103,7 +109,10 @@ body{
   pointer-events:none;
 }
 
-/* MENU */
+
+/* ================================
+   MENU
+================================ */
 
 .menu{
   display:none;
@@ -139,7 +148,16 @@ body{
   background:#eef7fb;
 }
 
-/* TABS */
+.menu hr{
+  border:0;
+  border-top:1px solid #e5edf0;
+  margin:0;
+}
+
+
+/* ================================
+   TABS
+================================ */
 
 .tabs{
   height:52px;
@@ -162,13 +180,19 @@ body{
   border-bottom:3px solid #35a8d0;
 }
 
-/* MAIN */
+
+/* ================================
+   MAIN
+================================ */
 
 .main{
   height:calc(100% - 112px);
 }
 
-/* CODE */
+
+/* ================================
+   CODE VIEW
+================================ */
 
 .code-view{
   height:100%;
@@ -196,56 +220,201 @@ body{
   font-weight:bold;
 }
 
+
+/* ================================
+   CODE EDITOR
+================================ */
+
 .editor{
+  position:relative;
   flex:1;
   min-height:0;
+  overflow:hidden;
+  background:#17232d;
 }
 
-textarea{
+.editor-highlight,
+.editor textarea{
+
+  position:absolute;
+
+  top:0;
+  left:0;
+
   width:100%;
   height:100%;
-  display:block;
-  resize:none;
-  border:0;
-  outline:none;
+
+  margin:0;
+
   padding:15px;
 
-  background:#17232d;
-  color:#dcecf2;
+  border:0;
+  outline:none;
 
-  font-family:monospace;
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+
   font-size:15px;
   line-height:1.6;
 
+  tab-size:2;
+
+  white-space:pre;
+
+  word-wrap:normal;
+
   overflow:auto;
+
   -webkit-overflow-scrolling:touch;
 }
 
-/* APP */
+
+/* ================================
+   HIGHLIGHT LAYER
+================================ */
+
+.editor-highlight{
+
+  z-index:1;
+
+  pointer-events:none;
+
+  color:#dcecf2;
+
+}
+
+
+/* ================================
+   TEXTAREA LAYER
+================================ */
+
+.editor textarea{
+
+  z-index:2;
+
+  background:transparent;
+
+  color:transparent;
+
+  caret-color:white;
+
+  resize:none;
+
+  -webkit-text-fill-color:transparent;
+
+}
+
+
+/* ================================
+   SYNTAX COLORS
+================================ */
+
+
+/* 🟢 MAIN / PARENT TAGS */
+
+.hl-main-tag{
+  color:#42e878;
+  font-weight:bold;
+}
+
+
+/* 🔵 NORMAL TAGS */
+
+.hl-tag{
+  color:#55b9ff;
+}
+
+
+/* 🔵 ATTRIBUTES */
+
+.hl-attr{
+  color:#61b7ff;
+}
+
+
+/* 🟠 STRINGS */
+
+.hl-string{
+  color:#f5b86c;
+}
+
+
+/* ⚪ COMMENTS */
+
+.hl-comment{
+  color:#7f929d;
+  font-style:italic;
+}
+
+
+/* 🟣 CSS PROPERTY */
+
+.hl-property{
+  color:#c792ea;
+}
+
+
+/* 🟣 JAVASCRIPT KEYWORDS */
+
+.hl-keyword{
+  color:#e58cff;
+}
+
+
+/* 🔵 FUNCTIONS */
+
+.hl-function{
+  color:#64d8ff;
+}
+
+
+/* 🟣 NUMBERS */
+
+.hl-number{
+  color:#d89cff;
+}
+
+
+/* ================================
+   APP PREVIEW
+================================ */
 
 .app-view{
   display:none;
+
   width:100%;
   height:100%;
+
   align-items:center;
   justify-content:center;
+
   overflow:auto;
+
   padding:15px;
+
   background:#dfeef3;
 }
 
 .phone{
   width:290px;
   height:590px;
+
   flex-shrink:0;
 
   background:white;
+
   border:7px solid #17232d;
+
   border-radius:35px;
 
   overflow:hidden;
 
-  box-shadow:0 12px 35px rgba(0,0,0,.18);
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.18);
 }
 
 .phone-top{
@@ -255,12 +424,19 @@ textarea{
 
 .camera{
   position:absolute;
+
   width:65px;
   height:17px;
+
   left:50%;
-  transform:translateX(-50%);
+
+  transform:
+    translateX(-50%);
+
   background:#17232d;
-  border-radius:0 0 12px 12px;
+
+  border-radius:
+    0 0 12px 12px;
 }
 
 iframe{
@@ -269,7 +445,10 @@ iframe{
   border:0;
 }
 
- UPLOAD */
+
+/* ================================
+   IMAGE INPUT
+================================ */
 
 #imageInput{
   display:none;
@@ -283,7 +462,9 @@ iframe{
 <body>
 
 
-<!-- HEADER -->
+<!-- ================================
+     HEADER
+================================ -->
 
 <header class="header">
 
@@ -304,13 +485,18 @@ iframe{
     <button
       class="icon-btn"
       onclick="openSearch()">
+
       🔍
+
     </button>
+
 
     <button
       class="icon-btn"
       onclick="toggleSettings()">
+
       ⚙️
+
     </button>
 
   </div>
@@ -318,7 +504,9 @@ iframe{
 </header>
 
 
-<!-- SEARCH -->
+<!-- ================================
+     SEARCH
+================================ -->
 
 <div
   class="search"
@@ -329,93 +517,151 @@ iframe{
     id="searchInput"
     placeholder="Search code...">
 
-  <span id="searchCount"></span>
-
-  
- 
+  <span
+    id="searchCount">
+  </span>
 
 </div>
 
 
-<!-- PROFILE MENU -->
+<!-- ================================
+     PROFILE MENU
+================================ -->
 
 <div
   class="menu profile-menu"
   id="profileMenu">
 
-  <button onclick="chooseProfileImage()">
+  <button
+    onclick="chooseProfileImage()">
+
     📷 Change Profile Image
+
   </button>
 
-<button onclick="openGmail()">
-  📧 Gmail
-</button>
 
-  
+  <button
+    onclick="openGmail()">
 
-   <button onclick="openPrivacy()">
+    📧 Gmail
+
+  </button>
+
+
+  <button
+    onclick="openPrivacy()">
+
     🔒 Privacy & Security
+
   </button>
 
-  <button onclick="logout()">
-  🚪 Log out
-</button>
 
-  <button onclick="deleteAccount()">
-  🗑️ Delete Account
-</button>
+  <button
+    onclick="logout()">
+
+    🚪 Log out
+
+  </button>
+
+
+  <button
+    onclick="deleteAccount()">
+
+    🗑️ Delete Account
+
+  </button>
 
 </div>
 
 
-<!-- SETTINGS MENU -->
+<!-- ================================
+     SETTINGS MENU
+================================ -->
 
 <div
   class="menu settings-menu"
   id="settingsMenu">
 
-  <button onclick="undoCode()">
+  <button
+    onclick="undoCode()">
+
     ↩️ Undo
+
   </button>
 
-  <button onclick="redoCode()">
+
+  <button
+    onclick="redoCode()">
+
     ↪️ Redo
+
   </button>
 
-  <button onclick="copyCode()">
+
+  <button
+    onclick="copyCode()">
+
     📋 Copy Code
+
   </button>
 
-  <button onclick="saveCode()">
+
+  <button
+    onclick="saveCode()">
+
     💾 Save Code
+
   </button>
 
-  <button onclick="loadCode()">
+
+  <button
+    onclick="loadCode()">
+
     📂 Open Code
+
   </button>
 
-  <button onclick="chooseImage()">
+
+  <button
+    onclick="chooseImage()">
+
     📷 Add Image
+
   </button>
 
-  <button onclick="clearCode()">
+
+  <button
+    onclick="clearCode()">
+
     🗑️ Clear Code
+
   </button>
+
 
   <hr>
 
- <button onclick="buildApp()">
-  📦 Build App
-</button>
 
-  <button onclick="publishApp()">
-  📤 Publish App
-</button>
+  <button
+    onclick="buildApp()">
+
+    📦 Build App
+
+  </button>
+
+
+  <button
+    onclick="publishApp()">
+
+    📤 Publish App
+
+  </button>
 
 </div>
 
 
-<!-- IMAGE INPUT -->
+<!-- ================================
+     IMAGE INPUT
+================================ -->
 
 <input
   type="file"
@@ -423,7 +669,9 @@ iframe{
   accept="image/*">
 
 
-<!-- TABS -->
+<!-- ================================
+     TABS
+================================ -->
 
 <div class="tabs">
 
@@ -436,7 +684,6 @@ iframe{
 
   </button>
 
- 
 
   <button
     id="appTab"
@@ -449,22 +696,28 @@ iframe{
 </div>
 
 
-<!-- MAIN -->
+<!-- ================================
+     MAIN
+================================ -->
 
 <main class="main">
 
 
-  <!-- CODE -->
+  <!-- ================================
+       CODE EDITOR
+  ================================= -->
 
   <section
     class="code-view"
     id="codeView">
+
 
     <div class="code-bar">
 
       <span>
         Code Editor
       </span>
+
 
       <button
         class="run-btn"
@@ -479,7 +732,23 @@ iframe{
 
     <div class="editor">
 
-<textarea id="code"><!DOCTYPE html>
+
+      <!-- HIGHLIGHT -->
+
+      <pre
+        id="highlight"
+        class="editor-highlight">
+      </pre>
+
+
+      <!-- CODE INPUT -->
+
+      <textarea
+        id="code"
+        spellcheck="false"
+        autocapitalize="off"
+        autocomplete="off"
+        autocorrect="off"><!DOCTYPE html>
 <html>
 
 <head>
@@ -545,18 +814,23 @@ button{
 
 </html></textarea>
 
+
     </div>
 
   </section>
 
 
-  <!-- APP -->
+  <!-- ================================
+       APP PREVIEW
+  ================================= -->
 
   <section
     class="app-view"
     id="appView">
 
+
     <div class="phone">
+
 
       <div class="phone-top">
 
@@ -564,20 +838,30 @@ button{
 
       </div>
 
-      <iframe id="preview"></iframe>
+
+      <iframe
+        id="preview">
+      </iframe>
+
 
     </div>
 
   </section>
-
 
 </main>
 
 
 <script>
 
+/* ================================
+   ELEMENTS
+================================ */
+
 const code =
 document.getElementById("code");
+
+const highlight =
+document.getElementById("highlight");
 
 const preview =
 document.getElementById("preview");
@@ -590,6 +874,9 @@ document.getElementById("appView");
 
 const codeTab =
 document.getElementById("codeTab");
+
+const appTab =
+document.getElementById("appTab");
 
 const profileMenu =
 document.getElementById("profileMenu");
@@ -610,99 +897,563 @@ const imageInput =
 document.getElementById("imageInput");
 
 
-/* SEARCH STATE */
+/* ================================
+   SEARCH STATE
+================================ */
 
 let searchMatches = [];
 
 let searchPosition = -1;
 
 
-/* RUN */
+/* ================================
+   ESCAPE HTML
+================================ */
+
+function escapeHTML(text){
+
+  return text
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;");
+
+}
+
+
+/* ================================
+   SYNTAX HIGHLIGHT
+================================ */
+
+function highlightCode(){
+
+  const source =
+    code.value;
+
+  let result = "";
+
+  let i = 0;
+
+
+  while(i < source.length){
+
+    /*
+      HTML COMMENT
+    */
+
+    if(
+      source.startsWith(
+        "<!--",
+        i
+      )
+    ){
+
+      const end =
+        source.indexOf(
+          "-->",
+          i + 4
+        );
+
+      const finish =
+        end === -1
+          ? source.length
+          : end + 3;
+
+      const comment =
+        source.substring(
+          i,
+          finish
+        );
+
+      result +=
+        '<span class="hl-comment">' +
+        escapeHTML(comment) +
+        '</span>';
+
+      i = finish;
+
+      continue;
+
+    }
+
+
+    /*
+      HTML TAG
+    */
+
+    if(source[i] === "<"){
+
+      const end =
+        source.indexOf(
+          ">",
+          i + 1
+        );
+
+
+      if(end !== -1){
+
+        const tagText =
+          source.substring(
+            i,
+            end + 1
+          );
+
+
+        const tagMatch =
+          tagText.match(
+            /^(&lt;|<)\s*(\/?)\s*([a-zA-Z0-9-]+)/
+          );
+
+
+        if(tagMatch){
+
+          const closing =
+            tagMatch[2];
+
+          const tagName =
+            tagMatch[3]
+              .toLowerCase();
+
+
+          /*
+            MAIN TAGS
+          */
+
+          const isMain =
+            [
+              "html",
+              "head",
+              "body",
+              "style",
+              "script"
+            ].includes(
+              tagName
+            );
+
+
+          let tagClass =
+            isMain
+              ? "hl-main-tag"
+              : "hl-tag";
+
+
+          /*
+            BUILD TAG
+          */
+
+          let coloredTag =
+            "";
+
+
+          const openPart =
+            tagText.substring(
+              0,
+              tagText.indexOf(
+                tagName
+              )
+            );
+
+
+          coloredTag +=
+            escapeHTML(
+              openPart
+            );
+
+
+          coloredTag +=
+            '<span class="' +
+            tagClass +
+            '">' +
+            escapeHTML(
+              closing +
+              tagName
+            ) +
+            '</span>';
+
+
+          let rest =
+            tagText.substring(
+              tagText.indexOf(
+                tagName
+              ) +
+              tagName.length
+            );
+
+
+          /*
+            ATTRIBUTES
+          */
+
+          rest =
+            rest.replace(
+              /([a-zA-Z_:][-a-zA-Z0-9_:.]*)(\s*=\s*)(["'][^"']*["'])/g,
+              '<span class="hl-attr">$1</span>$2<span class="hl-string">$3</span>'
+            );
+
+
+          coloredTag +=
+            escapeHTML(
+              rest
+            );
+
+
+          result +=
+            coloredTag;
+
+
+          i =
+            end + 1;
+
+          continue;
+
+        }
+
+      }
+
+    }
+
+
+    /*
+      STRING
+    */
+
+    if(
+      source[i] === '"' ||
+      source[i] === "'" ||
+      source[i] === "`"
+    ){
+
+      const quote =
+        source[i];
+
+      let end =
+        i + 1;
+
+
+      while(
+        end < source.length
+      ){
+
+        if(
+          source[end] === quote &&
+          source[end - 1] !== "\\"
+        ){
+
+          end++;
+
+          break;
+
+        }
+
+        end++;
+
+      }
+
+
+      result +=
+        '<span class="hl-string">' +
+        escapeHTML(
+          source.substring(
+            i,
+            end
+          )
+        ) +
+        '</span>';
+
+
+      i = end;
+
+      continue;
+
+    }
+
+
+    /*
+      NORMAL TEXT
+    */
+
+    let next = i + 1;
+
+
+    while(
+      next < source.length &&
+      source[next] !== "<" &&
+      source[next] !== '"' &&
+      source[next] !== "'" &&
+      source[next] !== "`"
+    ){
+
+      next++;
+
+    }
+
+
+    let text =
+      source.substring(
+        i,
+        next
+      );
+
+
+    /*
+      JAVASCRIPT KEYWORDS
+    */
+
+    text =
+      escapeHTML(
+        text
+      );
+
+
+    text =
+      text.replace(
+        /\b(const|let|var|function|return|if|else|for|while|new|true|false|null|undefined|class|this)\b/g,
+        '<span class="hl-keyword">$1</span>'
+      );
+
+
+    /*
+      FUNCTION NAMES
+    */
+
+    text =
+      text.replace(
+        /\b([a-zA-Z_$][\w$]*)(?=\()/g,
+        '<span class="hl-function">$1</span>'
+      );
+
+
+    /*
+      NUMBERS
+    */
+
+    text =
+      text.replace(
+        /\b(\d+(?:\.\d+)?)\b/g,
+        '<span class="hl-number">$1</span>'
+      );
+
+
+    result +=
+      text;
+
+
+    i = next;
+
+  }
+
+
+  /*
+    Keep last empty line
+  */
+
+  if(
+    source.endsWith("\n")
+  ){
+
+    result += "\n";
+
+  }
+
+
+  highlight.innerHTML =
+    result;
+
+}
+
+
+/* ================================
+   EDITOR SYNC
+================================ */
+
+code.addEventListener(
+  "input",
+  function(){
+
+    highlightCode();
+
+  }
+);
+
+
+code.addEventListener(
+  "scroll",
+  function(){
+
+    highlight.scrollTop =
+      code.scrollTop;
+
+    highlight.scrollLeft =
+      code.scrollLeft;
+
+  }
+);
+
+
+/* ================================
+   TAB KEY
+================================ */
+
+code.addEventListener(
+  "keydown",
+  function(event){
+
+    if(
+      event.key !== "Tab"
+    ){
+
+      return;
+
+    }
+
+    event.preventDefault();
+
+
+    const start =
+      code.selectionStart;
+
+    const end =
+      code.selectionEnd;
+
+
+    code.setRangeText(
+      "  ",
+      start,
+      end,
+      "end"
+    );
+
+
+    highlightCode();
+
+  }
+);
+
+
+/* ================================
+   RUN
+================================ */
 
 function runCode(){
 
-  preview.srcdoc = code.value;
+  preview.srcdoc =
+    code.value;
 
   showApp();
 
 }
 
 
-/* SHOW CODE */
+/* ================================
+   SHOW CODE
+================================ */
 
 function showCode(){
 
-  codeView.style.display="flex";
+  codeView.style.display =
+    "flex";
 
-  appView.style.display="none";
+  appView.style.display =
+    "none";
 
-  codeTab.classList.add("active");
+  codeTab.classList.add(
+    "active"
+  );
+
+  appTab.classList.remove(
+    "active"
+  );
+
+  highlightCode();
 
 }
 
 
-/* SHOW APP */
+/* ================================
+   SHOW APP
+================================ */
 
 function showApp(){
 
-  preview.srcdoc = code.value;
+  preview.srcdoc =
+    code.value;
 
-  codeView.style.display="none";
+  codeView.style.display =
+    "none";
 
-  appView.style.display="flex";
+  appView.style.display =
+    "flex";
 
-  codeTab.classList.remove("active");
+  codeTab.classList.remove(
+    "active"
+  );
+
+  appTab.classList.add(
+    "active"
+  );
 
 }
 
 
-/* PROFILE */
+/* ================================
+   PROFILE
+================================ */
 
 function toggleProfile(){
 
-  settingsMenu.style.display="none";
+  settingsMenu.style.display =
+    "none";
 
   profileMenu.style.display =
-    profileMenu.style.display==="block"
-    ? "none"
-    : "block";
+    profileMenu.style.display ===
+    "block"
+      ? "none"
+      : "block";
 
 }
 
 
-/* SETTINGS */
+/* ================================
+   SETTINGS
+================================ */
 
 function toggleSettings(){
 
-  profileMenu.style.display="none";
+  profileMenu.style.display =
+    "none";
 
   settingsMenu.style.display =
-    settingsMenu.style.display==="block"
-    ? "none"
-    : "block";
+    settingsMenu.style.display ===
+    "block"
+      ? "none"
+      : "block";
 
 }
 
 
-/* OPEN SEARCH */
+/* ================================
+   SEARCH
+================================ */
 
 function openSearch(){
 
-  searchBox.style.display="block";
+  searchBox.style.display =
+    "block";
 
   searchInput.focus();
 
 }
 
 
-/* SEARCH ONLY WHEN ENTER IS PRESSED */
-
 searchInput.addEventListener(
   "keydown",
   function(event){
 
-    if(event.key !== "Enter"){
+    if(
+      event.key !== "Enter"
+    ){
+
       return;
+
     }
 
     event.preventDefault();
@@ -713,48 +1464,69 @@ searchInput.addEventListener(
 );
 
 
-/* PERFORM SEARCH */
-
 function performSearch(){
 
   const query =
-    searchInput.value.trim().toLowerCase();
+    searchInput.value
+      .trim()
+      .toLowerCase();
+
 
   searchMatches = [];
 
   searchPosition = -1;
 
+
   if(!query){
 
-    searchCount.textContent="";
+    searchCount.textContent =
+      "";
 
     return;
 
   }
 
+
   const text =
     code.value.toLowerCase();
 
+
   let start = 0;
+
 
   while(true){
 
     const found =
-      text.indexOf(query,start);
+      text.indexOf(
+        query,
+        start
+      );
 
-    if(found === -1){
+
+    if(
+      found === -1
+    ){
+
       break;
+
     }
 
-    searchMatches.push(found);
+
+    searchMatches.push(
+      found
+    );
+
 
     start =
-      found + query.length;
+      found +
+      query.length;
 
   }
 
 
-  if(searchMatches.length === 0){
+  if(
+    searchMatches.length === 0
+  ){
 
     searchCount.textContent =
       "0 results";
@@ -771,23 +1543,28 @@ function performSearch(){
 }
 
 
-/* GO TO RESULT */
-
 function goToSearchResult(){
 
   if(
     searchPosition < 0 ||
-    searchPosition >= searchMatches.length
+    searchPosition >=
+      searchMatches.length
   ){
+
     return;
+
   }
 
 
   const start =
-    searchMatches[searchPosition];
+    searchMatches[
+      searchPosition
+    ];
+
 
   const end =
-    start + searchInput.value.length;
+    start +
+    searchInput.value.length;
 
 
   code.focus();
@@ -799,36 +1576,33 @@ function goToSearchResult(){
   );
 
 
-  /*
-    Calculate line number
-  */
-
   const textBefore =
-    code.value.substring(0,start);
-
-  const lineNumber =
-    textBefore.split("\n").length;
-
-
-  /*
-    Scroll editor
-  */
-
-  const lineHeight =
-    parseFloat(
-      getComputedStyle(code).lineHeight
+    code.value.substring(
+      0,
+      start
     );
 
 
-  const targetScroll =
-    Math.max(
-      0,
-      (lineNumber - 4) * lineHeight
+  const lineNumber =
+    textBefore.split(
+      "\n"
+    ).length;
+
+
+  const lineHeight =
+    parseFloat(
+      getComputedStyle(
+        code
+      ).lineHeight
     );
 
 
   code.scrollTop =
-    targetScroll;
+    Math.max(
+      0,
+      (lineNumber - 4) *
+      lineHeight
+    );
 
 
   searchCount.textContent =
@@ -839,75 +1613,99 @@ function goToSearchResult(){
 }
 
 
-/* NEXT */
-
 function searchNext(){
 
-  if(!searchMatches.length){
+  if(
+    !searchMatches.length
+  ){
+
     return;
+
   }
 
+
   searchPosition++;
+
 
   if(
     searchPosition >=
     searchMatches.length
   ){
 
-    searchPosition=0;
+    searchPosition = 0;
 
   }
+
 
   goToSearchResult();
 
 }
 
 
-/* PREVIOUS */
-
 function searchPrevious(){
 
-  if(!searchMatches.length){
+  if(
+    !searchMatches.length
+  ){
+
     return;
+
   }
+
 
   searchPosition--;
 
-  if(searchPosition < 0){
+
+  if(
+    searchPosition < 0
+  ){
 
     searchPosition =
       searchMatches.length - 1;
 
   }
 
+
   goToSearchResult();
 
 }
 
 
-/* COPY */
-
+/* ================================
+   COPY
+================================ */
 
 function copyCode(){
 
-  navigator.clipboard.writeText(
-    code.value
-  )
-  .then(function(){
+  navigator.clipboard
+    .writeText(
+      code.value
+    )
+    .then(
+      function(){
 
-    alert("បានចម្លងកូដហើយ ✓");
+        alert(
+          "បានចម្លងកូដហើយ ✓"
+        );
 
-  })
-  .catch(function(){
+      }
+    )
+    .catch(
+      function(){
 
-    alert("មិនអាចចម្លងកូដបានទេ");
+        alert(
+          "មិនអាចចម្លងកូដបានទេ"
+        );
 
-  });
+      }
+    );
 
 }
 
 
-/* SAVE */
+/* ================================
+   SAVE
+================================ */
 
 function saveCode(){
 
@@ -916,34 +1714,52 @@ function saveCode(){
     code.value
   );
 
-  alert("បានរក្សាទុកកូដហើយ ✓");
+
+  alert(
+    "បានរក្សាទុកកូដហើយ ✓"
+  );
 
 }
 
 
-/* LOAD */
-
+/* ================================
+   LOAD
+================================ */
 
 function loadCode(){
 
   const saved =
-    localStorage.getItem("codewrite");
+    localStorage.getItem(
+      "codewrite"
+    );
+
 
   if(saved){
 
-    code.value = saved;
+    code.value =
+      saved;
 
-    alert("បានបើកកូដហើយ ✓");
+    highlightCode();
+
+
+    alert(
+      "បានបើកកូដហើយ ✓"
+    );
 
   }else{
 
-    alert("មិនមានកូដដែលបានរក្សាទុកទេ");
+    alert(
+      "មិនមានកូដដែលបានរក្សាទុកទេ"
+    );
 
   }
 
 }
 
-/* GMAIL */
+
+/* ================================
+   GMAIL
+================================ */
 
 function openGmail(){
 
@@ -954,8 +1770,10 @@ function openGmail(){
 
 }
 
-/* PRIVACY & SECURITY */
 
+/* ================================
+   PRIVACY
+================================ */
 
 function openPrivacy(){
 
@@ -970,87 +1788,141 @@ function openPrivacy(){
 
 }
 
-/* LOG OUT */
+
+/* ================================
+   LOGOUT
+================================ */
 
 function logout(){
 
-  profileMenu.style.display="none";
-  settingsMenu.style.display="none";
+  profileMenu.style.display =
+    "none";
 
-  alert("បាន Log out ហើយ ✓");
+  settingsMenu.style.display =
+    "none";
+
+
+  alert(
+    "បាន Log out ហើយ ✓"
+  );
 
 }
 
-/* DELETE ACCOUNT */
+
+/* ================================
+   DELETE ACCOUNT
+================================ */
 
 function deleteAccount(){
 
-  const confirmed = confirm(
-    "⚠️ តើអ្នកប្រាកដថាចង់ Delete Account មែនទេ?"
-  );
+  const confirmed =
+    confirm(
+      "⚠️ តើអ្នកប្រាកដថាចង់ Delete Account មែនទេ?"
+    );
+
 
   if(!confirmed){
+
     return;
+
   }
+
 
   localStorage.clear();
 
-  profileMenu.style.display="none";
-  settingsMenu.style.display="none";
 
-  alert("Account ត្រូវបានលុបហើយ ✓");
+  profileMenu.style.display =
+    "none";
+
+  settingsMenu.style.display =
+    "none";
+
+
+  alert(
+    "Account ត្រូវបានលុបហើយ ✓"
+  );
+
 
   location.reload();
 
 }
 
-/* BUILD APP */
+
+/* ================================
+   BUILD APP
+================================ */
 
 function buildApp(){
 
-  const appCode = code.value.trim();
+  const appCode =
+    code.value.trim();
+
 
   if(!appCode){
 
-    alert("មិនមានកូដសម្រាប់ Build App ទេ");
+    alert(
+      "មិនមានកូដសម្រាប់ Build App ទេ"
+    );
 
     return;
 
   }
 
-  localStorage.setItem("builtApp", appCode);
 
-  preview.srcdoc = appCode;
+  localStorage.setItem(
+    "builtApp",
+    appCode
+  );
+
+
+  preview.srcdoc =
+    appCode;
+
 
   showApp();
 
-  alert("📦 Build App បានជោគជ័យ ✓\n\nApp ត្រូវបានរក្សាទុករួចហើយ។");
+
+  alert(
+    "📦 Build App បានជោគជ័យ ✓\n\n" +
+    "App ត្រូវបានរក្សាទុករួចហើយ។"
+  );
 
 }
 
-/* PUBLISH APP */
+
+/* ================================
+   PUBLISH APP
+================================ */
 
 function publishApp(){
 
   const appCode =
     code.value.trim();
 
+
   if(!appCode){
 
-    alert("មិនមានកូដសម្រាប់ Publish App ទេ");
+    alert(
+      "មិនមានកូដសម្រាប់ Publish App ទេ"
+    );
 
     return;
 
   }
+
 
   localStorage.setItem(
     "publishedApp",
     appCode
   );
 
-  preview.srcdoc = appCode;
+
+  preview.srcdoc =
+    appCode;
+
 
   showApp();
+
 
   alert(
     "📤 App បាន Publish ជោគជ័យ ✓\n\n" +
@@ -1059,182 +1931,297 @@ function publishApp(){
 
 }
 
-/* CLEAR */
+
+/* ================================
+   CLEAR
+================================ */
 
 function clearCode(){
 
-  if(confirm("Clear all code?")){
+  if(
+    confirm(
+      "Clear all code?"
+    )
+  ){
 
-    code.value="";
+    code.value =
+      "";
+
+    highlightCode();
 
   }
 
 }
 
 
-/* UNDO */
-
-
-
-
-/* REDO */
-
-
-function redoCode(){
-
-  code.focus();
-
-  if(code.value !== ""){
-    document.execCommand("redo");
-  }
-
-}
+/* ================================
+   UNDO
+================================ */
 
 function undoCode(){
 
   code.focus();
 
-  if(code.value !== ""){
-    document.execCommand("undo");
-  }
+  document.execCommand(
+    "undo"
+  );
+
+  highlightCode();
 
 }
 
-/* PROFILE IMAGE */
+
+/* ================================
+   REDO
+================================ */
+
+function redoCode(){
+
+  code.focus();
+
+  document.execCommand(
+    "redo"
+  );
+
+  highlightCode();
+
+}
+
+
+/* ================================
+   PROFILE IMAGE
+================================ */
 
 function chooseProfileImage(){
 
-  imageInput.dataset.type="profile";
+  imageInput.dataset.type =
+    "profile";
 
   imageInput.click();
 
 }
 
 
-/* ADD IMAGE */
+/* ================================
+   ADD IMAGE
+================================ */
 
 function chooseImage(){
 
-  imageInput.dataset.type="image";
+  imageInput.dataset.type =
+    "image";
 
   imageInput.click();
 
 }
 
-/* IMAGE */
+
+/* ================================
+   IMAGE
+================================ */
 
 imageInput.addEventListener(
   "change",
   function(){
 
-    const file = this.files[0];
+    const file =
+      this.files[0];
+
 
     if(!file){
+
       return;
+
     }
 
-    const reader = new FileReader();
 
-    reader.onload = function(e){
+    const reader =
+      new FileReader();
 
-      if(
-        imageInput.dataset.type === "profile"
-      ){
 
-        document
-          .getElementById("profileImage")
-          .src = e.target.result;
+    reader.onload =
+      function(e){
 
-        localStorage.setItem(
-          "profileImage",
-          e.target.result
-        );
+        if(
+          imageInput.dataset.type ===
+          "profile"
+        ){
 
-        return;
-      }
+          document
+            .getElementById(
+              "profileImage"
+            )
+            .src =
+            e.target.result;
 
-      if(
-        imageInput.dataset.type === "image"
-      ){
 
-        const imageCode =
-          '<img src="' +
-          e.target.result +
-          '" style="max-width:100%;height:auto;">';
+          localStorage.setItem(
+            "profileImage",
+            e.target.result
+          );
 
-        const position = code.selectionStart;
 
-        code.value =
-          code.value.substring(0, position) +
-          "\n" +
-          imageCode +
-          "\n" +
-          code.value.substring(position);
+          return;
 
-        code.focus();
+        }
 
-        alert(
-          "បានបញ្ចូលរូបភាពទៅក្នុងកូដហើយ ✓"
-        );
 
-      }
+        if(
+          imageInput.dataset.type ===
+          "image"
+        ){
 
-    };
+          const imageCode =
+            '<img src="' +
+            e.target.result +
+            '" style="max-width:100%;height:auto;">';
 
-    reader.readAsDataURL(file);
+
+          const position =
+            code.selectionStart;
+
+
+          code.value =
+            code.value.substring(
+              0,
+              position
+            ) +
+            "\n" +
+            imageCode +
+            "\n" +
+            code.value.substring(
+              position
+            );
+
+
+          code.focus();
+
+
+          highlightCode();
+
+
+          alert(
+            "បានបញ្ចូលរូបភាពទៅក្នុងកូដហើយ ✓"
+          );
+
+        }
+
+      };
+
+
+    reader.readAsDataURL(
+      file
+    );
 
   }
 );
 
-window.onload=function(){
 
-  const saved =
-    localStorage.getItem(
-      "codewrite"
-    );
+/* ================================
+   CLOSE MENUS
+================================ */
 
-  if(saved){
+document.addEventListener(
+  "click",
+  function(event){
 
-    code.value =
-      saved;
-
-  }
-
-
-  const profile =
-    localStorage.getItem(
-      "profileImage"
-    );
-
-  if(profile){
-
-    document
-    .getElementById("profileImage")
-    .src =
-      profile;
-
-  }
+    const insideProfile =
+      event.target.closest(
+        ".profile-btn,.profile-menu"
+      );
 
 
-  const builtApp =
-    localStorage.getItem(
-      "builtApp"
-    );
+    const insideSettings =
+      event.target.closest(
+        ".icon-btn,.settings-menu"
+      );
 
-  if(builtApp){
 
-    preview.srcdoc =
-      builtApp;
+    if(!insideProfile){
 
-  }else{
+      profileMenu.style.display =
+        "none";
 
-    preview.srcdoc =
-      code.value;
+    }
+
+
+    if(
+      !insideSettings &&
+      !event.target.closest(
+        ".search"
+      )
+    ){
+
+      settingsMenu.style.display =
+        "none";
+
+    }
 
   }
+);
 
-};
 
+/* ================================
+   STARTUP
+================================ */
+
+window.onload =
+  function(){
+
+    const saved =
+      localStorage.getItem(
+        "codewrite"
+      );
+
+
+    if(saved){
+
+      code.value =
+        saved;
+
+    }
+
+
+    const profile =
+      localStorage.getItem(
+        "profileImage"
+      );
+
+
+    if(profile){
+
+      document
+        .getElementById(
+          "profileImage"
+        )
+        .src =
+        profile;
+
+    }
+
+
+    const builtApp =
+      localStorage.getItem(
+        "builtApp"
+      );
+
+
+    if(builtApp){
+
+      preview.srcdoc =
+        builtApp;
+
+    }else{
+
+      preview.srcdoc =
+        code.value;
+
+    }
+
+
+    highlightCode();
+
+  };
 
 </script>
 
