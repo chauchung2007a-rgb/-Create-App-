@@ -1608,7 +1608,34 @@ function showApp(){
 }
 
 
+function toggleSearch(event){
 
+  event.stopPropagation();
+
+  const box =
+    document.getElementById("searchBox");
+
+  box.classList.toggle("show");
+
+  document
+    .getElementById("profileMenu")
+    .classList.remove("show");
+
+  document
+    .getElementById("settingsMenu")
+    .classList.remove("show");
+
+  if(box.classList.contains("show")){
+
+    setTimeout(()=>{
+      document
+        .getElementById("searchInput")
+        .focus();
+    },50);
+
+  }
+
+}
 
 
 
