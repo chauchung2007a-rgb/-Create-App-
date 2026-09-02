@@ -1035,7 +1035,8 @@ button{
     ==================================================== -->
 
     <section
-      class="library-view"
+      
+
       id="libraryView"
     >
 
@@ -2335,6 +2336,71 @@ function renderSearchResults(value){
 
 }
 
+function jumpToSearchResult(
+  position,
+  length
+){
+
+  if(position < 0){
+    return;
+  }
+
+  code.focus();
+
+  try{
+
+    code.setSelectionRange(
+      position,
+      position + length
+    );
+
+  }catch(error){}
+
+  const before =
+    code.value.slice(
+      0,
+      position
+    );
+
+  const line =
+    before.split("\n").length;
+
+  const lineHeight =
+    21;
+
+  const viewportHeight =
+    code.clientHeight;
+
+  const targetTop =
+    Math.max(
+      0,
+      ((line - 1) * lineHeight) -
+      (viewportHeight / 2) +
+      (lineHeight / 2)
+    );
+
+  requestAnimationFrame(
+    function(){
+
+      code.scrollTop =
+        targetTop;
+
+      syncEditorScroll();
+
+      try{
+
+        code.setSelectionRange(
+          position,
+          position + length
+        );
+
+      }catch(error){}
+
+    }
+  );
+
+}
+
 
 /* =========================================================
    CLEAR SEARCH
@@ -2347,72 +2413,6 @@ function clearSearchHighlight(){
   currentSearchIndex = -1;
 
   highlightCode();
-
-}
-
-
-/* =========================================================
-   JUMP TO SEARCH RESULT
-========================================================= */
-
-function jumpToSearchResult(
-  position,
-  length
-){
-
-  if(
-    position < 0
-  ){
-    return;
-  }
-
-
-  code.focus();
-
-
-  try{
-
-    code.setSelectionRange(
-      position,
-      position + length
-    );
-
-  }catch(error){}
-
-
-  const before =
-    code.value.slice(
-      0,
-      position
-    );
-
-
-  const line =
-    before.split("\n").length;
-
-
-  const lineHeight =
-    21;
-
-
-  const targetTop =
-    Math.max(
-      0,
-      (line - 4) * lineHeight
-    );
-
-
-  code.scrollTop =
-    targetTop;
-
-
-  syncEditorScroll();
-
-
-  /*
-    Search is completed only after Enter.
-    We do not run this function from oninput.
-  */
 
 }
 
@@ -3846,7 +3846,7 @@ code.addEventListener(
 
       code.selectionEnd =
         start + 2;
-
+តប
 
       handleCodeInput();
 
