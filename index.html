@@ -70,17 +70,36 @@ button{
   z-index:50;
 }
 
-.logo{
-  font-size:22px;
-  font-weight:800;
-  color:#16834a;
-  letter-spacing:-.5px;
-}
-
 .header-right{
+  width:100%;
   display:flex;
   align-items:center;
+  justify-content:space-between;
   gap:8px;
+}
+
+.header-right .profile-btn{
+  order:1;
+}
+
+.header-right #searchBtn{
+  order:2;
+}
+
+.header-right .icon-btn[title="Settings"]{
+  order:3;
+}
+
+#profileBtn{
+  order:1;
+}
+
+#searchBtn{
+  order:2;
+}
+
+#settingsBtn{
+  order:3;
 }
 
 .icon-btn{
@@ -733,17 +752,14 @@ button{
 
     <div class="header-right">
 
-      <button
-        class="icon-btn"
-        id="searchBtn"
-        title="Search"
-
-      <button
+           <button
         class="icon-btn"
         id="searchBtn"
         title="Search"
         onclick="toggleSearch(event)"
       >
+
+
         🔍
       </button>
 
