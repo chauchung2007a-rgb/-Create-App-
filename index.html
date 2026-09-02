@@ -1608,9 +1608,79 @@ function showApp(){
 }
 
 
-/* =========================================================
-   PROFILE
-========================================================= */
+
+
+
+
+function searchCode(){
+
+  const value =
+    document
+      .getElementById("searchInput")
+      .value
+      .trim();
+
+  if(!value){
+
+    highlightCode();
+
+    return;
+
+  }
+
+  const source =
+    code.value;
+
+  const lowerSource =
+    source.toLowerCase();
+
+  const lowerValue =
+    value.toLowerCase();
+
+  const index =
+    lowerSource.indexOf(lowerValue);
+
+  if(index === -1){
+
+    highlightCode();
+
+    return;
+
+  }
+
+  const before =
+    source.slice(0,index);
+
+  const found =
+    source.slice(
+      index,
+      index + value.length
+    );
+
+  const after =
+    source.slice(
+      index + value.length
+    );
+
+  highlight.innerHTML =
+    escapeHTML(before) +
+
+    '<mark style="background:#ffe066;color:#111">' +
+    escapeHTML(found) +
+    '</mark>' +
+
+    escapeHTML(after);
+
+  code.focus();
+
+  code.setSelectionRange(
+    index,
+    index + value.length
+  );
+
+}
+
+  
 
 function toggleProfile(event){
 
@@ -1646,86 +1716,6 @@ function toggleSettings(event){
   document
     .getElementById("searchBox")
     .classList.remove("show");
-
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-function toggleSearch(event){
-
-  event.stopPropagation();
-
-  const box =
-    document.getElementById("searchBox");
-
-  box.classList.toggle("show");
-
-  document
-    .getElementById("profileMenu")
-    .classList.remove("show");
-
-  document
-    .getElementById("settingsMenu")
-    .classList.remove("show");
-
-  if(box.classList.contains("show")){
-
-    setTimeout(()=>{
-      document
-        .getElementById("searchInput")
-        .focus();
-    },50);
-
-  }
-
-}
-
-
-function searchCode(){
-
-  const value =
-    document
-      .getElementById("searchInput")
-      .value
-      .trim();
-
-  if(!value){
-
-    highlightCode();
-
-    return;
-
-  }
-
-  const source =
-    code.value;
-
-  const escaped =
-    escapeHTML(source);
-
-  const escapedSearch =
-    escapeHTML(value);
-
-  const regex =
-    new RegExp(
-      escapedSearch.replace(
-        /[.*+?^${}()|[\]\\]/g,
-        "\\$&"
-      ),
-      "gi"
-    );
-
-  highlight.innerHTML =
-    escaped.replace(
-      regex,
-      match =>
-        '<mark style="background:#ffe066;color:#111">' +
-        match +
-        '</mark>'
-    );
 
 }
 
