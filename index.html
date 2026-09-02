@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
 
 <title>CodeWrite</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -34,6 +40,10 @@ button{
   border:none;
 }
 
+/* =========================================================
+   APP
+========================================================= */
+
 .app{
   width:100%;
   height:100%;
@@ -42,9 +52,10 @@ button{
   position:relative;
 }
 
-/* =========================
+
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 .header{
   height:60px;
@@ -103,9 +114,10 @@ button{
   object-fit:cover;
 }
 
-/* =========================
-   DROPDOWN MENUS
-========================= */
+
+/* =========================================================
+   MENUS
+========================================================= */
 
 .menu{
   position:absolute;
@@ -150,16 +162,17 @@ button{
   color:#e53935;
 }
 
-/* =========================
+
+/* =========================================================
    SEARCH
-========================= */
+========================================================= */
 
 .search-box{
   position:absolute;
   top:60px;
   left:10px;
   right:10px;
-  background:white;
+  background:#ffffff;
   border-radius:14px;
   padding:10px;
   box-shadow:0 8px 25px rgba(0,0,0,.15);
@@ -185,9 +198,10 @@ button{
   border-color:#16834a;
 }
 
-/* =========================
+
+/* =========================================================
    TABS
-========================= */
+========================================================= */
 
 .tabs{
   height:52px;
@@ -196,6 +210,8 @@ button{
   display:flex;
   align-items:stretch;
   border-bottom:1px solid #dce7ec;
+  position:relative;
+  z-index:20;
 }
 
 .tabs button{
@@ -212,9 +228,10 @@ button{
   border-bottom-color:#16834a;
 }
 
-/* =========================
+
+/* =========================================================
    MAIN
-========================= */
+========================================================= */
 
 .main{
   width:100%;
@@ -223,9 +240,10 @@ button{
   position:relative;
 }
 
-/* =========================
+
+/* =========================================================
    CODE VIEW
-========================= */
+========================================================= */
 
 .code-view{
   width:100%;
@@ -256,7 +274,7 @@ button{
   font:14px/21px Consolas,monospace;
   overflow:hidden;
   user-select:none;
-  z-index:3;
+  z-index:5;
 }
 
 .editor-layer{
@@ -282,6 +300,8 @@ button{
   overflow:hidden;
   color:#d8e1e7;
   pointer-events:none;
+  user-select:none;
+  z-index:1;
 }
 
 .code-input{
@@ -301,6 +321,7 @@ button{
   white-space:pre-wrap;
   overflow:auto;
   z-index:2;
+  pointer-events:auto;
   -webkit-text-fill-color:transparent;
 }
 
@@ -308,7 +329,10 @@ button{
   background:rgba(80,150,255,.35);
 }
 
-/* Syntax colors */
+
+/* =========================================================
+   SYNTAX COLORS
+========================================================= */
 
 .hl-main-tag{
   color:#42e878;
@@ -352,9 +376,21 @@ button{
   color:#d8e1e7;
 }
 
-/* =========================
+
+/* =========================================================
+   SEARCH HIGHLIGHT
+========================================================= */
+
+.search-mark{
+  background:#ffe066;
+  color:#111111;
+  border-radius:2px;
+}
+
+
+/* =========================================================
    APP VIEW
-========================= */
+========================================================= */
 
 .app-view{
   width:100%;
@@ -377,7 +413,7 @@ button{
   height:calc(100% - 30px);
   min-height:500px;
   margin:0 auto;
-  background:#111;
+  background:#111111;
   border-radius:30px;
   padding:9px;
   box-shadow:0 12px 35px rgba(0,0,0,.2);
@@ -391,9 +427,10 @@ button{
   background:#ffffff;
 }
 
-/* =========================
+
+/* =========================================================
    LIBRARY VIEW
-========================= */
+========================================================= */
 
 .library-view{
   width:100%;
@@ -431,7 +468,7 @@ button{
 .new-code-btn{
   flex-shrink:0;
   background:#16834a;
-  color:white;
+  color:#ffffff;
   border-radius:12px;
   padding:11px 14px;
   font-size:13px;
@@ -564,9 +601,10 @@ button{
   font-size:13px;
 }
 
-/* =========================
+
+/* =========================================================
    MODAL
-========================= */
+========================================================= */
 
 .modal{
   position:fixed;
@@ -639,12 +677,13 @@ button{
 
 .modal-save{
   background:#16834a;
-  color:white;
+  color:#ffffff;
 }
 
-/* =========================
+
+/* =========================================================
    SMALL SCREEN
-========================= */
+========================================================= */
 
 @media(max-width:480px){
 
@@ -673,21 +712,28 @@ button{
     height:44px;
     min-width:44px;
   }
+
 }
+
 </style>
 </head>
+
 
 <body>
 
 <div class="app">
 
-  <!-- ================= HEADER ================= -->
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
 
   <header class="header">
 
     <div class="logo">
       CodeWrite
     </div>
+
 
     <div class="header-right">
 
@@ -696,57 +742,75 @@ button{
         id="searchBtn"
         title="Search"
         onclick="toggleSearch(event)"
-      >🔍</button>
+      >
+        🔍
+      </button>
+
 
       <button
         class="icon-btn"
         title="Settings"
         onclick="toggleSettings(event)"
-      >⚙️</button>
+      >
+        ⚙️
+      </button>
+
 
       <button
         class="profile-btn"
         title="Profile"
         onclick="toggleProfile(event)"
       >
+
         <img
           id="profileImage"
           src="https://i.pravatar.cc/100?img=12"
           alt="Profile"
         >
+
       </button>
 
     </div>
 
-    <!-- PROFILE MENU -->
 
-    <div class="menu" id="profileMenu">
+    <!-- ===================================================
+         PROFILE MENU
+    ==================================================== -->
+
+    <div
+      class="menu"
+      id="profileMenu"
+    >
 
       <div class="menu-title">
         Profile
       </div>
 
+
       <button onclick="changeProfileImage()">
         🖼️ Change Profile Image
       </button>
+
 
       <button onclick="showGmail()">
         📧 Gmail
       </button>
 
-      <!-- NEW CODE LIBRARY BUTTON -->
 
       <button onclick="openLibraryFromProfile()">
         📚 Code Library
       </button>
 
+
       <button onclick="showPrivacy()">
         🔒 Privacy & Security
       </button>
 
+
       <button onclick="logout()">
         🚪 Log out
       </button>
+
 
       <button
         class="danger"
@@ -757,45 +821,60 @@ button{
 
     </div>
 
-    <!-- SETTINGS MENU -->
 
-    <div class="menu" id="settingsMenu">
+    <!-- ===================================================
+         SETTINGS MENU
+    ==================================================== -->
+
+    <div
+      class="menu"
+      id="settingsMenu"
+    >
 
       <div class="menu-title">
         Code Tools
       </div>
 
+
       <button onclick="undoCode()">
         ↩️ Undo
       </button>
+
 
       <button onclick="redoCode()">
         ↪️ Redo
       </button>
 
+
       <button onclick="copyCode()">
         📋 Copy Code
       </button>
+
 
       <button onclick="saveCode()">
         💾 Save Code
       </button>
 
+
       <button onclick="openCodeFile()">
         📂 Open Code
       </button>
+
 
       <button onclick="addImage()">
         🖼️ Add Image
       </button>
 
+
       <button onclick="clearCode()">
         🧹 Clear Code
       </button>
 
+
       <button onclick="buildApp()">
         🔨 Build App
       </button>
+
 
       <button onclick="publishApp()">
         🚀 Publish App
@@ -803,22 +882,36 @@ button{
 
     </div>
 
-    <!-- SEARCH -->
 
-    <div class="search-box" id="searchBox">
+    <!-- ===================================================
+         SEARCH BOX
+    ==================================================== -->
+
+    <div
+      class="search-box"
+      id="searchBox"
+    >
+
       <input
         id="searchInput"
         class="search-input"
         type="text"
         placeholder="Search in code..."
-        oninput="searchCode()"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        onkeydown="handleSearchKeydown(event)"
       >
+
     </div>
 
   </header>
 
 
-  <!-- ================= TABS ================= -->
+  <!-- =====================================================
+       TABS
+  ====================================================== -->
 
   <div class="tabs">
 
@@ -830,6 +923,7 @@ button{
       💻 Code
     </button>
 
+
     <button
       id="appTab"
       onclick="showApp()"
@@ -840,11 +934,16 @@ button{
   </div>
 
 
-  <!-- ================= MAIN ================= -->
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
 
   <main class="main">
 
-    <!-- ================= CODE ================= -->
+
+    <!-- ===================================================
+         CODE VIEW
+    ==================================================== -->
 
     <section
       class="code-view"
@@ -853,17 +952,21 @@ button{
 
       <div class="editor-wrap">
 
+
         <div
           class="line-numbers"
           id="lineNumbers"
         ></div>
 
+
         <div class="editor-layer">
+
 
           <pre
             class="highlight"
             id="highlight"
           ></pre>
+
 
           <textarea
             id="code"
@@ -883,7 +986,9 @@ button{
     </section>
 
 
-    <!-- ================= APP ================= -->
+    <!-- ===================================================
+         APP VIEW
+    ==================================================== -->
 
     <section
       class="app-view"
@@ -894,11 +999,13 @@ button{
         📱 App Preview
       </div>
 
+
       <div class="phone-frame">
 
         <iframe
           id="preview"
           class="phone-screen"
+          title="App Preview"
         ></iframe>
 
       </div>
@@ -906,7 +1013,9 @@ button{
     </section>
 
 
-    <!-- ================= LIBRARY ================= -->
+    <!-- ===================================================
+         LIBRARY VIEW
+    ==================================================== -->
 
     <section
       class="library-view"
@@ -915,17 +1024,20 @@ button{
 
       <div class="library-top">
 
+
         <div class="library-title-wrap">
 
           <div class="library-title">
             📚 Code Library
           </div>
 
+
           <div class="library-subtitle">
             រក្សាទុក និងគ្រប់គ្រងកូដរបស់អ្នក
           </div>
 
         </div>
+
 
         <button
           class="new-code-btn"
@@ -942,6 +1054,7 @@ button{
         class="library-search"
         type="text"
         placeholder="🔍 Search saved codes..."
+        autocomplete="off"
         oninput="renderLibrary()"
       >
 
@@ -956,7 +1069,9 @@ button{
   </main>
 
 
-  <!-- ================= LIBRARY MODAL ================= -->
+  <!-- =====================================================
+       LIBRARY MODAL
+  ====================================================== -->
 
   <div
     class="modal"
@@ -973,9 +1088,11 @@ button{
         📚 Save Code
       </div>
 
+
       <div class="modal-text">
         ដាក់ឈ្មោះសម្រាប់ Code ដែលអ្នកចង់រក្សាទុក
       </div>
+
 
       <input
         id="libraryNameInput"
@@ -983,8 +1100,10 @@ button{
         type="text"
         placeholder="ឧ. Chat App"
         maxlength="80"
+        autocomplete="off"
         onkeydown="libraryNameKeydown(event)"
       >
+
 
       <div class="modal-actions">
 
@@ -994,6 +1113,7 @@ button{
         >
           Cancel
         </button>
+
 
         <button
           class="modal-save"
@@ -1009,7 +1129,9 @@ button{
   </div>
 
 
-  <!-- FILE INPUT -->
+  <!-- =====================================================
+       FILE INPUTS
+  ====================================================== -->
 
   <input
     id="fileInput"
@@ -1018,6 +1140,7 @@ button{
     style="display:none"
     onchange="handleOpenFile(event)"
   >
+
 
   <input
     id="imageInput"
@@ -1036,14 +1159,46 @@ button{
    ELEMENTS
 ========================================================= */
 
-const code = document.getElementById("code");
-const highlight = document.getElementById("highlight");
-const lineNumbers = document.getElementById("lineNumbers");
-const preview = document.getElementById("preview");
+const code =
+  document.getElementById("code");
+
+const highlight =
+  document.getElementById("highlight");
+
+const lineNumbers =
+  document.getElementById("lineNumbers");
+
+const preview =
+  document.getElementById("preview");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const searchBox =
+  document.getElementById("searchBox");
+
+const profileMenu =
+  document.getElementById("profileMenu");
+
+const settingsMenu =
+  document.getElementById("settingsMenu");
+
+const libraryView =
+  document.getElementById("libraryView");
+
+const libraryModal =
+  document.getElementById("libraryModal");
+
 
 let library = [];
 
-const LIBRARY_KEY = "codewriteLibrary";
+let searchMatches = [];
+
+let currentSearchIndex = -1;
+
+
+const LIBRARY_KEY =
+  "codewriteLibrary";
 
 
 /* =========================================================
@@ -1053,9 +1208,11 @@ const LIBRARY_KEY = "codewriteLibrary";
 const defaultCode = `<!DOCTYPE html>
 <html>
 <head>
+
   <title>My App</title>
 
   <style>
+
     body {
       font-family: Arial;
       padding: 20px;
@@ -1066,7 +1223,9 @@ const defaultCode = `<!DOCTYPE html>
       border: none;
       border-radius: 8px;
     }
+
   </style>
+
 </head>
 
 <body>
@@ -1080,9 +1239,13 @@ const defaultCode = `<!DOCTYPE html>
   </button>
 
   <script>
+
     function hello() {
+
       alert("Hello!");
+
     }
+
   <\/script>
 
 </body>
@@ -1093,37 +1256,71 @@ const defaultCode = `<!DOCTYPE html>
    LOAD APP
 ========================================================= */
 
-window.onload = function(){
+window.addEventListener(
+  "load",
+  function(){
 
-  const saved = localStorage.getItem("codewrite");
+    const saved =
+      localStorage.getItem(
+        "codewrite"
+      );
 
-  if(saved){
-    code.value = saved;
-  }else{
-    code.value = defaultCode;
+
+    if(saved !== null){
+
+      code.value =
+        saved;
+
+    }else{
+
+      code.value =
+        defaultCode;
+
+    }
+
+
+    const profile =
+      localStorage.getItem(
+        "profileImage"
+      );
+
+
+    if(profile){
+
+      document
+        .getElementById("profileImage")
+        .src = profile;
+
+    }
+
+
+    const builtApp =
+      localStorage.getItem(
+        "builtApp"
+      );
+
+
+    if(builtApp){
+
+      preview.srcdoc =
+        builtApp;
+
+    }else{
+
+      preview.srcdoc =
+        code.value;
+
+    }
+
+
+    loadLibrary();
+
+    highlightCode();
+
+    updateLineNumbers();
+
   }
-
-  const profile = localStorage.getItem("profileImage");
-
-  if(profile){
-    document.getElementById("profileImage").src = profile;
-  }
-
-  const builtApp = localStorage.getItem("builtApp");
-
-  if(builtApp){
-    preview.srcdoc = builtApp;
-  }else{
-    preview.srcdoc = code.value;
-  }
-
-  loadLibrary();
-
-  highlightCode();
-
-  updateLineNumbers();
-
-};
+);
 
 
 /* =========================================================
@@ -1137,9 +1334,31 @@ function handleCodeInput(){
     code.value
   );
 
+
   highlightCode();
 
   updateLineNumbers();
+
+
+  /*
+    If Search is active,
+    update the result only after
+    the user has already pressed Enter.
+  */
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;");
 
 }
 
@@ -1148,78 +1367,81 @@ function handleCodeInput(){
    SYNTAX HIGHLIGHT
 ========================================================= */
 
-function escapeHTML(text){
-
-  return text
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;");
-
-}
-
-
-function escapeAttribute(text){
-
-  return text
-    .replace(/&/g,"&amp;")
-    .replace(/"/g,"&quot;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;");
-
-}
-
-
 function highlightCode(){
 
-  const source = code.value;
+  const source =
+    code.value;
+
 
   let output = "";
 
   let i = 0;
 
+
   while(i < source.length){
 
-    /* COMMENT */
+
+    /* =====================================================
+       HTML COMMENT
+    ====================================================== */
 
     if(
-      source.startsWith("<!--",i)
+      source.startsWith(
+        "<!--",
+        i
+      )
     ){
 
-      const end = source.indexOf(
-        "-->",
-        i + 4
-      );
+      const end =
+        source.indexOf(
+          "-->",
+          i + 4
+        );
+
 
       const finish =
         end === -1
           ? source.length
           : end + 3;
 
+
       const text =
-        source.slice(i,finish);
+        source.slice(
+          i,
+          finish
+        );
+
 
       output +=
         '<span class="hl-comment">' +
         escapeHTML(text) +
         '</span>';
 
-      i = finish;
+
+      i =
+        finish;
 
       continue;
 
     }
 
 
-    /* STRING */
+    /* =====================================================
+       STRING
+    ====================================================== */
 
     if(
       source[i] === '"' ||
       source[i] === "'"
     ){
 
-      const quote = source[i];
+      const quote =
+        source[i];
 
-      let j = i + 1;
+
+      let j =
+        i + 1;
+
 
       while(
         j < source.length
@@ -1227,54 +1449,80 @@ function highlightCode(){
 
         if(
           source[j] === quote &&
-          source[j-1] !== "\\"
+          source[j - 1] !== "\\"
         ){
+
           j++;
+
           break;
+
         }
 
         j++;
 
       }
 
+
       const text =
-        source.slice(i,j);
+        source.slice(
+          i,
+          j
+        );
+
 
       output +=
         '<span class="hl-string">' +
         escapeHTML(text) +
         '</span>';
 
-      i = j;
+
+      i =
+        j;
 
       continue;
 
     }
 
 
-    /* HTML TAG */
+    /* =====================================================
+       HTML TAG
+    ====================================================== */
 
-    if(source[i] === "<"){
+    if(
+      source[i] === "<"
+    ){
 
       const close =
-        source.indexOf(">",i);
+        source.indexOf(
+          ">",
+          i
+        );
+
 
       if(close !== -1){
 
         const raw =
-          source.slice(i,close + 1);
+          source.slice(
+            i,
+            close + 1
+          );
+
 
         const match =
           raw.match(
             /^<\s*(\/?)\s*([a-zA-Z][\w-]*)/
           );
 
+
         if(match){
 
-          const slash = match[1];
+          const slash =
+            match[1];
+
 
           const tagName =
             match[2].toLowerCase();
+
 
           const isMain =
             [
@@ -1283,33 +1531,49 @@ function highlightCode(){
               "body",
               "style",
               "script"
-            ].includes(tagName);
+            ].includes(
+              tagName
+            );
+
 
           let tagHTML =
             "&lt;" +
             (slash ? "/" : "");
+
 
           const tagClass =
             isMain
               ? "hl-main-tag"
               : "hl-tag";
 
+
           tagHTML +=
             '<span class="' +
             tagClass +
             '">' +
-            tagName +
+            escapeHTML(tagName) +
             "</span>";
 
+
           const rest =
-            raw.slice(match[0].length);
+            raw.slice(
+              match[0].length
+            );
+
 
           tagHTML +=
-            highlightAttributes(rest);
+            highlightAttributes(
+              rest
+            );
 
-          output += tagHTML;
 
-          i = close + 1;
+          output +=
+            tagHTML;
+
+
+          i =
+            close + 1;
+
 
           continue;
 
@@ -1320,12 +1584,17 @@ function highlightCode(){
     }
 
 
-    /* NUMBER */
+    /* =====================================================
+       NUMBER
+    ====================================================== */
 
     const numberMatch =
-      source.slice(i).match(
-        /^(\d+(?:\.\d+)?)/
-      );
+      source
+        .slice(i)
+        .match(
+          /^(\d+(?:\.\d+)?)/
+        );
+
 
     if(numberMatch){
 
@@ -1334,26 +1603,36 @@ function highlightCode(){
         numberMatch[1] +
         '</span>';
 
-      i += numberMatch[1].length;
+
+      i +=
+        numberMatch[1].length;
+
 
       continue;
 
     }
 
 
-    /* WORD */
+    /* =====================================================
+       WORD
+    ====================================================== */
 
     const wordMatch =
-      source.slice(i).match(
-        /^[A-Za-z_$][\w$]*/
-      );
+      source
+        .slice(i)
+        .match(
+          /^[A-Za-z_$][\w$]*/
+        );
+
 
     if(wordMatch){
 
       const word =
         wordMatch[0];
 
+
       const keywords = [
+
         "const",
         "let",
         "var",
@@ -1373,13 +1652,26 @@ function highlightCode(){
         "async",
         "await",
         "try",
-        "catch"
+        "catch",
+        "finally",
+        "throw",
+        "switch",
+        "case",
+        "break",
+        "continue",
+        "typeof",
+        "instanceof",
+        "in",
+        "of"
+
       ];
+
 
       const after =
         source.slice(
           i + word.length
         );
+
 
       if(
         keywords.includes(word)
@@ -1420,29 +1712,43 @@ function highlightCode(){
 
       }
 
-      i += word.length;
+
+      i +=
+        word.length;
+
 
       continue;
 
     }
 
 
-    /* NORMAL CHARACTER */
+    /* =====================================================
+       NORMAL CHARACTER
+    ====================================================== */
 
     output +=
-      escapeHTML(source[i]);
+      escapeHTML(
+        source[i]
+      );
+
 
     i++;
 
   }
 
+
   highlight.innerHTML =
     output || " ";
+
 
   syncEditorScroll();
 
 }
 
+
+/* =========================================================
+   HIGHLIGHT ATTRIBUTES
+========================================================= */
 
 function highlightAttributes(text){
 
@@ -1450,37 +1756,54 @@ function highlightAttributes(text){
 
   let i = 0;
 
-  while(i < text.length){
+
+  while(
+    i < text.length
+  ){
 
     const attr =
-      text.slice(i).match(
-        /^(\s+)([^\s=/>]+)/
-      );
+      text
+        .slice(i)
+        .match(
+          /^(\s+)([^\s=/>]+)/
+        );
+
 
     if(attr){
 
       result +=
-        escapeHTML(attr[1]);
+        escapeHTML(
+          attr[1]
+        );
+
 
       result +=
         '<span class="hl-attr">' +
         escapeHTML(attr[2]) +
         '</span>';
 
-      i += attr[0].length;
+
+      i +=
+        attr[0].length;
+
 
       continue;
 
     }
+
 
     if(
       text[i] === '"' ||
       text[i] === "'"
     ){
 
-      const quote = text[i];
+      const quote =
+        text[i];
 
-      let j = i + 1;
+
+      let j =
+        i + 1;
+
 
       while(
         j < text.length
@@ -1488,15 +1811,19 @@ function highlightAttributes(text){
 
         if(
           text[j] === quote &&
-          text[j-1] !== "\\"
+          text[j - 1] !== "\\"
         ){
+
           j++;
+
           break;
+
         }
 
         j++;
 
       }
+
 
       result +=
         '<span class="hl-string">' +
@@ -1505,18 +1832,26 @@ function highlightAttributes(text){
         ) +
         '</span>';
 
-      i = j;
+
+      i =
+        j;
+
 
       continue;
 
     }
 
+
     result +=
-      escapeHTML(text[i]);
+      escapeHTML(
+        text[i]
+      );
+
 
     i++;
 
   }
+
 
   return result;
 
@@ -1531,6 +1866,7 @@ function syncEditorScroll(){
 
   highlight.style.transform =
     `translate(${-code.scrollLeft}px,${-code.scrollTop}px)`;
+
 
   lineNumbers.scrollTop =
     code.scrollTop;
@@ -1547,15 +1883,28 @@ function updateLineNumbers(){
   const count =
     code.value.split("\n").length;
 
+
   let html = "";
 
-  for(let i=1;i<=count;i++){
 
-    html += i + "<br>";
+  for(
+    let i = 1;
+    i <= count;
+    i++
+  ){
+
+    html +=
+      i + "<br>";
 
   }
 
-  lineNumbers.innerHTML = html;
+
+  lineNumbers.innerHTML =
+    html;
+
+
+  lineNumbers.scrollTop =
+    code.scrollTop;
 
 }
 
@@ -1566,44 +1915,110 @@ function updateLineNumbers(){
 
 function showCode(){
 
-  document.getElementById("codeView").style.display =
-    "block";
+  document
+    .getElementById("codeView")
+    .style.display =
+      "block";
 
-  document.getElementById("appView").style.display =
-    "none";
 
-  document.getElementById("libraryView").style.display =
-    "none";
+  document
+    .getElementById("appView")
+    .style.display =
+      "none";
 
-  document.getElementById("codeTab").classList.add("active");
 
-  document.getElementById("appTab").classList.remove("active");
+  document
+    .getElementById("libraryView")
+    .style.display =
+      "none";
+
+
+  document
+    .getElementById("codeTab")
+    .classList.add("active");
+
+
+  document
+    .getElementById("appTab")
+    .classList.remove("active");
+
+
+  closeMenus();
+
+
+  setTimeout(
+    function(){
+
+      syncEditorScroll();
+
+    },
+    0
+  );
 
 }
 
 
 function showApp(){
 
-  document.getElementById("codeView").style.display =
-    "none";
+  document
+    .getElementById("codeView")
+    .style.display =
+      "none";
 
-  document.getElementById("appView").style.display =
-    "block";
 
-  document.getElementById("libraryView").style.display =
-    "none";
+  document
+    .getElementById("appView")
+    .style.display =
+      "block";
 
-  document.getElementById("codeTab").classList.remove("active");
 
-  document.getElementById("appTab").classList.add("active");
+  document
+    .getElementById("libraryView")
+    .style.display =
+      "none";
+
+
+  document
+    .getElementById("codeTab")
+    .classList.remove("active");
+
+
+  document
+    .getElementById("appTab")
+    .classList.add("active");
+
 
   preview.srcdoc =
     code.value;
+
 
   localStorage.setItem(
     "builtApp",
     code.value
   );
+
+
+  closeMenus();
+
+}
+
+
+/* =========================================================
+   CLOSE MENUS
+========================================================= */
+
+function closeMenus(){
+
+  profileMenu
+    .classList.remove("show");
+
+
+  settingsMenu
+    .classList.remove("show");
+
+
+  searchBox
+    .classList.remove("show");
 
 }
 
@@ -1616,16 +2031,16 @@ function toggleProfile(event){
 
   event.stopPropagation();
 
-  document
-    .getElementById("profileMenu")
+
+  profileMenu
     .classList.toggle("show");
 
-  document
-    .getElementById("settingsMenu")
+
+  settingsMenu
     .classList.remove("show");
 
-  document
-    .getElementById("searchBox")
+
+  searchBox
     .classList.remove("show");
 
 }
@@ -1635,17 +2050,111 @@ function toggleSettings(event){
 
   event.stopPropagation();
 
-  document
-    .getElementById("settingsMenu")
+
+  settingsMenu
     .classList.toggle("show");
 
-  document
-    .getElementById("profileMenu")
+
+  profileMenu
     .classList.remove("show");
 
-  document
-    .getElementById("searchBox")
+
+  searchBox
     .classList.remove("show");
+
+}
+
+
+/* =========================================================
+   SEARCH BOX
+========================================================= */
+
+function toggleSearch(event){
+
+  event.stopPropagation();
+
+
+  const isOpen =
+    searchBox.classList.contains(
+      "show"
+    );
+
+
+  profileMenu
+    .classList.remove("show");
+
+
+  settingsMenu
+    .classList.remove("show");
+
+
+  if(isOpen){
+
+    searchBox
+      .classList.remove("show");
+
+
+    clearSearchHighlight();
+
+
+    return;
+
+  }
+
+
+  searchBox
+    .classList.add("show");
+
+
+  setTimeout(
+    function(){
+
+      searchInput.focus();
+
+      searchInput.select();
+
+    },
+    50
+  );
+
+}
+
+
+/* =========================================================
+   SEARCH KEYDOWN
+========================================================= */
+
+function handleSearchKeydown(event){
+
+  if(
+    event.key === "Enter"
+  ){
+
+    event.preventDefault();
+
+    performSearch();
+
+    return;
+
+  }
+
+
+  if(
+    event.key === "Escape"
+  ){
+
+    event.preventDefault();
+
+    searchInput.value = "";
+
+    clearSearchHighlight();
+
+    searchBox
+      .classList.remove("show");
+
+    code.focus();
+
+  }
 
 }
 
@@ -1654,45 +2163,102 @@ function toggleSettings(event){
    SEARCH
 ========================================================= */
 
-function toggleSearch(event){
+function performSearch(){
 
-  event.stopPropagation();
+  const value =
+    searchInput.value.trim();
 
-  const box =
-    document.getElementById("searchBox");
 
-  box.classList.toggle("show");
+  if(!value){
 
-  document
-    .getElementById("profileMenu")
-    .classList.remove("show");
+    clearSearchHighlight();
 
-  document
-    .getElementById("settingsMenu")
-    .classList.remove("show");
+    return;
 
-  if(box.classList.contains("show")){
+  }
 
-    setTimeout(()=>{
-      document
-        .getElementById("searchInput")
-        .focus();
-    },50);
+
+  const source =
+    code.value;
+
+
+  searchMatches = [];
+
+
+  let start =
+    0;
+
+
+  const lowerSource =
+    source.toLowerCase();
+
+
+  const lowerValue =
+    value.toLowerCase();
+
+
+  while(true){
+
+    const found =
+      lowerSource.indexOf(
+        lowerValue,
+        start
+      );
+
+
+    if(found === -1){
+      break;
+    }
+
+
+    searchMatches.push(found);
+
+
+    start =
+      found + value.length;
+
+  }
+
+
+  currentSearchIndex = 0;
+
+
+  renderSearchResults(
+    value
+  );
+
+
+  if(searchMatches.length){
+
+    jumpToSearchResult(
+      searchMatches[0],
+      value.length
+    );
 
   }
 
 }
 
 
-function searchCode(){
+/* =========================================================
+   RENDER SEARCH RESULTS
+========================================================= */
 
-  const value =
-    document
-      .getElementById("searchInput")
-      .value
-      .trim();
+function renderSearchResults(value){
 
-  if(!value){
+  const source =
+    code.value;
+
+
+  const escaped =
+    escapeHTML(source);
+
+
+  const escapedSearch =
+    escapeHTML(value);
+
+
+  if(!escapedSearch){
 
     highlightCode();
 
@@ -1700,14 +2266,6 @@ function searchCode(){
 
   }
 
-  const source =
-    code.value;
-
-  const escaped =
-    escapeHTML(source);
-
-  const escapedSearch =
-    escapeHTML(value);
 
   const regex =
     new RegExp(
@@ -1718,14 +2276,165 @@ function searchCode(){
       "gi"
     );
 
+
+  let matchIndex =
+    0;
+
+
   highlight.innerHTML =
     escaped.replace(
       regex,
-      match =>
-        '<mark style="background:#ffe066;color:#111">' +
-        match +
-        '</mark>'
+      function(match){
+
+        const active =
+          matchIndex ===
+          currentSearchIndex;
+
+
+        const className =
+          active
+            ? "search-mark"
+            : "search-mark";
+
+
+        const result =
+          '<mark class="' +
+          className +
+          '">' +
+          match +
+          '</mark>';
+
+
+        matchIndex++;
+
+
+        return result;
+
+      }
     );
+
+
+  syncEditorScroll();
+
+}
+
+
+/* =========================================================
+   CLEAR SEARCH
+========================================================= */
+
+function clearSearchHighlight(){
+
+  searchMatches = [];
+
+  currentSearchIndex = -1;
+
+  highlightCode();
+
+}
+
+
+/* =========================================================
+   JUMP TO SEARCH RESULT
+========================================================= */
+
+function jumpToSearchResult(
+  position,
+  length
+){
+
+  if(
+    position < 0
+  ){
+    return;
+  }
+
+
+  code.focus();
+
+
+  try{
+
+    code.setSelectionRange(
+      position,
+      position + length
+    );
+
+  }catch(error){}
+
+
+  const before =
+    code.value.slice(
+      0,
+      position
+    );
+
+
+  const line =
+    before.split("\n").length;
+
+
+  const lineHeight =
+    21;
+
+
+  const targetTop =
+    Math.max(
+      0,
+      (line - 4) * lineHeight
+    );
+
+
+  code.scrollTop =
+    targetTop;
+
+
+  syncEditorScroll();
+
+
+  /*
+    Search is completed only after Enter.
+    We do not run this function from oninput.
+  */
+
+}
+
+
+/* =========================================================
+   NEXT SEARCH RESULT
+========================================================= */
+
+function nextSearchResult(){
+
+  if(
+    searchMatches.length === 0
+  ){
+    return;
+  }
+
+
+  currentSearchIndex =
+    (
+      currentSearchIndex + 1
+    ) %
+    searchMatches.length;
+
+
+  const value =
+    searchInput.value.trim();
+
+
+  renderSearchResults(
+    value
+  );
+
+
+  jumpToSearchResult(
+    searchMatches[
+      currentSearchIndex
+    ],
+    value.length
+  );
 
 }
 
@@ -1764,15 +2473,31 @@ async function copyCode(){
       code.value
     );
 
-    alert("បាន Copy Code រួចរាល់ ✅");
 
-  }catch(e){
+    alert(
+      "បាន Copy Code រួចរាល់ ✅"
+    );
+
+  }catch(error){
+
+    code.focus();
 
     code.select();
 
-    document.execCommand("copy");
+    document.execCommand(
+      "copy"
+    );
 
-    alert("បាន Copy Code រួចរាល់ ✅");
+
+    code.setSelectionRange(
+      code.value.length,
+      code.value.length
+    );
+
+
+    alert(
+      "បាន Copy Code រួចរាល់ ✅"
+    );
 
   }
 
@@ -1786,10 +2511,17 @@ function saveCode(){
     code.value
   );
 
-  alert("បានរក្សាទុក Code រួចរាល់ ✅");
+
+  alert(
+    "បានរក្សាទុក Code រួចរាល់ ✅"
+  );
 
 }
 
+
+/* =========================================================
+   OPEN CODE FILE
+========================================================= */
 
 function openCodeFile(){
 
@@ -1805,28 +2537,61 @@ function handleOpenFile(event){
   const file =
     event.target.files[0];
 
-  if(!file) return;
+
+  if(!file){
+
+    return;
+
+  }
+
 
   const reader =
     new FileReader();
 
-  reader.onload = function(e){
 
-    code.value =
-      e.target.result;
+  reader.onload =
+    function(e){
 
-    handleCodeInput();
+      code.value =
+        e.target.result;
 
-    showCode();
 
-  };
+      handleCodeInput();
 
-  reader.readAsText(file);
+
+      showCode();
+
+
+      alert(
+        "បានបើក Code រួចរាល់ ✅"
+      );
+
+    };
+
+
+  reader.onerror =
+    function(){
+
+      alert(
+        "មិនអាចបើក File នេះបានទេ។"
+      );
+
+    };
+
+
+  reader.readAsText(
+    file
+  );
+
 
   event.target.value = "";
 
 }
 
+
+/* =========================================================
+   ADD IMAGE
+========================================================= */
 
 function addImage(){
 
@@ -1842,37 +2607,86 @@ function handleImage(event){
   const file =
     event.target.files[0];
 
-  if(!file) return;
+
+  if(!file){
+
+    return;
+
+  }
+
 
   const reader =
     new FileReader();
 
-  reader.onload = function(e){
 
-    const imageCode =
-      `\n<img src="${e.target.result}" alt="Image">\n`;
+  reader.onload =
+    function(e){
 
-    const start =
-      code.selectionStart;
+      const imageCode =
+        `\n<img src="${e.target.result}" alt="Image">\n`;
 
-    const end =
-      code.selectionEnd;
 
-    code.value =
-      code.value.slice(0,start) +
-      imageCode +
-      code.value.slice(end);
+      const start =
+        code.selectionStart;
 
-    handleCodeInput();
 
-  };
+      const end =
+        code.selectionEnd;
 
-  reader.readAsDataURL(file);
+
+      code.value =
+        code.value.slice(
+          0,
+          start
+        ) +
+        imageCode +
+        code.value.slice(
+          end
+        );
+
+
+      const newPosition =
+        start +
+        imageCode.length;
+
+
+      code.focus();
+
+
+      code.setSelectionRange(
+        newPosition,
+        newPosition
+      );
+
+
+      handleCodeInput();
+
+    };
+
+
+  reader.onerror =
+    function(){
+
+      alert(
+        "មិនអាចបញ្ចូលរូបភាពបានទេ។"
+      );
+
+    };
+
+
+  reader.readAsDataURL(
+    file
+  );
+
 
   event.target.value = "";
 
 }
 
+
+/* =========================================================
+   CLEAR CODE
+========================================================= */
 
 function clearCode(){
 
@@ -1881,22 +2695,40 @@ function clearCode(){
       "តើអ្នកពិតជាចង់លុប Code ទាំងអស់មែនទេ?"
     )
   ){
+
     return;
+
   }
+
 
   code.value = "";
 
+
   handleCodeInput();
+
 
   preview.srcdoc = "";
 
+
+  localStorage.removeItem(
+    "builtApp"
+  );
+
+
+  code.focus();
+
 }
 
+
+/* =========================================================
+   BUILD APP
+========================================================= */
 
 function buildApp(){
 
   const appCode =
     code.value.trim();
+
 
   if(!appCode){
 
@@ -1908,23 +2740,36 @@ function buildApp(){
 
   }
 
+
   preview.srcdoc =
     appCode;
+
 
   localStorage.setItem(
     "builtApp",
     appCode
   );
 
+
   showApp();
+
+
+  alert(
+    "Build App បានជោគជ័យ ✅"
+  );
 
 }
 
+
+/* =========================================================
+   PUBLISH APP
+========================================================= */
 
 function publishApp(){
 
   const appCode =
     code.value.trim();
+
 
   if(!appCode){
 
@@ -1936,10 +2781,22 @@ function publishApp(){
 
   }
 
+
   localStorage.setItem(
     "publishedApp",
     appCode
   );
+
+
+  preview.srcdoc =
+    appCode;
+
+
+  localStorage.setItem(
+    "builtApp",
+    appCode
+  );
+
 
   alert(
     "Publish បានជោគជ័យ ✅\n\nApp របស់អ្នកត្រូវបានរក្សាទុក និងបង្ហាញក្នុង Preview។"
@@ -1955,37 +2812,64 @@ function publishApp(){
 function changeProfileImage(){
 
   const input =
-    document.createElement("input");
+    document.createElement(
+      "input"
+    );
 
-  input.type = "file";
-  input.accept = "image/*";
 
-  input.onchange = function(){
+  input.type =
+    "file";
 
-    const file =
-      input.files[0];
 
-    if(!file) return;
+  input.accept =
+    "image/*";
 
-    const reader =
-      new FileReader();
 
-    reader.onload = function(e){
+  input.onchange =
+    function(){
 
-      document
-        .getElementById("profileImage")
-        .src = e.target.result;
+      const file =
+        input.files[0];
 
-      localStorage.setItem(
-        "profileImage",
-        e.target.result
+
+      if(!file){
+
+        return;
+
+      }
+
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        function(e){
+
+          document
+            .getElementById(
+              "profileImage"
+            )
+            .src =
+              e.target.result;
+
+
+          localStorage.setItem(
+            "profileImage",
+            e.target.result
+          );
+
+        };
+
+
+      reader.readAsDataURL(
+        file
       );
 
     };
 
-    reader.readAsDataURL(file);
 
-  };
+  input.click();
 
 }
 
@@ -2032,14 +2916,19 @@ function deleteAccount(){
       "តើអ្នកពិតជាចង់ Delete Account មែនទេ?"
     )
   ){
+
     return;
+
   }
 
+
   localStorage.clear();
+
 
   alert(
     "ទិន្នន័យ Local របស់ App ត្រូវបានលុប។"
   );
+
 
   location.reload();
 
@@ -2059,13 +2948,19 @@ function loadLibrary(){
         LIBRARY_KEY
       );
 
+
     library =
       saved
         ? JSON.parse(saved)
         : [];
 
-    if(!Array.isArray(library)){
+
+    if(
+      !Array.isArray(library)
+    ){
+
       library = [];
+
     }
 
   }catch(error){
@@ -2073,6 +2968,7 @@ function loadLibrary(){
     library = [];
 
   }
+
 
   renderLibrary();
 
@@ -2095,17 +2991,7 @@ function saveLibrary(){
 
 function openLibraryFromProfile(){
 
-  document
-    .getElementById("profileMenu")
-    .classList.remove("show");
-
-  document
-    .getElementById("settingsMenu")
-    .classList.remove("show");
-
-  document
-    .getElementById("searchBox")
-    .classList.remove("show");
+  closeMenus();
 
   openLibrary();
 
@@ -2120,23 +3006,31 @@ function openLibrary(){
 
   document
     .getElementById("codeView")
-    .style.display = "none";
+    .style.display =
+      "none";
+
 
   document
     .getElementById("appView")
-    .style.display = "none";
+    .style.display =
+      "none";
+
 
   document
     .getElementById("libraryView")
-    .style.display = "block";
+    .style.display =
+      "block";
+
 
   document
     .getElementById("codeTab")
     .classList.remove("active");
 
+
   document
     .getElementById("appTab")
     .classList.remove("active");
+
 
   renderLibrary();
 
@@ -2149,28 +3043,34 @@ function openLibrary(){
 
 function openNewCodeModal(){
 
-  document
-    .getElementById("libraryModal")
+  libraryModal
     .classList.add("show");
+
 
   const input =
     document.getElementById(
       "libraryNameInput"
     );
 
+
   input.value = "";
 
-  setTimeout(()=>{
-    input.focus();
-  },100);
+
+  setTimeout(
+    function(){
+
+      input.focus();
+
+    },
+    100
+  );
 
 }
 
 
 function closeLibraryModal(){
 
-  document
-    .getElementById("libraryModal")
+  libraryModal
     .classList.remove("show");
 
 }
@@ -2179,8 +3079,8 @@ function closeLibraryModal(){
 function closeModalOutside(event){
 
   if(
-    event.target.id ===
-    "libraryModal"
+    event.target ===
+    libraryModal
   ){
 
     closeLibraryModal();
@@ -2192,13 +3092,22 @@ function closeModalOutside(event){
 
 function libraryNameKeydown(event){
 
-  if(event.key === "Enter"){
+  if(
+    event.key === "Enter"
+  ){
+
+    event.preventDefault();
 
     confirmSaveToLibrary();
 
   }
 
-  if(event.key === "Escape"){
+
+  if(
+    event.key === "Escape"
+  ){
+
+    event.preventDefault();
 
     closeLibraryModal();
 
@@ -2218,8 +3127,10 @@ function confirmSaveToLibrary(){
       "libraryNameInput"
     );
 
+
   const name =
     input.value.trim();
+
 
   if(!name){
 
@@ -2227,16 +3138,21 @@ function confirmSaveToLibrary(){
       "សូមដាក់ឈ្មោះ Code ជាមុនសិន។"
     );
 
+
     input.focus();
 
     return;
 
   }
 
+
   const codeContent =
     code.value;
 
-  if(!codeContent.trim()){
+
+  if(
+    !codeContent.trim()
+  ){
 
     alert(
       "មិនមាន Code សម្រាប់រក្សាទុកទេ។"
@@ -2246,6 +3162,11 @@ function confirmSaveToLibrary(){
 
   }
 
+
+  const now =
+    new Date().toISOString();
+
+
   const item = {
 
     id:
@@ -2254,25 +3175,32 @@ function confirmSaveToLibrary(){
         .toString(36)
         .slice(2),
 
-    name:name,
+    name:
+      name,
 
-    code:codeContent,
+    code:
+      codeContent,
 
     createdAt:
-      new Date().toISOString(),
+      now,
 
     updatedAt:
-      new Date().toISOString()
+      now
 
   };
 
-  library.unshift(item);
+
+  library.unshift(
+    item
+  );
+
 
   saveLibrary();
 
   closeLibraryModal();
 
   renderLibrary();
+
 
   alert(
     "បានរក្សាទុក Code ទៅក្នុង Library រួចរាល់ ✅"
@@ -2292,7 +3220,13 @@ function renderLibrary(){
       "libraryList"
     );
 
-  if(!list) return;
+
+  if(!list){
+
+    return;
+
+  }
+
 
   const search =
     (
@@ -2303,14 +3237,24 @@ function renderLibrary(){
     .trim()
     .toLowerCase();
 
+
   const filtered =
-    library.filter(item =>
-      item.name
+    library.filter(
+      function(item){
+
+        return String(
+          item.name || ""
+        )
         .toLowerCase()
-        .includes(search)
+        .includes(search);
+
+      }
     );
 
-  if(filtered.length === 0){
+
+  if(
+    filtered.length === 0
+  ){
 
     list.innerHTML = `
 
@@ -2321,20 +3265,27 @@ function renderLibrary(){
         </div>
 
         <div class="library-empty-title">
-          ${search ? "រកមិនឃើញ Code" : "មិនទាន់មាន Code"}
+          ${
+            search
+              ? "រកមិនឃើញ Code"
+              : "មិនទាន់មាន Code"
+          }
         </div>
 
         <div class="library-empty-text">
+
           ${
             search
               ? "សូមសាកល្បងពាក្យស្វែងរកផ្សេងទៀត។"
               : "ចុច ＋ New Code ដើម្បីរក្សាទុក Code ដំបូងរបស់អ្នក។"
           }
+
         </div>
 
       </div>
 
     `;
+
 
     return;
 
@@ -2342,71 +3293,145 @@ function renderLibrary(){
 
 
   list.innerHTML =
-    filtered.map(item => {
+    filtered
+      .map(
+        function(item){
 
-      const date =
-        formatDate(
-          item.updatedAt ||
-          item.createdAt
-        );
+          const date =
+            formatDate(
+              item.updatedAt ||
+              item.createdAt
+            );
 
-      const lines =
-        item.code
-          ? item.code.split("\n").length
-          : 0;
 
-      return `
+          const lines =
+            item.code
+              ? item.code
+                  .split("\n")
+                  .length
+              : 0;
 
-        <div class="library-card">
 
-          <div class="library-card-top">
+          const safeId =
+            encodeURIComponent(
+              String(item.id)
+            );
 
-            <div class="code-icon">
-              &lt;/&gt;
-            </div>
 
-            <div class="library-info">
+          return `
 
-              <div class="library-name">
-                ${escapeForDisplay(item.name)}
+            <div class="library-card">
+
+              <div class="library-card-top">
+
+                <div class="code-icon">
+                  &lt;/&gt;
+                </div>
+
+
+                <div class="library-info">
+
+                  <div class="library-name">
+                    ${escapeForDisplay(item.name)}
+                  </div>
+
+
+                  <div class="library-meta">
+                    🕒 ${date}
+                    &nbsp; • &nbsp;
+                    📄 ${lines} lines
+                  </div>
+
+                </div>
+
               </div>
 
-              <div class="library-meta">
-                🕒 ${date}
-                &nbsp; • &nbsp;
-                📄 ${lines} lines
+
+              <div class="library-actions">
+
+                <button
+                  class="library-open"
+                  data-library-open="${safeId}"
+                >
+                  📂 Open
+                </button>
+
+
+                <button
+                  class="library-delete"
+                  data-library-delete="${safeId}"
+                >
+                  🗑️ Delete
+                </button>
+
               </div>
 
             </div>
 
-          </div>
+          `;
 
-
-          <div class="library-actions">
-
-            <button
-              class="library-open"
-              onclick="openLibraryCode('${item.id}')"
-            >
-              📂 Open
-            </button>
-
-            <button
-              class="library-delete"
-              onclick="deleteLibraryCode('${item.id}')"
-            >
-              🗑️ Delete
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
+        }
+      )
+      .join("");
 
 }
+
+
+/* =========================================================
+   LIBRARY BUTTON EVENTS
+========================================================= */
+
+document.addEventListener(
+  "click",
+  function(event){
+
+    const openButton =
+      event.target.closest(
+        "[data-library-open]"
+      );
+
+
+    if(openButton){
+
+      const id =
+        decodeURIComponent(
+          openButton
+            .getAttribute(
+              "data-library-open"
+            )
+        );
+
+
+      openLibraryCode(id);
+
+      return;
+
+    }
+
+
+    const deleteButton =
+      event.target.closest(
+        "[data-library-delete]"
+      );
+
+
+    if(deleteButton){
+
+      const id =
+        decodeURIComponent(
+          deleteButton
+            .getAttribute(
+              "data-library-delete"
+            )
+        );
+
+
+      deleteLibraryCode(id);
+
+    }
+
+  }
+);
 
 
 /* =========================================================
@@ -2416,11 +3441,26 @@ function renderLibrary(){
 function escapeForDisplay(text){
 
   return String(text)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
@@ -2432,15 +3472,28 @@ function escapeForDisplay(text){
 function formatDate(dateString){
 
   if(!dateString){
+
     return "Unknown date";
+
   }
+
 
   const date =
-    new Date(dateString);
+    new Date(
+      dateString
+    );
 
-  if(isNaN(date.getTime())){
+
+  if(
+    isNaN(
+      date.getTime()
+    )
+  ){
+
     return "Unknown date";
+
   }
+
 
   return date.toLocaleString(
     undefined,
@@ -2464,9 +3517,15 @@ function openLibraryCode(id){
 
   const item =
     library.find(
-      codeItem =>
-        codeItem.id === id
+      function(codeItem){
+
+        return String(
+          codeItem.id
+        ) === String(id);
+
+      }
     );
+
 
   if(!item){
 
@@ -2478,37 +3537,59 @@ function openLibraryCode(id){
 
   }
 
+
   /*
-    Save the current editor draft
-    before opening another library item.
+    Open the saved code
+    in the main editor.
   */
 
-  localStorage.setItem(
-    "codewrite",
-    code.value
-  );
-
   code.value =
-    item.code;
+    item.code || "";
+
 
   localStorage.setItem(
     "codewrite",
     code.value
   );
+
 
   highlightCode();
 
   updateLineNumbers();
 
+
   preview.srcdoc =
     code.value;
+
 
   localStorage.setItem(
     "builtApp",
     code.value
   );
 
+
   showCode();
+
+
+  setTimeout(
+    function(){
+
+      code.focus();
+
+      code.setSelectionRange(
+        0,
+        0
+      );
+
+      code.scrollTop = 0;
+
+      code.scrollLeft = 0;
+
+      syncEditorScroll();
+
+    },
+    50
+  );
 
 }
 
@@ -2521,28 +3602,47 @@ function deleteLibraryCode(id){
 
   const item =
     library.find(
-      codeItem =>
-        codeItem.id === id
+      function(codeItem){
+
+        return String(
+          codeItem.id
+        ) === String(id);
+
+      }
     );
 
+
   if(!item){
+
     return;
+
   }
+
 
   const yes =
     confirm(
       `តើអ្នកចង់លុប "${item.name}" ចេញពី Code Library មែនទេ?`
     );
 
+
   if(!yes){
+
     return;
+
   }
+
 
   library =
     library.filter(
-      codeItem =>
-        codeItem.id !== id
+      function(codeItem){
+
+        return String(
+          codeItem.id
+        ) !== String(id);
+
+      }
     );
+
 
   saveLibrary();
 
@@ -2559,52 +3659,53 @@ document.addEventListener(
   "click",
   function(){
 
-    document
-      .getElementById("profileMenu")
+    profileMenu
       .classList.remove("show");
 
-    document
-      .getElementById("settingsMenu")
+
+    settingsMenu
       .classList.remove("show");
 
-    document
-      .getElementById("searchBox")
+
+    searchBox
       .classList.remove("show");
 
   }
 );
 
 
-/* Prevent menu clicks from closing menu */
+/* =========================================================
+   STOP MENU CLICKS
+========================================================= */
 
-document
-  .getElementById("profileMenu")
-  .addEventListener(
-    "click",
-    function(event){
-      event.stopPropagation();
-    }
-  );
+profileMenu.addEventListener(
+  "click",
+  function(event){
 
+    event.stopPropagation();
 
-document
-  .getElementById("settingsMenu")
-  .addEventListener(
-    "click",
-    function(event){
-      event.stopPropagation();
-    }
-  );
+  }
+);
 
 
-document
-  .getElementById("searchBox")
-  .addEventListener(
-    "click",
-    function(event){
-      event.stopPropagation();
-    }
-  );
+settingsMenu.addEventListener(
+  "click",
+  function(event){
+
+    event.stopPropagation();
+
+  }
+);
+
+
+searchBox.addEventListener(
+  "click",
+  function(event){
+
+    event.stopPropagation();
+
+  }
+);
 
 
 /* =========================================================
@@ -2615,6 +3716,10 @@ document.addEventListener(
   "keydown",
   function(event){
 
+    /*
+      Ctrl/Cmd + S
+    */
+
     if(
       (event.ctrlKey || event.metaKey) &&
       event.key.toLowerCase() === "s"
@@ -2623,6 +3728,110 @@ document.addEventListener(
       event.preventDefault();
 
       saveCode();
+
+      return;
+
+    }
+
+
+    /*
+      Ctrl/Cmd + F
+      Opens CodeWrite Search.
+    */
+
+    if(
+      (event.ctrlKey || event.metaKey) &&
+      event.key.toLowerCase() === "f"
+    ){
+
+      event.preventDefault();
+
+      const searchBtn =
+        document.getElementById(
+          "searchBtn"
+        );
+
+
+      toggleSearch({
+        stopPropagation:function(){}
+      });
+
+
+      return;
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   EDITOR CLICK
+========================================================= */
+
+code.addEventListener(
+  "click",
+  function(){
+
+    /*
+      Explicitly keep the textarea
+      as the active editable layer.
+    */
+
+    code.focus();
+
+  }
+);
+
+
+/* =========================================================
+   EDITOR KEYDOWN
+========================================================= */
+
+code.addEventListener(
+  "keydown",
+  function(event){
+
+    /*
+      Tab inserts spaces instead of
+      leaving the textarea.
+    */
+
+    if(
+      event.key === "Tab"
+    ){
+
+      event.preventDefault();
+
+
+      const start =
+        code.selectionStart;
+
+
+      const end =
+        code.selectionEnd;
+
+
+      code.value =
+        code.value.slice(
+          0,
+          start
+        ) +
+        "  " +
+        code.value.slice(
+          end
+        );
+
+
+      code.selectionStart =
+        start + 2;
+
+
+      code.selectionEnd =
+        start + 2;
+
+
+      handleCodeInput();
 
     }
 
