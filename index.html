@@ -38,12 +38,8 @@ textarea{
 button{
   cursor:pointer;
   border:none;
-  transform:scale(.99);
 }
 
-button:active{
-  transform:scale(.98);
-}
 
 /* =========================================================
    APP
@@ -107,15 +103,21 @@ button:active{
   order:3;
 }
 
+
+/* =========================================================
+   BUTTONS
+   តូចជាងមុន 1%
+========================================================= */
+
 .icon-btn{
-  width:42px;
-  height:42px;
+  width:41.58px;
+  height:41.58px;
   border-radius:12px;
   background:#f1f8f5;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:20px;
+  font-size:19.8px;
   transition:.2s;
 }
 
@@ -124,8 +126,8 @@ button:active{
 }
 
 .profile-btn{
-  width:42px;
-  height:42px;
+  width:41.58px;
+  height:41.58px;
   border-radius:50%;
   overflow:hidden;
   border:2px solid #e2eee8;
@@ -133,7 +135,7 @@ button:active{
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:22px;
+  font-size:20px;
 }
 
 .profile-btn img{
@@ -175,10 +177,10 @@ button:active{
 .menu button{
   width:100%;
   background:#ffffff;
-  padding:12px;
+  padding:11.88px;
   border-radius:11px;
   text-align:left;
-  font-size:14px;
+  font-size:13.86px;
   color:#26333c;
 }
 
@@ -214,12 +216,12 @@ button:active{
 
 .search-input{
   width:100%;
-  height:42px;
+  height:41.58px;
   border:1px solid #cbd9df;
   border-radius:11px;
   outline:none;
-  padding:0 13px;
-  font-size:14px;
+  padding:0 12.87px;
+  font-size:13.86px;
 }
 
 .search-input:focus{
@@ -246,7 +248,7 @@ button:active{
   flex:1;
   background:#ffffff;
   color:#7a8992;
-  font-size:14px;
+  font-size:13.86px;
   font-weight:bold;
   border-bottom:3px solid transparent;
 }
@@ -330,7 +332,6 @@ button:active{
   pointer-events:none;
   user-select:none;
   z-index:1;
-  will-change:transform;
 }
 
 .code-input{
@@ -431,7 +432,7 @@ button:active{
 }
 
 .preview-title{
-  font-size:15px;
+  font-size:14.85px;
   font-weight:bold;
   margin-bottom:12px;
   color:#26333c;
@@ -483,13 +484,13 @@ button:active{
 }
 
 .library-title{
-  font-size:21px;
+  font-size:20.79px;
   font-weight:800;
   color:#17232d;
 }
 
 .library-subtitle{
-  font-size:12px;
+  font-size:11.88px;
   color:#788891;
   margin-top:4px;
 }
@@ -499,8 +500,8 @@ button:active{
   background:#16834a;
   color:#ffffff;
   border-radius:12px;
-  padding:11px 14px;
-  font-size:13px;
+  padding:10.89px 13.86px;
+  font-size:12.87px;
   font-weight:bold;
   box-shadow:0 4px 12px rgba(22,131,74,.18);
 }
@@ -511,13 +512,13 @@ button:active{
 
 .library-search{
   width:100%;
-  height:44px;
+  height:43.56px;
   background:#ffffff;
   border:1px solid #d6e2e7;
   border-radius:13px;
-  padding:0 14px;
+  padding:0 13.86px;
   outline:none;
-  font-size:14px;
+  font-size:13.86px;
   margin-bottom:13px;
 }
 
@@ -555,7 +556,7 @@ button:active{
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:23px;
+  font-size:22.77px;
 }
 
 .library-info{
@@ -564,7 +565,7 @@ button:active{
 }
 
 .library-name{
-  font-size:16px;
+  font-size:15.84px;
   font-weight:800;
   color:#17232d;
   overflow:hidden;
@@ -574,7 +575,7 @@ button:active{
 
 .library-meta{
   margin-top:6px;
-  font-size:12px;
+  font-size:11.88px;
   color:#77858d;
   line-height:18px;
 }
@@ -585,24 +586,31 @@ button:active{
   margin-top:12px;
 }
 
-.library-open{
-  flex:1;
-  height:38px;
+.library-copy,
+.library-rename,
+.library-delete{
+  height:37.62px;
   border-radius:10px;
-  background:#edf8f1;
-  color:#16783f;
-  font-size:13px;
+  font-size:12.87px;
   font-weight:bold;
 }
 
+.library-copy{
+  flex:1;
+  background:#edf8f1;
+  color:#16783f;
+}
+
+.library-rename{
+  flex:1;
+  background:#eef5ff;
+  color:#2868a8;
+}
+
 .library-delete{
-  width:82px;
-  height:38px;
-  border-radius:10px;
+  width:81.18px;
   background:#fff0f0;
   color:#e53935;
-  font-size:13px;
-  font-weight:bold;
 }
 
 .library-empty{
@@ -615,19 +623,19 @@ button:active{
 }
 
 .library-empty-icon{
-  font-size:40px;
+  font-size:39.6px;
   margin-bottom:10px;
 }
 
 .library-empty-title{
-  font-size:16px;
+  font-size:15.84px;
   font-weight:bold;
   color:#34434c;
   margin-bottom:6px;
 }
 
 .library-empty-text{
-  font-size:13px;
+  font-size:12.87px;
 }
 
 
@@ -660,25 +668,25 @@ button:active{
 }
 
 .modal-title{
-  font-size:19px;
+  font-size:18.81px;
   font-weight:800;
   margin-bottom:7px;
 }
 
 .modal-text{
-  font-size:13px;
+  font-size:12.87px;
   color:#788891;
   margin-bottom:15px;
 }
 
 .modal-input{
   width:100%;
-  height:45px;
+  height:44.55px;
   border:1px solid #ccd9de;
   border-radius:11px;
   outline:none;
-  padding:0 13px;
-  font-size:14px;
+  padding:0 12.87px;
+  font-size:13.86px;
 }
 
 .modal-input:focus{
@@ -694,7 +702,7 @@ button:active{
 .modal-cancel,
 .modal-save{
   flex:1;
-  height:42px;
+  height:41.58px;
   border-radius:11px;
   font-weight:bold;
 }
@@ -717,7 +725,7 @@ button:active{
 @media(max-width:480px){
 
   .logo{
-    font-size:20px;
+    font-size:19.8px;
   }
 
   .library-top{
@@ -725,11 +733,11 @@ button:active{
   }
 
   .library-title{
-    font-size:19px;
+    font-size:18.81px;
   }
 
   .new-code-btn{
-    padding:10px 11px;
+    padding:9.9px 10.89px;
   }
 
   .library-card-top{
@@ -760,6 +768,7 @@ button:active{
   <header class="header">
 
     <div class="header-right">
+
 
       <button
         class="icon-btn"
@@ -805,11 +814,6 @@ button:active{
       <div class="menu-title">
         Profile
       </div>
-
-
-      <button onclick="changeProfileImage()">
-        🖼️ Change Profile Image
-      </button>
 
 
       <button onclick="showGmail()">
@@ -1104,7 +1108,7 @@ button:active{
       onclick="event.stopPropagation()"
     >
 
-      <div class="modal-title">
+      <div class="modal-title" id="libraryModalTitle">
         📚 Save Code
       </div>
 
@@ -1137,6 +1141,7 @@ button:active{
 
         <button
           class="modal-save"
+          id="libraryModalSave"
           onclick="confirmSaveToLibrary()"
         >
           💾 Save
@@ -1216,11 +1221,11 @@ let searchMatches = [];
 
 let currentSearchIndex = -1;
 
-let lastSearchValue = "";
-
-let renderFrame = 0;
+let highlightFrame = 0;
 
 let lineNumberFrame = 0;
+
+let lastHighlightedSource = null;
 
 
 const LIBRARY_KEY =
@@ -1336,6 +1341,7 @@ window.addEventListener(
 
 /* =========================================================
    CODE INPUT
+   កុំធ្វើ Highlight ពេញ Code រាល់ Keystroke
 ========================================================= */
 
 function handleCodeInput(){
@@ -1346,91 +1352,51 @@ function handleCodeInput(){
   );
 
 
-  /*
-    Do not rebuild the syntax-highlight layer
-    and line numbers on every single keystroke.
-    The textarea remains immediately responsive,
-    while the heavier work is scheduled once.
-  */
-
-  scheduleEditorRender();
-
-
-  /*
-    If Search is active, refresh the search result
-    after the code has changed.
-  */
-
-  if(
-    searchInput.value.trim()
-  ){
-
-    scheduleSearchRefresh();
-
-  }
+  scheduleEditorUpdate();
 
 }
 
 
 /* =========================================================
-   PERFORMANCE EDITOR RENDER
+   FAST EDITOR UPDATE
 ========================================================= */
 
-function scheduleEditorRender(){
-
-  if(renderFrame){
-
-    return;
-
-  }
-
-
-  renderFrame =
-    requestAnimationFrame(
-      function(){
-
-        renderFrame = 0;
-
-        highlightCode();
-
-        updateLineNumbers();
-
-      }
-    );
-
-}
-
-
-function scheduleSearchRefresh(){
+function scheduleEditorUpdate(){
 
   if(
-    scheduleSearchRefresh.timer
+    !highlightFrame
   ){
 
-    clearTimeout(
-      scheduleSearchRefresh.timer
-    );
+    highlightFrame =
+      requestAnimationFrame(
+        function(){
+
+          highlightFrame = 0;
+
+          highlightCode();
+
+        }
+      );
 
   }
 
 
-  scheduleSearchRefresh.timer =
-    setTimeout(
-      function(){
+  if(
+    !lineNumberFrame
+  ){
 
-        if(
-          searchInput.value.trim()
-        ){
+    lineNumberFrame =
+      requestAnimationFrame(
+        function(){
 
-          performSearch(
-            true
-          );
+          lineNumberFrame = 0;
+
+          updateLineNumbers();
 
         }
+      );
 
-      },
-      80
-    );
+  }
 
 }
 
@@ -1457,6 +1423,21 @@ function highlightCode(){
 
   const source =
     code.value;
+
+
+  if(
+    source === lastHighlightedSource
+  ){
+
+    syncEditorScroll();
+
+    return;
+
+  }
+
+
+  lastHighlightedSource =
+    source;
 
 
   let output = "";
@@ -2218,38 +2199,7 @@ function handleSearchKeydown(event){
 
     event.preventDefault();
 
-
-    const value =
-      searchInput.value.trim();
-
-
-    if(!value){
-
-      clearSearchHighlight();
-
-      return;
-
-    }
-
-
-    /*
-      First Enter = search.
-      Next Enter = next result.
-    */
-
-    if(
-      lastSearchValue === value &&
-      searchMatches.length > 0
-    ){
-
-      nextSearchResult();
-
-    }else{
-
-      performSearch();
-
-    }
-
+    performSearch();
 
     return;
 
@@ -2278,19 +2228,18 @@ function handleSearchKeydown(event){
 
 /* =========================================================
    SEARCH
+   ស្វែងរកគ្រប់ទីតាំងក្នុង Code
 ========================================================= */
 
-function performSearch(fromCodeChange = false){
+function performSearch(){
 
   const value =
-    searchInput.value.trim();
+    searchInput.value;
 
 
   if(!value){
 
     clearSearchHighlight();
-
-    lastSearchValue = "";
 
     return;
 
@@ -2305,21 +2254,24 @@ function performSearch(fromCodeChange = false){
 
 
   const lowerSource =
-    source.toLocaleLowerCase();
+    source.toLowerCase();
 
 
   const lowerValue =
-    value.toLocaleLowerCase();
+    value.toLowerCase();
+
+
+  if(!lowerValue){
+
+    clearSearchHighlight();
+
+    return;
+
+  }
 
 
   let start = 0;
 
-
-  /*
-    Find every occurrence in the actual code string.
-    This handles special characters safely because
-    it uses indexOf instead of a regex.
-  */
 
   while(start <= lowerSource.length){
 
@@ -2337,9 +2289,7 @@ function performSearch(fromCodeChange = false){
     }
 
 
-    searchMatches.push(
-      found
-    );
+    searchMatches.push(found);
 
 
     start =
@@ -2352,47 +2302,19 @@ function performSearch(fromCodeChange = false){
   }
 
 
-  lastSearchValue =
-    value;
-
-
   if(
     searchMatches.length === 0
   ){
 
     currentSearchIndex = -1;
 
-    highlightCode();
-
-    return;
-
-  }
-
-
-  /*
-    Keep the current result when code changes
-    if it is still available.
-  */
-
-  if(
-    fromCodeChange &&
-    currentSearchIndex >= 0 &&
-    currentSearchIndex <
-      searchMatches.length
-  ){
-
     renderSearchResults(
       value
     );
 
-
-    jumpToSearchResult(
-      searchMatches[
-        currentSearchIndex
-      ],
-      value.length
+    alert(
+      "រកមិនឃើញ: " + value
     );
-
 
     return;
 
@@ -2425,15 +2347,7 @@ function renderSearchResults(value){
     code.value;
 
 
-  const escaped =
-    escapeHTML(source);
-
-
-  const escapedSearch =
-    escapeHTML(value);
-
-
-  if(!escapedSearch){
+  if(!value){
 
     highlightCode();
 
@@ -2442,53 +2356,78 @@ function renderSearchResults(value){
   }
 
 
-  /*
-    Escape the search value before creating
-    the regex so characters such as:
-    . * + ? ( ) [ ] { } \
-    are treated as normal text.
-  */
-
-  const regex =
-    new RegExp(
-      escapedSearch.replace(
-        /[.*+?^${}()|[\]\\]/g,
-        "\\$&"
-      ),
-      "gi"
-    );
+  const lowerValue =
+    value.toLowerCase();
 
 
-  let matchIndex = 0;
+  let html = "";
+
+  let sourceIndex = 0;
+
+  let matchNumber = 0;
+
+
+  while(sourceIndex < source.length){
+
+    const lowerSource =
+      source.toLowerCase();
+
+
+    const found =
+      lowerSource.indexOf(
+        lowerValue,
+        sourceIndex
+      );
+
+
+    if(found === -1){
+
+      html +=
+        escapeHTML(
+          source.slice(
+            sourceIndex
+          )
+        );
+
+      break;
+
+    }
+
+
+    html +=
+      escapeHTML(
+        source.slice(
+          sourceIndex,
+          found
+        )
+      );
+
+
+    const matchText =
+      source.slice(
+        found,
+        found + value.length
+      );
+
+
+    html +=
+      '<mark class="search-mark">' +
+      escapeHTML(matchText) +
+      '</mark>';
+
+
+    matchNumber++;
+
+
+    sourceIndex =
+      found +
+      value.length;
+
+  }
 
 
   highlight.innerHTML =
-    escaped.replace(
-      regex,
-      function(match){
-
-        const active =
-          matchIndex ===
-          currentSearchIndex;
-
-
-        const result =
-          '<mark class="search-mark"' +
-          (active
-            ? ' data-search-active="true"'
-            : '') +
-          '>' +
-          match +
-          '</mark>';
-
-
-        matchIndex++;
-
-
-        return result;
-
-      }
-    );
+    html || " ";
 
 
   syncEditorScroll();
@@ -2506,7 +2445,7 @@ function clearSearchHighlight(){
 
   currentSearchIndex = -1;
 
-  lastSearchValue = "";
+  lastHighlightedSource = null;
 
   highlightCode();
 
@@ -2598,7 +2537,7 @@ function nextSearchResult(){
 
 
   const value =
-    searchInput.value.trim();
+    searchInput.value;
 
 
   renderSearchResults(
@@ -2733,6 +2672,10 @@ function handleOpenFile(event){
         e.target.result;
 
 
+      lastHighlightedSource =
+        null;
+
+
       handleCodeInput();
 
 
@@ -2836,6 +2779,10 @@ function handleImage(event){
       );
 
 
+      lastHighlightedSource =
+        null;
+
+
       handleCodeInput();
 
     };
@@ -2880,6 +2827,7 @@ function clearCode(){
 
   code.value = "";
 
+  lastHighlightedSource = null;
 
   handleCodeInput();
 
@@ -2984,69 +2932,8 @@ function publishApp(){
 
 /* =========================================================
    PROFILE FUNCTIONS
+   Change Profile Image ត្រូវបានដកចេញ
 ========================================================= */
-
-function changeProfileImage(){
-
-  const input =
-    document.createElement(
-      "input"
-    );
-
-
-  input.type =
-    "file";
-
-
-  input.accept =
-    "image/*";
-
-
-  input.onchange =
-    function(){
-
-      const file =
-        input.files[0];
-
-
-      if(!file){
-
-        return;
-
-      }
-
-
-      const reader =
-        new FileReader();
-
-
-      reader.onload =
-        function(e){
-
-          /*
-            Keep the existing profile image
-            storage function unchanged.
-          */
-
-          localStorage.setItem(
-            "profileImage",
-            e.target.result
-          );
-
-        };
-
-
-      reader.readAsDataURL(
-        file
-      );
-
-    };
-
-
-  input.click();
-
-}
-
 
 function showGmail(){
 
@@ -3221,6 +3108,26 @@ function openNewCodeModal(){
     .classList.add("show");
 
 
+  document
+    .getElementById("libraryModalTitle")
+    .textContent =
+      "📚 Save Code";
+
+
+  document
+    .getElementById("libraryModalSave")
+    .textContent =
+      "💾 Save";
+
+
+  libraryModal.dataset.mode =
+    "save";
+
+
+  libraryModal.dataset.renameId =
+    "";
+
+
   const input =
     document.getElementById(
       "libraryNameInput"
@@ -3234,6 +3141,75 @@ function openNewCodeModal(){
     function(){
 
       input.focus();
+
+    },
+    100
+  );
+
+}
+
+
+function openRenameModal(id){
+
+  const item =
+    library.find(
+      function(codeItem){
+
+        return String(
+          codeItem.id
+        ) === String(id);
+
+      }
+    );
+
+
+  if(!item){
+
+    return;
+
+  }
+
+
+  libraryModal
+    .classList.add("show");
+
+
+  document
+    .getElementById("libraryModalTitle")
+    .textContent =
+      "✏️ Rename Code";
+
+
+  document
+    .getElementById("libraryModalSave")
+    .textContent =
+      "✏️ Rename";
+
+
+  libraryModal.dataset.mode =
+    "rename";
+
+
+  libraryModal.dataset.renameId =
+    String(id);
+
+
+  const input =
+    document.getElementById(
+      "libraryNameInput"
+    );
+
+
+  input.value =
+    item.name || "";
+
+
+  setTimeout(
+    function(){
+
+      input.focus();
+
+      input.select();
 
     },
     100
@@ -3272,7 +3248,21 @@ function libraryNameKeydown(event){
 
     event.preventDefault();
 
-    confirmSaveToLibrary();
+    const mode =
+      libraryModal.dataset.mode;
+
+
+    if(
+      mode === "rename"
+    ){
+
+      confirmRenameLibrary();
+
+    }else{
+
+      confirmSaveToLibrary();
+
+    }
 
   }
 
@@ -3378,6 +3368,87 @@ function confirmSaveToLibrary(){
 
   alert(
     "បានរក្សាទុក Code ទៅក្នុង Library រួចរាល់ ✅"
+  );
+
+}
+
+
+/* =========================================================
+   RENAME LIBRARY CODE
+========================================================= */
+
+function confirmRenameLibrary(){
+
+  const input =
+    document.getElementById(
+      "libraryNameInput"
+    );
+
+
+  const name =
+    input.value.trim();
+
+
+  if(!name){
+
+    alert(
+      "សូមដាក់ចំណងជើងថ្មីជាមុនសិន។"
+    );
+
+
+    input.focus();
+
+    return;
+
+  }
+
+
+  const id =
+    libraryModal.dataset.renameId;
+
+
+  const item =
+    library.find(
+      function(codeItem){
+
+        return String(
+          codeItem.id
+        ) === String(id);
+
+      }
+    );
+
+
+  if(!item){
+
+    alert(
+      "រកមិនឃើញ Code នេះទេ។"
+    );
+
+    closeLibraryModal();
+
+    return;
+
+  }
+
+
+  item.name =
+    name;
+
+
+  item.updatedAt =
+    new Date().toISOString();
+
+
+  saveLibrary();
+
+  closeLibraryModal();
+
+  renderLibrary();
+
+
+  alert(
+    "បានប្ដូរចំណងជើងរួចរាល់ ✅"
   );
 
 }
@@ -3524,10 +3595,18 @@ function renderLibrary(){
               <div class="library-actions">
 
                 <button
-                  class="library-open"
-                  data-library-open="${safeId}"
+                  class="library-copy"
+                  data-library-copy="${safeId}"
                 >
-                  📂 Open
+                  📎 Copy
+                </button>
+
+
+                <button
+                  class="library-rename"
+                  data-library-rename="${safeId}"
+                >
+                  ✏️ Rename
                 </button>
 
 
@@ -3559,24 +3638,48 @@ document.addEventListener(
   "click",
   function(event){
 
-    const openButton =
+    const copyButton =
       event.target.closest(
-        "[data-library-open]"
+        "[data-library-copy]"
       );
 
 
-    if(openButton){
+    if(copyButton){
 
       const id =
         decodeURIComponent(
-          openButton
+          copyButton
             .getAttribute(
-              "data-library-open"
+              "data-library-copy"
             )
         );
 
 
-      openLibraryCode(id);
+      copyLibraryCode(id);
+
+      return;
+
+    }
+
+
+    const renameButton =
+      event.target.closest(
+        "[data-library-rename]"
+      );
+
+
+    if(renameButton){
+
+      const id =
+        decodeURIComponent(
+          renameButton
+            .getAttribute(
+              "data-library-rename"
+            )
+        );
+
+
+      openRenameModal(id);
 
       return;
 
@@ -3606,6 +3709,95 @@ document.addEventListener(
 
   }
 );
+
+
+/* =========================================================
+   COPY LIBRARY CODE
+========================================================= */
+
+async function copyLibraryCode(id){
+
+  const item =
+    library.find(
+      function(codeItem){
+
+        return String(
+          codeItem.id
+        ) === String(id);
+
+      }
+    );
+
+
+  if(!item){
+
+    alert(
+      "រកមិនឃើញ Code នេះទេ។"
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    await navigator.clipboard.writeText(
+      item.code || ""
+    );
+
+
+    alert(
+      "បាន Copy Code ពី Library រួចរាល់ ✅"
+    );
+
+  }catch(error){
+
+    const temp =
+      document.createElement(
+        "textarea"
+      );
+
+
+    temp.value =
+      item.code || "";
+
+
+    temp.style.position =
+      "fixed";
+
+
+    temp.style.opacity =
+      "0";
+
+
+    document.body.appendChild(
+      temp
+    );
+
+
+    temp.select();
+
+
+    try{
+
+      document.execCommand(
+        "copy"
+      );
+
+    }catch(copyError){}
+
+
+    temp.remove();
+
+
+    alert(
+      "បាន Copy Code ពី Library រួចរាល់ ✅"
+    );
+
+  }
+
+}
 
 
 /* =========================================================
@@ -3678,86 +3870,6 @@ function formatDate(dateString){
       hour:"numeric",
       minute:"2-digit"
     }
-  );
-
-}
-
-
-/* =========================================================
-   OPEN SAVED CODE
-========================================================= */
-
-function openLibraryCode(id){
-
-  const item =
-    library.find(
-      function(codeItem){
-
-        return String(
-          codeItem.id
-        ) === String(id);
-
-      }
-    );
-
-
-  if(!item){
-
-    alert(
-      "រកមិនឃើញ Code នេះទេ។"
-    );
-
-    return;
-
-  }
-
-
-  code.value =
-    item.code || "";
-
-
-  localStorage.setItem(
-    "codewrite",
-    code.value
-  );
-
-
-  highlightCode();
-
-  updateLineNumbers();
-
-
-  preview.srcdoc =
-    code.value;
-
-
-  localStorage.setItem(
-    "builtApp",
-    code.value
-  );
-
-
-  showCode();
-
-
-  setTimeout(
-    function(){
-
-      code.focus();
-
-      code.setSelectionRange(
-        0,
-        0
-      );
-
-      code.scrollTop = 0;
-
-      code.scrollLeft = 0;
-
-      syncEditorScroll();
-
-    },
-    50
   );
 
 }
@@ -3988,6 +4100,10 @@ code.addEventListener(
 
       code.selectionEnd =
         start + 2;
+
+
+      lastHighlightedSource =
+        null;
 
 
       handleCodeInput();
