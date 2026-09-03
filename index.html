@@ -2106,17 +2106,28 @@ function highlightAttributes(text){
    SCROLL
 ========================================================= */
 
+let editorScrollFrame = 0;
+
 function syncEditorScroll(){
 
-  highlight.style.transform =
-    `translate(${-code.scrollLeft}px,${-code.scrollTop}px)`;
+  if(editorScrollFrame){
+    return;
+  }
 
+  editorScrollFrame =
+    requestAnimationFrame(function(){
 
-  lineNumbers.scrollTop =
-    code.scrollTop;
+      editorScrollFrame = 0;
+
+      highlight.style.transform =
+        `translate(${-code.scrollLeft}px,${-code.scrollTop}px)`;
+
+      lineNumbers.scrollTop =
+        code.scrollTop;
+
+    });
 
 }
-
 
 /* =========================================================
    LINE NUMBERS
