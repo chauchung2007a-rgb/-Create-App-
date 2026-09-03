@@ -4043,12 +4043,17 @@ code.addEventListener(
         );
 
 
-      code.selectionStart =
+      const newPosition =
         start + 2;
 
 
-      code.selectionEnd =
-        start + 2;
+      code.focus();
+
+
+      code.setSelectionRange(
+        newPosition,
+        newPosition
+      );
 
 
       lastHighlightedSource =
