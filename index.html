@@ -1514,25 +1514,54 @@ window.addEventListener(
   }
 );
 
-
 /* =========================================================
    CODE INPUT
-   កុំធ្វើ Highlight ពេញ Code រាល់ Keystroke
+   កុំធ្វើការងារធ្ងន់រាល់ Keystroke
 ========================================================= */
+
+let editorSaveTimer = 0;
+let editorUpdateTimer = 0;
 
 function handleCodeInput(){
 
-  localStorage.setItem(
-    "codewrite",
-    code.value
-  );
-
-
   scheduleEditorUpdate();
-
 
 }
 
+
+/* =========================================================
+   FAST EDITOR UPDATE
+========================================================= */
+
+function scheduleEditorUpdate(){
+
+  clearTimeout(editorSaveTimer);
+
+  editorSaveTimer =
+    setTimeout(function(){
+
+      localStorage.setItem(
+        "codewrite",
+        code.value
+      );
+
+    }, 300);
+
+
+  clearTimeout(editorUpdateTimer);
+
+  editorUpdateTimer =
+    setTimeout(function(){
+
+      highlightFrame = 0;
+      lineNumberFrame = 0;
+
+      highlightCode();
+      updateLineNumbers();
+
+    }, 120);
+
+}
 
 /* =========================================================
    FAST EDITOR UPDATE
