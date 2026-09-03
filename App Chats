@@ -14,7 +14,7 @@
 <style>
 
 /* =====================================================
-                     GLOBAL
+                         01. GLOBAL
 ===================================================== */
 
 *{
@@ -112,7 +112,7 @@ button{
 
 
 /* =====================================================
-                       SCREENS
+                       02. SCREENS
 ===================================================== */
 
 .screen{
@@ -132,7 +132,7 @@ button{
 
 
 /* =====================================================
-                       COMMON
+                       03. COMMON
 ===================================================== */
 
 .topbar{
@@ -247,7 +247,7 @@ button{
 
 
 /* =====================================================
-                         SIGN UP
+                       04. SIGN UP
 ===================================================== */
 
 #signup{
@@ -302,7 +302,7 @@ button{
 
 
 /* =====================================================
-                           HOME
+                       05. HOME
 ===================================================== */
 
 .homeSearch{
@@ -395,7 +395,7 @@ button{
 
 
 /* =====================================================
-                          CHATS
+                       06. CHATS
 ===================================================== */
 
 .chat{
@@ -450,12 +450,8 @@ button{
 
 
 /* =====================================================
-                    CHAT DETAIL SCREEN
+                  07. CHAT DETAIL
 ===================================================== */
-
-/*
-   ទម្រង់នេះធ្វើតាមរូបដែលអ្នកផ្ញើ
-*/
 
 #chatDetail{
   padding:0;
@@ -470,9 +466,6 @@ button{
       #83c5b2 100%
     );
 }
-
-
-/* Chat background */
 
 .chatWindow{
   position:relative;
@@ -505,12 +498,6 @@ button{
     );
 }
 
-
-/*
-  Pattern ស្រាលៗ
-  ដើម្បីឲ្យមានអារម្មណ៍ដូច Telegram
-*/
-
 .chatWindow:before{
   content:"";
 
@@ -533,7 +520,7 @@ button{
 
 
 /* =====================================================
-                       CHAT HEADER
+                  08. CHAT HEADER
 ===================================================== */
 
 .chatHeader{
@@ -567,9 +554,6 @@ button{
   backdrop-filter:blur(7px);
 }
 
-
-/* Back button */
-
 .chatBack{
   width:53px;
   height:53px;
@@ -594,9 +578,6 @@ button{
     0 4px 15px
     rgba(0,0,0,.08);
 }
-
-
-/* Center name */
 
 .chatHeaderName{
   flex:1;
@@ -647,9 +628,6 @@ button{
   margin-top:3px;
 }
 
-
-/* Profile on right */
-
 .chatProfile{
   width:58px;
   height:58px;
@@ -686,7 +664,7 @@ button{
 
 
 /* =====================================================
-                     CHAT MESSAGES
+                    09. CHAT MESSAGES
 ===================================================== */
 
 .messages{
@@ -714,9 +692,6 @@ button{
   gap:7px;
 }
 
-
-/* date */
-
 .chatDate{
   align-self:center;
 
@@ -738,9 +713,6 @@ button{
   margin-bottom:5px;
 }
 
-
-/* joined */
-
 .joined{
   align-self:center;
 
@@ -761,9 +733,6 @@ button{
 
   text-align:center;
 }
-
-
-/* message bubble */
 
 .messageRow{
   display:flex;
@@ -805,7 +774,7 @@ button{
 
 
 /* =====================================================
-                      CHAT INPUT
+                    10. CHAT INPUT
 ===================================================== */
 
 .chatInputBar{
@@ -838,9 +807,6 @@ button{
   backdrop-filter:blur(8px);
 }
 
-
-/* Attachment */
-
 .attachButton{
   width:54px;
   height:54px;
@@ -859,9 +825,6 @@ button{
 
   transform:rotate(-20deg);
 }
-
-
-/* message field */
 
 .messageField{
   flex:1;
@@ -892,9 +855,6 @@ button{
   color:#8d9694;
 }
 
-
-/* Right microphone */
-
 .micButton{
   width:55px;
   height:55px;
@@ -911,9 +871,6 @@ button{
 
   font-size:28px;
 }
-
-
-/* send */
 
 .sendButton{
   display:none;
@@ -936,7 +893,7 @@ button{
 
 
 /* =====================================================
-                FRIEND PROFILE / CALL PANEL
+              11. FRIEND PROFILE / CALL PANEL
 ===================================================== */
 
 .friendPanel{
@@ -1059,9 +1016,6 @@ button{
   margin-bottom:17px;
 }
 
-
-/* Call buttons */
-
 .callActions{
   display:flex;
 
@@ -1126,7 +1080,7 @@ button{
 
 
 /* =====================================================
-                           MUSIC
+                       12. MUSIC
 ===================================================== */
 
 .musicHeader{
@@ -1240,7 +1194,7 @@ button{
 
 
 /* =====================================================
-                    ARTIST / MEDIA
+                   13. ARTIST / MEDIA
 ===================================================== */
 
 .artistCard{
@@ -1298,106 +1252,413 @@ button{
   font-size:60px;
 }
 
-
-/* =====================================================
-                       MINI PLAYER
-===================================================== */
+/* =========================
+   14. MINI PLAYER
+========================= */
 
 .mini{
   position:absolute;
-
   z-index:40;
-
   left:9px;
   right:9px;
-
   bottom:82px;
-
   height:67px;
-
   display:none;
-
-  align-items:center;
-
-  gap:10px;
-
-  padding:
-    7px
-    10px;
-
-  border-radius:18px;
-
+  flex-direction:column;
   background:var(--card);
+  border-radius:18px;
+  box-shadow:0 8px 30px rgba(0,0,0,.18);
+  overflow:hidden;
+  transition:height .25s ease,transform .25s ease;
+}
 
-  box-shadow:
-    0 8px 30px
-    rgba(20,70,90,.23);
+.mini.open{
+  height:calc(100vh - 105px);
+}
+
+.miniHandle{
+  position:absolute;
+  top:4px;
+  left:50%;
+  transform:translateX(-50%);
+  width:42px;
+  height:10px;
+  z-index:5;
+  cursor:grab;
+}
+
+.miniHandle span{
+  display:block;
+  width:42px;
+  height:5px;
+  margin:auto;
+  border-radius:10px;
+  background:currentColor;
+  opacity:.25;
+}
+
+.miniMain{
+  position:relative;
+  min-height:67px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:7px 12px;
+  box-sizing:border-box;
+  cursor:pointer;
+}
+
+.mini.open .miniMain{
+  min-height:auto;
+  flex-direction:column;
+  justify-content:flex-start;
+  padding:32px 18px 10px;
+  gap:10px;
 }
 
 .miniCover{
   width:52px;
   height:52px;
-
-  flex-shrink:0;
-
-  border-radius:13px;
-
+  flex:0 0 52px;
+  border-radius:14px;
   display:flex;
-
-  justify-content:center;
   align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  font-size:30px;
+  background:var(--bg);
+}
 
-  background:var(--soft);
-
-  font-size:26px;
+.mini.open .miniCover{
+  width:min(72vw,310px);
+  height:min(72vw,310px);
+  flex-basis:auto;
+  border-radius:18px;
+  font-size:70px;
+  margin-top:5px;
 }
 
 .miniInfo{
-  flex:1;
   min-width:0;
+  flex:1;
+  overflow:hidden;
+}
+
+.mini.open .miniInfo{
+  width:100%;
+  flex:none;
+  text-align:left;
 }
 
 .miniInfo b,
 .miniInfo small{
   display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .miniInfo b{
-  white-space:nowrap;
-
-  overflow:hidden;
-
-  text-overflow:ellipsis;
+  font-size:14px;
 }
 
 .miniInfo small{
-  color:var(--muted);
-
   margin-top:3px;
+  font-size:12px;
+  opacity:.65;
+}
 
-  white-space:nowrap;
+.miniControls{
+  display:none;
+}
 
-  overflow:hidden;
+.mini.open .miniControls{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin-top:4px;
+}
 
-  text-overflow:ellipsis;
+.miniIconBtn{
+  width:44px;
+  height:44px;
+  border:0;
+  border-radius:50%;
+  background:transparent;
+  color:inherit;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  padding:0;
+}
+
+.miniIconBtn svg{
+  width:22px;
+  height:22px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.miniIconBtn:hover{
+  background:rgba(127,127,127,.10);
 }
 
 .miniPlay{
-  width:44px;
-  height:44px;
-
+  width:50px;
+  height:50px;
+  flex:0 0 50px;
   border:0;
-
   border-radius:50%;
-
-  background:var(--primary);
-
-  color:white;
+  background:var(--text);
+  color:var(--card);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  padding:0;
 }
 
+.miniPlay svg{
+  width:23px;
+  height:23px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:2.4;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.miniProgressWrap{
+  display:none;
+}
+
+.mini.open .miniProgressWrap{
+  width:100%;
+  display:block;
+  margin-top:4px;
+}
+
+.miniProgress{
+  width:100%;
+  height:4px;
+  accent-color:currentColor;
+  cursor:pointer;
+}
+
+.miniTime{
+  display:flex;
+  justify-content:space-between;
+  margin-top:4px;
+  font-size:10px;
+  opacity:.55;
+}
+
+.miniActions{
+  display:none;
+}
+
+.mini.open .miniActions{
+  width:100%;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  margin-top:2px;
+  padding:2px 0;
+}
+
+.miniAction{
+  width:46px;
+  height:42px;
+  border:0;
+  background:transparent;
+  color:inherit;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+.miniAction svg{
+  width:21px;
+  height:21px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.miniAction.active{
+  background:rgba(127,127,127,.12);
+}
+
+.miniDownloads{
+  display:none;
+}
+
+.mini.open .miniDownloads{
+  display:block;
+  width:100%;
+  flex:1;
+  min-height:0;
+  overflow:hidden;
+  border-top:1px solid rgba(127,127,127,.15);
+}
+
+.miniDownloadsTitle{
+  padding:12px 15px 8px;
+  font-size:14px;
+  font-weight:700;
+}
+
+.miniDownloadList{
+  height:calc(100% - 42px);
+  overflow-y:auto;
+  padding:0 10px 15px;
+}
+
+.miniDownloadItem{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px;
+  margin-bottom:5px;
+  border:0;
+  border-radius:12px;
+  background:transparent;
+  color:inherit;
+  text-align:left;
+  cursor:pointer;
+}
+
+.miniDownloadItem:hover{
+  background:rgba(127,127,127,.08);
+}
+
+.miniDownloadItem.selected{
+  background:rgba(127,127,127,.12);
+}
+
+.miniDownloadCover{
+  width:45px;
+  height:45px;
+  flex:0 0 45px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  font-size:24px;
+  background:var(--bg);
+}
+
+.miniDownloadInfo{
+  min-width:0;
+  flex:1;
+}
+
+.miniDownloadInfo b,
+.miniDownloadInfo small{
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.miniDownloadInfo b{
+  font-size:13px;
+}
+
+.miniDownloadInfo small{
+  margin-top:3px;
+  font-size:11px;
+  opacity:.6;
+}
+
+.miniSelectMark{
+  width:20px;
+  height:20px;
+  border:1.5px solid currentColor;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:.55;
+}
+
+.miniDownloadItem.selected .miniSelectMark{
+  opacity:1;
+}
+
+.miniSelectMark svg{
+  width:13px;
+  height:13px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:2.5;
+}
+
+.miniEmpty{
+  padding:25px 15px;
+  text-align:center;
+  opacity:.55;
+  font-size:13px;
+}
+
+.miniSelectPanel{
+  display:none;
+  position:absolute;
+  inset:0;
+  z-index:10;
+  background:var(--card);
+  overflow:hidden;
+  flex-direction:column;
+}
+
+.mini.selecting .miniSelectPanel{
+  display:flex;
+}
+
+.miniSelectHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 15px 12px;
+  border-bottom:1px solid rgba(127,127,127,.15);
+}
+
+.miniSelectHeader b{
+  font-size:16px;
+}
+
+.miniSelectClose{
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:50%;
+  background:transparent;
+  color:inherit;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.miniSelectList{
+  flex:1;
+  overflow-y:auto;
+  padding:8px 10px;
+}
 
 /* =====================================================
-                        FULL PLAYER
+                      15. FULL PLAYER
 ===================================================== */
 
 .player{
@@ -1570,7 +1831,7 @@ button{
 
 
 /* =====================================================
-                         SETTINGS
+                     16. SETTINGS
 ===================================================== */
 
 .profile{
@@ -1640,7 +1901,7 @@ button{
 
 
 /* =====================================================
-                      OWNER SETTINGS
+                   17. OWNER / ADMIN
 ===================================================== */
 
 .ownerBadge{
@@ -1694,7 +1955,7 @@ button{
 
 
 /* =====================================================
-                      BOTTOM NAV
+                    18. BOTTOM NAV
 ===================================================== */
 
 .bottomNav{
@@ -1747,7 +2008,7 @@ button{
 
 
 /* =====================================================
-                          MODAL
+                       19. MODAL
 ===================================================== */
 
 .modal{
@@ -1793,7 +2054,7 @@ button{
 
 
 /* =====================================================
-                          TOAST
+                       20. TOAST
 ===================================================== */
 
 .toast{
@@ -1824,7 +2085,7 @@ button{
 
 
 /* =====================================================
-                          UPLOAD
+                       21. UPLOAD
 ===================================================== */
 
 .uploadBox{
@@ -1847,7 +2108,7 @@ button{
 
 
 /* =====================================================
-                          SWITCH
+                       22. SWITCH
 ===================================================== */
 
 .switch{
@@ -1904,7 +2165,7 @@ button{
 
 
 /* =====================================================
-                     CALL SCREEN
+                     23. CALL SCREEN
 ===================================================== */
 
 .callOverlay{
@@ -2004,7 +2265,7 @@ button{
 
 
 /* =====================================================
-                       RESPONSIVE
+                     24. RESPONSIVE
 ===================================================== */
 
 @media(max-width:390px){
@@ -2044,7 +2305,7 @@ button{
 
 
 <!-- =====================================================
-                         SIGN UP
+                         01. SIGN UP
 ===================================================== -->
 
 <section
@@ -2067,7 +2328,6 @@ button{
 
   </div>
 
-
   <div class="card">
 
     <div
@@ -2086,7 +2346,7 @@ button{
 
 
 <!-- =====================================================
-                           HOME
+                         02. HOME
 ===================================================== -->
 
 <section
@@ -2107,7 +2367,6 @@ button{
 
   </div>
 
-
   <div
     id="homeSearch"
     class="homeSearch">
@@ -2120,11 +2379,9 @@ button{
 
   </div>
 
-
   <div
     id="newsList">
   </div>
-
 
   <div
     id="article"
@@ -2162,7 +2419,7 @@ button{
 
 
 <!-- =====================================================
-                           CHATS
+                         03. CHATS
 ===================================================== -->
 
 <section
@@ -2177,13 +2434,11 @@ button{
 
   </div>
 
-
   <input
     id="chatSearch"
     class="input"
     placeholder="ស្វែងរក Chat..."
     oninput="renderChats()">
-
 
   <div
     id="chatList">
@@ -2193,7 +2448,7 @@ button{
 
 
 <!-- =====================================================
-                    CHAT DETAIL
+                    04. CHAT DETAIL
 ===================================================== -->
 
 <section
@@ -2208,16 +2463,11 @@ button{
 
     <div class="chatHeader">
 
-      <!-- Back -->
-
       <button
         class="chatBack"
         onclick="closeChatDetail()">
         ‹
       </button>
-
-
-      <!-- Name center -->
 
       <div
         class="chatHeaderName"
@@ -2234,9 +2484,6 @@ button{
         </small>
 
       </div>
-
-
-      <!-- Profile right -->
 
       <button
         id="detailAvatar"
@@ -2275,13 +2522,11 @@ button{
         📎
       </button>
 
-
       <input
         id="messageInput"
         class="messageField"
         placeholder="Message"
         autocomplete="off">
-
 
       <button
         id="micButton"
@@ -2289,7 +2534,6 @@ button{
         onclick="showToast('🎙️ Voice message')">
         🎙️
       </button>
-
 
       <button
         id="sendButton"
@@ -2306,7 +2550,7 @@ button{
 
 
 <!-- =====================================================
-               FRIEND PROFILE + CALL PANEL
+               05. FRIEND PROFILE / CALL PANEL
 ===================================================== -->
 
 <div
@@ -2318,13 +2562,11 @@ button{
     <div class="friendHandle">
     </div>
 
-
     <div
       id="friendLargeAvatar"
       class="friendLargeAvatar">
       C
     </div>
-
 
     <h2
       id="friendName"
@@ -2332,15 +2574,11 @@ button{
       Chau Cheo
     </h2>
 
-
     <div
       id="friendStatus"
       class="friendStatus">
       last seen 28/08/26
     </div>
-
-
-    <!-- CALL + VIDEO -->
 
     <div class="callActions">
 
@@ -2357,7 +2595,6 @@ button{
 
       </button>
 
-
       <button
         class="callButton video"
         onclick="startCall(true)">
@@ -2373,7 +2610,6 @@ button{
 
     </div>
 
-
     <button
       class="closeFriend"
       onclick="closeFriendPanel()">
@@ -2386,7 +2622,7 @@ button{
 
 
 <!-- =====================================================
-                          MUSIC
+                         06. MUSIC
 ===================================================== -->
 
 <section
@@ -2407,7 +2643,6 @@ button{
 
   </div>
 
-
   <div
     id="musicSearchPanel"
     class="musicSearchPanel">
@@ -2420,31 +2655,25 @@ button{
 
   </div>
 
-
   <div class="sectionTitle">
     🎤 សិល្បករ និងបទចម្រៀងថ្មីៗ
   </div>
-
 
   <div
     id="artistList">
   </div>
 
-
   <div class="sectionTitle">
     🎵 បទចម្រៀង
   </div>
-
 
   <div
     id="musicList">
   </div>
 
-
   <div class="sectionTitle">
     ⬇️ Downloads
   </div>
-
 
   <div
     id="downloadList">
@@ -2454,7 +2683,7 @@ button{
 
 
 <!-- =====================================================
-                         SETTINGS
+                         07. SETTINGS
 ===================================================== -->
 
 <section
@@ -2468,7 +2697,6 @@ button{
     </h1>
 
   </div>
-
 
   <div class="card profile">
 
@@ -2492,7 +2720,6 @@ button{
     </button>
 
   </div>
-
 
   <div
     class="card setting"
@@ -2519,7 +2746,6 @@ button{
     </button>
 
   </div>
-
 
   <div
     class="card setting"
@@ -2549,7 +2775,6 @@ button{
 
   </div>
 
-
   <div
     class="card setting"
     onclick="showToast('Privacy & Security')">
@@ -2575,7 +2800,6 @@ button{
     </button>
 
   </div>
-
 
   <div
     class="card setting"
@@ -2603,7 +2827,6 @@ button{
 
   </div>
 
-
   <div
     class="card setting"
     onclick="openLanguageSettings()">
@@ -2630,7 +2853,6 @@ button{
 
   </div>
 
-
   <div
     class="card setting"
     onclick="openStorageSettings()">
@@ -2656,7 +2878,6 @@ button{
     </button>
 
   </div>
-
 
   <div
     class="card setting"
@@ -2685,7 +2906,7 @@ button{
   </div>
 
 
-  <!-- OWNER -->
+  <!-- ================= OWNER ================= -->
 
   <div
     id="ownerArea"
@@ -2703,13 +2924,11 @@ button{
 
     </div>
 
-
     <div class="card">
 
       <div class="sectionTitle">
         👑 Owner Control
       </div>
-
 
       <div class="adminGrid">
 
@@ -2779,7 +2998,6 @@ button{
 
   </div>
 
-
   <div
     class="card setting"
     onclick="logout()">
@@ -2810,50 +3028,201 @@ button{
 
 
 <!-- =====================================================
-                       MINI PLAYER
+                      08. MINI PLAYER
 ===================================================== -->
 
-<div
-  id="mini"
-  class="mini">
+<div id="mini" class="mini">
 
-  <div
-    id="miniCover"
-    class="miniCover">
-    🌆
+  <div id="miniHandle" class="miniHandle">
+    <span></span>
   </div>
 
+  <div class="miniMain" id="miniMain">
 
-  <div
-    class="miniInfo"
-    onclick="openPlayer()">
+    <div id="miniCover" class="miniCover">🌆</div>
 
-    <b id="miniTitle">
-      Phành phố sương mờ
-    </b>
+    <div class="miniInfo">
+      <b id="miniTitle">Phành phố sương mờ</b>
+      <small id="miniArtist">Young Quá, NhoxJet</small>
+    </div>
 
-    <small id="miniArtist">
-      Young Quá, NhoxJet
-    </small>
+    <div class="miniProgressWrap">
+
+      <input
+        id="miniProgress"
+        class="miniProgress"
+        type="range"
+        min="0"
+        max="100"
+        value="0"
+      >
+
+      <div class="miniTime">
+        <span id="miniCurrentTime">0:00</span>
+        <span id="miniDuration">0:00</span>
+      </div>
+
+    </div>
+
+    <div class="miniControls">
+
+      <!-- Select songs -->
+      <button
+        class="miniIconBtn"
+        id="miniSelectBtn"
+        title="ជ្រើសរើសបទ"
+        onclick="event.stopPropagation();toggleMiniSelect()"
+      >
+        <svg viewBox="0 0 24 24">
+          <path d="M8 6h13"/>
+          <path d="M8 12h13"/>
+          <path d="M8 18h13"/>
+          <path d="M3 6h.01"/>
+          <path d="M3 12h.01"/>
+          <path d="M3 18h.01"/>
+        </svg>
+      </button>
+
+      <!-- Previous -->
+      <button
+        class="miniIconBtn"
+        title="បទមុន"
+        onclick="event.stopPropagation();miniPreviousSong()"
+      >
+        <svg viewBox="0 0 24 24">
+          <path d="M19 20L9 12l10-8v16z"/>
+          <path d="M5 19V5"/>
+        </svg>
+      </button>
+
+      <!-- Play / Pause -->
+      <button
+        id="miniPlay"
+        class="miniPlay"
+        title="Play / Pause"
+        onclick="event.stopPropagation();togglePlay()"
+      >
+        <svg id="miniPlayIcon" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </button>
+
+      <!-- Next -->
+      <button
+        class="miniIconBtn"
+        title="បទបន្ទាប់"
+        onclick="event.stopPropagation();miniNextSong()"
+      >
+        <svg viewBox="0 0 24 24">
+          <path d="M5 4l10 8-10 8V4z"/>
+          <path d="M19 5v14"/>
+        </svg>
+      </button>
+
+      <!-- Repeat -->
+      <button
+        id="miniRepeat"
+        class="miniIconBtn"
+        title="Repeat"
+        onclick="event.stopPropagation();toggleMiniRepeat()"
+      >
+        <svg viewBox="0 0 24 24">
+          <path d="M17 2l4 4-4 4"/>
+          <path d="M3 11V9a3 3 0 0 1 3-3h15"/>
+          <path d="M7 22l-4-4 4-4"/>
+          <path d="M21 13v2a3 3 0 0 1-3 3H3"/>
+        </svg>
+      </button>
+
+    </div>
+
+    <div class="miniActions">
+
+      <!-- Like -->
+      <button
+        class="miniAction"
+        title="Like"
+        onclick="event.stopPropagation();toggleMiniAction(this)"
+      >
+        <svg viewBox="0 0 24 24">
+          <path d="M7 10v11H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3z"/>
+          <path d="M7 21h9.5a2 2 0 0 0 1.9-1.4l2.2-7A2 2 0 0 0 18.7 10H14l.7-4.2A3 3 0 0 0 11.8 2L7 10"/>
+        </svg>
+      </button>
+
+      <!-- Dislike -->
+      <button
+        class="miniAction"
+        title="Dislike"
+        onclick="event.stopPropagation();toggleMiniAction(this)"
+      >
+        <svg viewBox="0 0 24 24">
+          <path d="M7 14V3H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3z"/>
+          <path d="M7 3h9.5a2 2 0 0 1 1.9 1.4l2.2 7A2 2 0 0 1 18.7 14H14l.7 4.2a3 3 0 0 1-2.9 3.8L7 14"/>
+        </svg>
+      </button>
+
+      <!-- Comment -->
+      <button
+        class="miniAction"
+        title="Comment"
+        onclick="event.stopPropagation();miniComment()"
+      >
+        <svg viewBox="0 0 24 24">
+          <path d="M20 11.5a8 8 0 0 1-8 8H7l-4 3v-5.2a8 8 0 1 1 17-5.8z"/>
+        </svg>
+      </button>
+
+    </div>
 
   </div>
 
+  <!-- Song selection -->
+  <div id="miniSelectPanel" class="miniSelectPanel">
 
-  <button
-    id="miniPlay"
-    class="miniPlay"
-    onclick="
-      event.stopPropagation();
-      togglePlay();
-    ">
-    ▶️
-  </button>
+    <div class="miniSelectHeader">
+
+      <b>ជ្រើសរើសបទដែលចង់ស្តាប់</b>
+
+      <button
+        class="miniSelectClose"
+        onclick="toggleMiniSelect()"
+        title="បិទ"
+      >
+        <svg viewBox="0 0 24 24" width="21" height="21">
+          <path d="M6 6l12 12"/>
+          <path d="M18 6L6 18"/>
+        </svg>
+      </button>
+
+    </div>
+
+    <div
+      id="miniSelectList"
+      class="miniSelectList"
+    ></div>
+
+  </div>
+
+  <!-- Downloads at bottom -->
+  <div id="miniDownloads" class="miniDownloads">
+
+    <div class="miniDownloadsTitle">
+      Download
+    </div>
+
+    <div
+      id="miniDownloadList"
+      class="miniDownloadList"
+    ></div>
+
+  </div>
 
 </div>
 
 
 <!-- =====================================================
-                        FULL PLAYER
+                       09. FULL PLAYER
 ===================================================== -->
 
 <div
@@ -2871,13 +3240,11 @@ button{
       ✕
     </button>
 
-
     <div
       id="bigCover"
       class="bigCover">
       🌆
     </div>
-
 
     <h2
       id="playerTitle"
@@ -2885,13 +3252,11 @@ button{
       Phành phố sương mờ
     </h2>
 
-
     <div
       id="playerArtist"
       class="playerArtist">
       Young Quá, NhoxJet
     </div>
-
 
     <div class="actions">
 
@@ -2915,7 +3280,6 @@ button{
       </button>
 
     </div>
-
 
     <div class="controls">
 
@@ -2944,7 +3308,7 @@ button{
 
 
 <!-- =====================================================
-                    PROFILE MODAL
+                    10. PROFILE MODAL
 ===================================================== -->
 
 <div
@@ -2987,7 +3351,7 @@ button{
 
 
 <!-- =====================================================
-                       FONT MODAL
+                       11. FONT MODAL
 ===================================================== -->
 
 <div
@@ -3035,7 +3399,6 @@ button{
 
     </select>
 
-
     <label>
       ទំហំអក្សរ
     </label>
@@ -3048,7 +3411,6 @@ button{
       value="16"
       style="width:100%"
       oninput="applyFont()">
-
 
     <div class="uploadBox">
 
@@ -3067,7 +3429,6 @@ button{
 
     </div>
 
-
     <button
       class="primary"
       onclick="
@@ -3083,7 +3444,7 @@ button{
 
 
 <!-- =====================================================
-                     LANGUAGE MODAL
+                    12. LANGUAGE MODAL
 ===================================================== -->
 
 <div
@@ -3096,13 +3457,11 @@ button{
       🌐 Language
     </h2>
 
-
     <button
       class="secondary"
       onclick="setLanguage('ខ្មែរ')">
       🇰🇭 ខ្មែរ
     </button>
-
 
     <button
       class="secondary"
@@ -3110,13 +3469,11 @@ button{
       🇺🇸 English
     </button>
 
-
     <button
       class="secondary"
       onclick="setLanguage('Tiếng Việt')">
       🇻🇳 Tiếng Việt
     </button>
-
 
     <button
       class="secondary"
@@ -3132,7 +3489,7 @@ button{
 
 
 <!-- =====================================================
-                     STORAGE MODAL
+                    13. STORAGE MODAL
 ===================================================== -->
 
 <div
@@ -3144,7 +3501,6 @@ button{
     <h2>
       📶 Data & Storage
     </h2>
-
 
     <div class="card">
 
@@ -3160,13 +3516,11 @@ button{
 
     </div>
 
-
     <button
       class="primary"
       onclick="clearDownloads()">
       🗑️ លុប Downloads
     </button>
-
 
     <button
       class="secondary"
@@ -3182,7 +3536,7 @@ button{
 
 
 <!-- =====================================================
-                       ADMIN MODAL
+                     14. ADMIN MODAL
 ===================================================== -->
 
 <div
@@ -3196,11 +3550,9 @@ button{
       👑 Owner
     </h2>
 
-
     <div
       id="adminContent">
     </div>
-
 
     <button
       class="secondary"
@@ -3216,7 +3568,7 @@ button{
 
 
 <!-- =====================================================
-                       CALL OVERLAY
+                     15. CALL OVERLAY
 ===================================================== -->
 
 <div
@@ -3229,20 +3581,17 @@ button{
     C
   </div>
 
-
   <div
     id="callName"
     class="callName">
     Chau Cheo
   </div>
 
-
   <div
     id="callType"
     class="callType">
     Calling...
   </div>
-
 
   <div class="callButtons">
 
@@ -3254,13 +3603,11 @@ button{
       🎙️
     </button>
 
-
     <button
       class="callControl endCall"
       onclick="endCall()">
       📞
     </button>
-
 
     <button
       class="callControl"
@@ -3276,7 +3623,7 @@ button{
 
 
 <!-- =====================================================
-                      BOTTOM NAV
+                    16. BOTTOM NAVIGATION
 ===================================================== -->
 
 <nav
@@ -3296,7 +3643,6 @@ button{
 
   </button>
 
-
   <button
     class="nav"
     data-page="chats"
@@ -3310,7 +3656,6 @@ button{
 
   </button>
 
-
   <button
     class="nav"
     data-page="music"
@@ -3323,7 +3668,6 @@ button{
     Music
 
   </button>
-
 
   <button
     class="nav"
@@ -3341,6 +3685,10 @@ button{
 </nav>
 
 
+<!-- =====================================================
+                         17. TOAST
+===================================================== -->
+
 <div
   id="toast"
   class="toast">
@@ -3352,7 +3700,7 @@ button{
 <script>
 
 /* =====================================================
-                         CONFIG
+                     01. CONFIG
 ===================================================== */
 
 const OWNER_EMAIL =
@@ -3363,7 +3711,7 @@ const TEST_OTP =
 
 
 /* =====================================================
-                          STATE
+                      02. STATE
 ===================================================== */
 
 let user = null;
@@ -3378,16 +3726,11 @@ let minimumAge = 13;
 
 let ageRestrictionEnabled = false;
 
-
-/* =====================================================
-                     CURRENT CHAT
-===================================================== */
-
 let currentChat = null;
 
 
 /* =====================================================
-                         DATA
+                       03. DATA
 ===================================================== */
 
 const songs = [
@@ -3526,7 +3869,7 @@ const chats = [
 
 
 /* =====================================================
-                       SIGN UP
+                    04. SIGN UP
 ===================================================== */
 
 function renderSignup(){
@@ -3761,7 +4104,7 @@ function renderSignup(){
 
 
 /* =====================================================
-                       AGE
+                      05. AGE
 ===================================================== */
 
 function calculateAge(date){
@@ -3864,7 +4207,7 @@ function checkAgeAndNext(){
 
 
 /* =====================================================
-                    SIGNUP NEXT
+                   06. SIGNUP NEXT
 ===================================================== */
 
 function nextSignup(){
@@ -3945,7 +4288,7 @@ function nextSignup(){
 
 
 /* =====================================================
-                         OTP
+                       07. OTP
 ===================================================== */
 
 function verifyOTP(){
@@ -3981,7 +4324,7 @@ function verifyOTP(){
 
 
 /* =====================================================
-                     FINISH SIGNUP
+                    08. FINISH SIGNUP
 ===================================================== */
 
 function finishSignup(){
@@ -4002,7 +4345,7 @@ function finishSignup(){
 
 
 /* =====================================================
-                      ENTER APP
+                     09. ENTER APP
 ===================================================== */
 
 function enterApp(){
@@ -4068,7 +4411,7 @@ function enterApp(){
 
 
 /* =====================================================
-                     NAVIGATION
+                    10. NAVIGATION
 ===================================================== */
 
 function go(page){
@@ -4135,7 +4478,7 @@ function go(page){
 
 
 /* =====================================================
-                         HOME
+                       11. HOME
 ===================================================== */
 
 function toggleHomeSearch(){
@@ -4341,7 +4684,7 @@ function closeArticle(){
 
 
 /* =====================================================
-                         CHATS
+                       12. CHATS
 ===================================================== */
 
 function renderChats(){
@@ -4405,7 +4748,7 @@ function renderChats(){
 
 
 /* =====================================================
-                    OPEN CHAT DETAIL
+                 13. OPEN CHAT DETAIL
 ===================================================== */
 
 function openChatDetail(index){
@@ -4470,10 +4813,6 @@ function openChatDetail(index){
     chat.name;
 
 
-  /*
-     Hide normal screens
-  */
-
   document
     .querySelectorAll(
       ".screen"
@@ -4487,10 +4826,6 @@ function openChatDetail(index){
     );
 
 
-  /*
-     Show Chat Detail
-  */
-
   document
     .getElementById(
       "chatDetail"
@@ -4498,19 +4833,11 @@ function openChatDetail(index){
     .classList.add("active");
 
 
-  /*
-     Hide bottom navigation
-  */
-
   document.getElementById(
     "bottomNav"
   ).style.display =
     "none";
 
-
-  /*
-     Hide music player
-  */
 
   document.getElementById(
     "mini"
@@ -4520,13 +4847,7 @@ function openChatDetail(index){
 
   closePlayer();
 
-
   closeFriendPanel();
-
-
-  /*
-     Reset sample messages
-  */
 
   renderChatMessages();
 
@@ -4534,7 +4855,7 @@ function openChatDetail(index){
 
 
 /* =====================================================
-                   CLOSE CHAT DETAIL
+                14. CLOSE CHAT DETAIL
 ===================================================== */
 
 function closeChatDetail(){
@@ -4584,7 +4905,7 @@ function closeChatDetail(){
 
 
 /* =====================================================
-                  RENDER CHAT MESSAGES
+               15. CHAT MESSAGE STORAGE
 ===================================================== */
 
 function renderChatMessages(){
@@ -4608,10 +4929,6 @@ function renderChatMessages(){
 
   `;
 
-
-  /*
-     Saved messages
-  */
 
   const saved =
     JSON.parse(
@@ -4655,10 +4972,6 @@ function renderChatMessages(){
 
 }
 
-
-/* =====================================================
-                   ADD MESSAGE BUBBLE
-===================================================== */
 
 function addMessageBubble(
   text,
@@ -4717,10 +5030,6 @@ function addMessageBubble(
 }
 
 
-/* =====================================================
-                     SEND MESSAGE
-===================================================== */
-
 function sendMessage(){
 
   const input =
@@ -4743,10 +5052,6 @@ function sendMessage(){
     true
   );
 
-
-  /*
-     Save locally
-  */
 
   const saved =
     JSON.parse(
@@ -4785,10 +5090,6 @@ function sendMessage(){
 
 }
 
-
-/* =====================================================
-                 MESSAGE INPUT BUTTONS
-===================================================== */
 
 function updateMessageButtons(){
 
@@ -4840,14 +5141,8 @@ function updateMessageButtons(){
 
 
 /* =====================================================
-               FRIEND PROFILE PANEL
+              16. FRIEND PROFILE / CALL
 ===================================================== */
-
-/*
-  ចុចឈ្មោះកណ្ដាល
-  ឬ Profile ខាងស្ដាំ
-  → មកទីនេះ
-*/
 
 function openFriendPanel(){
 
@@ -4874,10 +5169,6 @@ function closeFriendPanel(){
 
 }
 
-
-/* =====================================================
-                         CALL
-===================================================== */
 
 function startCall(video=false){
 
@@ -4934,7 +5225,7 @@ function endCall(){
 
 
 /* =====================================================
-                         MUSIC
+                       17. MUSIC
 ===================================================== */
 
 function toggleMusicSearch(){
@@ -5180,106 +5471,364 @@ function renderDownloads(){
 
   updateStorageInfo();
 
+
+
 }
 
-
 /* =====================================================
-                     MUSIC PLAYER
+                    18. MUSIC PLAYER
 ===================================================== */
+
+
+/* =========================
+   MINI PLAYER STATE
+========================= */
+
+var miniRepeat = false;
+
+var miniSelectedSongs = [];
+
+
+/* =========================
+   SELECT SONG
+========================= */
 
 function selectSong(index){
 
-  const song =
-    songs[index];
+  const song = songs[index];
+
+  if(!song) return;
+
+  currentSong = index;
 
 
-  if(!song)
-    return;
+  const miniCover =
+    document.getElementById("miniCover");
+
+  const miniTitle =
+    document.getElementById("miniTitle");
+
+  const miniArtist =
+    document.getElementById("miniArtist");
+
+  const bigCover =
+    document.getElementById("bigCover");
+
+  const playerTitle =
+    document.getElementById("playerTitle");
+
+  const playerArtist =
+    document.getElementById("playerArtist");
 
 
-  currentSong =
-    index;
+  if(miniCover)
+    miniCover.textContent = song.cover;
+
+  if(miniTitle)
+    miniTitle.textContent = song.title;
+
+  if(miniArtist)
+    miniArtist.textContent = song.artist;
+
+  if(bigCover)
+    bigCover.textContent = song.cover;
+
+  if(playerTitle)
+    playerTitle.textContent = song.title;
+
+  if(playerArtist)
+    playerArtist.textContent = song.artist;
 
 
-  document.getElementById(
-    "miniCover"
-  ).textContent =
-    song.cover;
+  renderMiniDownloads();
 
-
-  document.getElementById(
-    "miniTitle"
-  ).textContent =
-    song.title;
-
-
-  document.getElementById(
-    "miniArtist"
-  ).textContent =
-    song.artist;
-
-
-  document.getElementById(
-    "bigCover"
-  ).textContent =
-    song.cover;
-
-
-  document.getElementById(
-    "playerTitle"
-  ).textContent =
-    song.title;
-
-
-  document.getElementById(
-    "playerArtist"
-  ).textContent =
-    song.artist;
+  updateMiniRepeatButton();
 
 }
 
 
-function openPlayer(){
+/* =========================
+   MINI SELECT
+========================= */
+
+function toggleMiniSelect(){
+
+  const mini =
+    document.getElementById("mini");
+
+  if(!mini) return;
+
+
+  mini.classList.toggle(
+    "selecting"
+  );
+
 
   if(
-    !document
-      .getElementById(
-        "music"
-      )
-      .classList
-      .contains(
-        "active"
-      )
+    mini.classList.contains(
+      "selecting"
+    )
   ){
 
-    return;
+    renderMiniSelectList();
+
+  }
+
+}
+
+
+/* =========================
+   SELECT LIST
+========================= */
+
+function renderMiniSelectList(){
+
+  const list =
+    document.getElementById(
+      "miniSelectList"
+    );
+
+  if(!list) return;
+
+
+  list.innerHTML = "";
+
+
+  songs.forEach(function(song,index){
+
+    const selected =
+      miniSelectedSongs.includes(
+        index
+      );
+
+
+    const item =
+      document.createElement(
+        "button"
+      );
+
+
+    item.type = "button";
+
+    item.className =
+      "miniDownloadItem" +
+      (
+        selected
+        ? " selected"
+        : ""
+      );
+
+
+    item.innerHTML = `
+
+      <div class="miniDownloadCover">
+        ${song.cover}
+      </div>
+
+      <div class="miniDownloadInfo">
+
+        <b>${index + 1}. ${song.title}</b>
+
+        <small>${song.artist}</small>
+
+      </div>
+
+      <div class="miniSelectMark">
+
+        ${
+          selected
+          ? `
+            <svg viewBox="0 0 24 24">
+              <path d="M5 12l4 4L19 6"></path>
+            </svg>
+          `
+          : ""
+        }
+
+      </div>
+
+    `;
+
+
+    item.onclick = function(event){
+
+      event.stopPropagation();
+
+      toggleMiniSong(index);
+
+    };
+
+
+    list.appendChild(item);
+
+  });
+
+}
+
+
+/* =========================
+   SELECT / UNSELECT
+========================= */
+
+function toggleMiniSong(index){
+
+  const position =
+    miniSelectedSongs.indexOf(
+      index
+    );
+
+
+  if(position === -1){
+
+    miniSelectedSongs.push(
+      index
+    );
+
+  }else{
+
+    miniSelectedSongs.splice(
+      position,
+      1
+    );
 
   }
 
 
-  document
-    .getElementById(
-      "player"
-    )
-    .classList.add(
-      "show"
-    );
+  renderMiniSelectList();
+
+  renderMiniDownloads();
 
 }
 
 
-function closePlayer(){
+/* =========================
+   MINI PREVIOUS
+========================= */
 
-  document
-    .getElementById(
-      "player"
-    )
-    .classList.remove(
-      "show"
+function miniPreviousSong(){
+
+  const list =
+    miniSelectedSongs.length
+    ? miniSelectedSongs
+    : songs.map(
+        function(_,index){
+          return index;
+        }
+      );
+
+
+  if(!list.length) return;
+
+
+  let position =
+    list.indexOf(
+      currentSong
     );
+
+
+  if(position === -1){
+
+    position = 0;
+
+  }else{
+
+    position--;
+
+  }
+
+
+  if(position < 0){
+
+    position =
+      list.length - 1;
+
+  }
+
+
+  selectSong(
+    list[position]
+  );
 
 }
 
+
+/* =========================
+   MINI NEXT
+========================= */
+
+function miniNextSong(){
+
+  const list =
+    miniSelectedSongs.length
+    ? miniSelectedSongs
+    : songs.map(
+        function(_,index){
+          return index;
+        }
+      );
+
+
+  if(!list.length) return;
+
+
+  let position =
+    list.indexOf(
+      currentSong
+    );
+
+
+  if(position === -1){
+
+    position = 0;
+
+  }else{
+
+    position++;
+
+  }
+
+
+  if(
+    position >= list.length
+  ){
+
+    position = 0;
+
+  }
+
+
+  selectSong(
+    list[position]
+  );
+
+}
+
+
+/* =========================
+   FULL PLAYER PREVIOUS
+========================= */
+
+function previousSong(){
+
+  miniPreviousSong();
+
+}
+
+
+/* =========================
+   FULL PLAYER NEXT
+========================= */
+
+function nextSong(){
+
+  miniNextSong();
+
+}
+
+
+/* =========================
+   PLAY / PAUSE
+========================= */
 
 function togglePlay(){
 
@@ -5287,66 +5836,220 @@ function togglePlay(){
     !playing;
 
 
-  document.getElementById(
-    "miniPlay"
-  ).textContent =
-    playing
-      ? "⏸️"
-      : "▶️";
+  updateMiniPlayIcon();
 
-
-  document.getElementById(
-    "mainPlay"
-  ).textContent =
-    playing
-      ? "⏸️"
-      : "▶️";
+  updateMainPlay();
 
 }
 
 
-function previousSong(){
+/* =========================
+   MINI PLAY ICON
+========================= */
 
-  currentSong--;
+function updateMiniPlayIcon(){
+
+  const icon =
+    document.getElementById(
+      "miniPlayIcon"
+    );
+
+  if(!icon) return;
 
 
-  if(currentSong < 0){
+  if(playing){
 
-    currentSong =
-      songs.length - 1;
+    icon.innerHTML = `
+      <path d="M7 5v14"></path>
+      <path d="M17 5v14"></path>
+    `;
+
+  }else{
+
+    icon.innerHTML = `
+      <path d="M8 5v14l11-7z"></path>
+    `;
 
   }
 
+}
 
-  selectSong(
-    currentSong
+
+/* =========================
+   FULL PLAYER PLAY
+========================= */
+
+function updateMainPlay(){
+
+  const button =
+    document.getElementById(
+      "mainPlay"
+    );
+
+  if(!button) return;
+
+
+  button.textContent =
+    playing
+    ? "⏸️"
+    : "▶️";
+
+}
+
+
+/* =========================
+   REPEAT
+========================= */
+
+function toggleMiniRepeat(){
+
+  miniRepeat =
+    !miniRepeat;
+
+
+  updateMiniRepeatButton();
+
+}
+
+
+function updateMiniRepeatButton(){
+
+  const button =
+    document.getElementById(
+      "miniRepeat"
+    );
+
+  if(!button) return;
+
+
+  button.classList.toggle(
+    "active",
+    miniRepeat
   );
 
 }
 
 
-function nextSong(){
+/* =========================
+   LIKE / DISLIKE
+========================= */
 
-  currentSong++;
+function toggleMiniAction(button){
 
-
-  if(
-    currentSong >=
-    songs.length
-  ){
-
-    currentSong =
-      0;
-
-  }
+  if(!button) return;
 
 
-  selectSong(
-    currentSong
+  button.classList.toggle(
+    "active"
   );
 
 }
 
+
+/* =========================
+   COMMENT
+========================= */
+
+function miniComment(){
+
+  showToast(
+    "Comment"
+  );
+
+}
+
+
+/* =========================
+   MINI DOWNLOAD LIST
+========================= */
+
+function renderMiniDownloads(){
+
+  const list =
+    document.getElementById(
+      "miniDownloadList"
+    );
+
+  if(!list) return;
+
+
+  list.innerHTML = "";
+
+
+  songs.forEach(function(song,index){
+
+    const item =
+      document.createElement(
+        "button"
+      );
+
+
+    item.type = "button";
+
+
+    item.className =
+      "miniDownloadItem" +
+      (
+        miniSelectedSongs.includes(
+          index
+        )
+        ? " selected"
+        : ""
+      );
+
+
+    item.innerHTML = `
+
+      <div class="miniDownloadCover">
+        ${song.cover}
+      </div>
+
+      <div class="miniDownloadInfo">
+
+        <b>${index + 1}. ${song.title}</b>
+
+        <small>${song.artist}</small>
+
+      </div>
+
+      <div class="miniSelectMark">
+
+        ${
+          miniSelectedSongs.includes(
+            index
+          )
+          ? `
+            <svg viewBox="0 0 24 24">
+              <path d="M5 12l4 4L19 6"></path>
+            </svg>
+          `
+          : ""
+        }
+
+      </div>
+
+    `;
+
+
+    item.onclick = function(event){
+
+      event.stopPropagation();
+
+      selectSong(index);
+
+    };
+
+
+    list.appendChild(item);
+
+  });
+
+}
+
+
+/* =========================
+   DOWNLOAD
+========================= */
 
 function downloadSong(index){
 
@@ -5376,6 +6079,8 @@ function downloadSong(index){
 
   renderDownloads();
 
+  renderMiniDownloads();
+
 
   showToast(
     "បាន Download ⬇️"
@@ -5384,10 +6089,17 @@ function downloadSong(index){
 }
 
 
+/* =========================
+   SHARE
+========================= */
+
 function shareSong(){
 
   const song =
     songs[currentSong];
+
+
+  if(!song) return;
 
 
   if(
@@ -5395,19 +6107,23 @@ function shareSong(){
   ){
 
     navigator.share({
-      title:song.title,
+
+      title:
+        song.title,
+
       text:
         song.title +
         " - " +
         song.artist
+
     }).catch(
-      ()=>{}
+      function(){}
     );
 
   }else{
 
     showToast(
-      "✉️ Share"
+      "Share"
     );
 
   }
@@ -5415,8 +6131,68 @@ function shareSong(){
 }
 
 
+/* =========================
+   OPEN FULL PLAYER
+========================= */
+
+function openPlayer(){
+
+  const music =
+    document.getElementById(
+      "music"
+    );
+
+  if(
+    !music ||
+    !music.classList.contains(
+      "active"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  const player =
+    document.getElementById(
+      "player"
+    );
+
+  if(player){
+
+    player.classList.add(
+      "show"
+    );
+
+  }
+
+}
+
+
+/* =========================
+   CLOSE FULL PLAYER
+========================= */
+
+function closePlayer(){
+
+  const player =
+    document.getElementById(
+      "player"
+    );
+
+  if(player){
+
+    player.classList.remove(
+      "show"
+    );
+
+  }
+
+}
+
 /* =====================================================
-                        PROFILE
+                       19. PROFILE
 ===================================================== */
 
 function updateProfile(){
@@ -5503,7 +6279,7 @@ function saveProfile(){
 
 
 /* =====================================================
-                           FONT
+                       20. FONT
 ===================================================== */
 
 function openFontSettings(){
@@ -5628,7 +6404,7 @@ function loadCustomFont(event){
 
 
 /* =====================================================
-                        LANGUAGE
+                     21. LANGUAGE
 ===================================================== */
 
 function openLanguageSettings(){
@@ -5671,7 +6447,7 @@ function setLanguage(language){
 
 
 /* =====================================================
-                       DARK MODE
+                    22. DARK MODE
 ===================================================== */
 
 function toggleDarkMode(){
@@ -5692,7 +6468,7 @@ function toggleDarkMode(){
 
 
 /* =====================================================
-                         STORAGE
+                      23. STORAGE
 ===================================================== */
 
 function openStorageSettings(){
@@ -5771,7 +6547,7 @@ function clearCache(){
 
 
 /* =====================================================
-                     OWNER / ADMIN
+                   24. OWNER / ADMIN
 ===================================================== */
 
 function checkOwner(){
@@ -6205,7 +6981,7 @@ function openAdmin(section){
 
 
 /* =====================================================
-                      AGE SETTINGS
+                    25. AGE SETTINGS
 ===================================================== */
 
 function updateAgeSetting(){
@@ -6285,7 +7061,7 @@ function saveAgeSetting(){
 
 
 /* =====================================================
-                          MODAL
+                      26. MODAL
 ===================================================== */
 
 function closeModal(id){
@@ -6300,7 +7076,7 @@ function closeModal(id){
 
 
 /* =====================================================
-                          TOAST
+                      27. TOAST
 ===================================================== */
 
 function showToast(message){
@@ -6337,7 +7113,7 @@ function showToast(message){
 
 
 /* =====================================================
-                          LOGOUT
+                      28. LOGOUT
 ===================================================== */
 
 function logout(){
@@ -6353,7 +7129,7 @@ function logout(){
 
 
 /* =====================================================
-                     LOAD SETTINGS
+                   29. LOAD SETTINGS
 ===================================================== */
 
 function loadSettings(){
@@ -6476,7 +7252,7 @@ function loadSettings(){
 
 
 /* =====================================================
-                    MESSAGE LISTENER
+                 30. EVENT LISTENERS
 ===================================================== */
 
 document.addEventListener(
@@ -6518,10 +7294,6 @@ document.addEventListener(
     }
 
 
-    /*
-       Click outside Friend Panel
-    */
-
     const panel =
       document.getElementById(
         "friendPanel"
@@ -6548,7 +7320,7 @@ document.addEventListener(
 
 
 /* =====================================================
-                          START
+                         31. START
 ===================================================== */
 
 loadSettings();
