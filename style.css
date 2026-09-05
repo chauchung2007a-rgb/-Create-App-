@@ -1,0 +1,635 @@
+/* =====================================================
+   AI APP BUILDER V1
+   STYLE.CSS
+===================================================== */
+
+
+/* =========================
+   BASIC
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #050505;
+  --panel: #101010;
+  --panel2: #171717;
+  --line: #292929;
+
+  --text: #f5f5f5;
+  --muted: #999999;
+
+  --accent: #7c5cff;
+
+  --success: #36d399;
+  --danger: #ff5c68;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+
+  background: var(--bg);
+  color: var(--text);
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+body {
+  overflow: hidden;
+}
+
+
+/* =========================
+   APP
+========================= */
+
+.app {
+  width: 100%;
+  height: 100dvh;
+
+  max-width: 720px;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  background: var(--bg);
+}
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.top {
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 16px;
+
+  border-bottom: 1px solid var(--line);
+
+  flex-shrink: 0;
+}
+
+.iconbtn {
+  width: 42px;
+  height: 42px;
+
+  border: 0;
+  border-radius: 12px;
+
+  background: transparent;
+
+  color: white;
+
+  font-size: 22px;
+
+  cursor: pointer;
+}
+
+.iconbtn:active {
+  background: #1d1d1d;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.tabs {
+  height: 56px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  border-bottom: 1px solid var(--line);
+
+  flex-shrink: 0;
+}
+
+.tab {
+  position: relative;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.tab.active {
+  color: white;
+}
+
+.tab.active::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: 0;
+
+  left: 24%;
+  right: 24%;
+
+  height: 2px;
+
+  background: var(--accent);
+
+  border-radius: 3px;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+  position: relative;
+
+  flex: 1;
+
+  min-height: 0;
+}
+
+.view {
+  display: none;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: auto;
+}
+
+.view.active {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* =========================
+   AI CHAT
+========================= */
+
+.chat {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  padding: 18px 14px 110px;
+}
+
+
+/* Welcome */
+
+.welcome {
+  padding: 24px 18px;
+
+  border: 1px solid var(--line);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #111111,
+      #090909
+    );
+}
+
+.logo {
+  font-size: 30px;
+
+  margin-bottom: 8px;
+}
+
+.welcome h2 {
+  margin: 0 0 7px;
+
+  font-size: 20px;
+}
+
+.welcome p {
+  margin: 0;
+
+  color: var(--muted);
+
+  line-height: 1.55;
+}
+
+
+/* Messages */
+
+.msg {
+  max-width: 88%;
+
+  padding: 12px 14px;
+
+  border-radius: 16px;
+
+  line-height: 1.45;
+
+  white-space: pre-wrap;
+}
+
+.msg.ai {
+  align-self: flex-start;
+
+  background: #151515;
+
+  border: 1px solid var(--line);
+}
+
+.msg.user {
+  align-self: flex-end;
+
+  background: #2a2055;
+}
+
+
+/* =========================
+   MESSAGE INPUT
+========================= */
+
+.composer {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding:
+    10px
+    12px
+    calc(10px + env(safe-area-inset-bottom));
+
+  display: flex;
+
+  gap: 8px;
+
+  align-items: flex-end;
+
+  background:
+    linear-gradient(
+      transparent,
+      var(--bg) 20%
+    );
+}
+
+.inputwrap {
+  flex: 1;
+
+  display: flex;
+
+  align-items: center;
+
+  background: var(--panel2);
+
+  border: 1px solid var(--line);
+
+  border-radius: 18px;
+
+  padding: 5px 7px;
+}
+
+#chatInput {
+  flex: 1;
+
+  resize: none;
+
+  border: 0;
+
+  outline: 0;
+
+  background: transparent;
+
+  color: white;
+
+  font-size: 15px;
+
+  min-height: 38px;
+
+  max-height: 110px;
+
+  padding: 9px;
+}
+
+#chatInput::placeholder {
+  color: #777;
+}
+
+.smallbtn {
+  width: 38px;
+  height: 38px;
+
+  border: 0;
+
+  border-radius: 12px;
+
+  background: transparent;
+
+  color: white;
+
+  font-size: 19px;
+
+  cursor: pointer;
+}
+
+.smallbtn:active {
+  background: #252525;
+}
+
+.send {
+  width: 44px;
+  height: 44px;
+
+  border: 0;
+
+  border-radius: 14px;
+
+  background: var(--accent);
+
+  color: white;
+
+  font-size: 19px;
+
+  cursor: pointer;
+}
+
+.send:active {
+  transform: scale(.95);
+}
+
+
+/* =========================
+   CODE
+========================= */
+
+.codebar {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 12px 14px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.codebar strong {
+  font-size: 15px;
+}
+
+.actions {
+  display: flex;
+
+  gap: 7px;
+}
+
+.action {
+  border: 1px solid var(--line);
+
+  background: var(--panel);
+
+  color: white;
+
+  padding: 8px 10px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.action:active {
+  background: #222;
+}
+
+.editor {
+  flex: 1;
+
+  margin: 12px;
+
+  border: 1px solid var(--line);
+
+  border-radius: 14px;
+
+  background: #090909;
+
+  color: #dddddd;
+
+  padding: 14px;
+
+  font:
+    12px/1.6
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+
+  white-space: pre;
+
+  overflow: auto;
+}
+
+
+/* =========================
+   APP PREVIEW
+========================= */
+
+.previewHead {
+  padding: 12px 14px;
+
+  border-bottom: 1px solid var(--line);
+
+  font-weight: 700;
+}
+
+.previewFrame {
+  margin: 14px;
+
+  border: 1px solid var(--line);
+
+  border-radius: 18px;
+
+  background: white;
+
+  color: #111;
+
+  min-height: 300px;
+
+  overflow: hidden;
+}
+
+.previewContent {
+  padding: 24px;
+
+  text-align: center;
+}
+
+.previewContent h2 {
+  margin-top: 0;
+}
+
+.previewButton {
+  padding: 10px 16px;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  background: #111;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   SETTINGS MODAL
+========================= */
+
+.modal {
+  position: fixed;
+
+  inset: 0;
+
+  background: #000b;
+
+  display: none;
+
+  align-items: flex-end;
+
+  z-index: 20;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.sheet {
+  width: 100%;
+
+  max-width: 720px;
+
+  margin: auto 0 0;
+
+  background: #111;
+
+  border: 1px solid var(--line);
+
+  border-radius:
+    22px
+    22px
+    0
+    0;
+
+  padding: 18px;
+}
+
+.sheet h3 {
+  margin: 0 0 14px;
+}
+
+.sheet button {
+  width: 100%;
+
+  padding: 13px;
+
+  margin-top: 8px;
+
+  border: 1px solid var(--line);
+
+  background: #191919;
+
+  color: white;
+
+  border-radius: 12px;
+
+  text-align: left;
+
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+.sheet button:active {
+  background: #252525;
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast {
+  position: fixed;
+
+  left: 50%;
+
+  bottom: 82px;
+
+  transform: translateX(-50%);
+
+  background: #222;
+
+  border: 1px solid #333;
+
+  color: white;
+
+  padding: 10px 14px;
+
+  border-radius: 12px;
+
+  display: none;
+
+  z-index: 30;
+
+  font-size: 13px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================
+   DESKTOP PREVIEW
+========================= */
+
+@media (min-width: 721px) {
+
+  body {
+    display: flex;
+    align-items: center;
+  }
+
+  .app {
+    width: 420px;
+    height: 860px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 24px;
+
+    overflow: hidden;
+  }
+
+}
